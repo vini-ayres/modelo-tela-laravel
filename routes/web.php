@@ -24,3 +24,16 @@ Route::get('/login', function () {
 Route::get('/form', function () {
     return view('form');
 });
+
+Route::get('/lista', function () {
+    return view('lista');
+});
+
+Route::get('/status', function () {
+    return view('status');
+});
+
+Route::get('/gerenciamento', function () {
+    return view('gerenciamento');
+});
+

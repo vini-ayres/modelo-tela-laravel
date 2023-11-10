@@ -13,7 +13,7 @@
         }
 
         #sidebar {
-            width: 250px;
+            width: 235px;
             height: 100%;
             background-color: #333;
             color: #fff;
@@ -36,29 +36,17 @@
             text-decoration: none;
             display: block;
             padding: 10px 0;
+            border-bottom: 1px solid #555; /* Adiciona borda inferior */
+            transition: background-color 0.3s;
         }
 
         a:hover {
             background-color: #555;
         }
 
-        a:selected {
-            color: #555;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
+        a.selected {
+            background-color: #555;
+            border-bottom: 1px solid #fff; /* Destaca a aba selecionada */
         }
     </style>
 </head>
@@ -69,13 +57,39 @@
         <strong>Usuário Logado:</strong>
         <p>Nome do Usuário</p>
     </div>
-    <a href="/form">Formulário de Pedido</a>
-    <a href="#">Gerenciamento de Ordens</a>
-    <a href="#">Gerenciamento de Solicitantes e Técnicos</a>
+    <a href="/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
+    <a href="/lista" onclick="changeTab(this)">Lista de ordens de serviço</a>
+    <a href="/status" onclick="changeTab(this)">Status das ordens de serviço</a>
+    <a href="/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
     <div id="logout">Logout</div>
 </div>
 
 @yield('content')
+
+<script>
+    // Obtém o caminho da URL da página atual
+    var currentPath = window.location.pathname;
+
+    // Remove a barra inicial, se existir, para facilitar a comparação
+    currentPath = currentPath.replace(/^\//, '');
+
+    // Função para marcar a aba correspondente à página atual como selecionada
+    function markSelectedTab() {
+        var links = document.querySelectorAll('#sidebar a');
+
+        // Itera sobre os links e verifica se o caminho da URL corresponde ao href do link
+        links.forEach(function(link) {
+            var linkPath = link.getAttribute('href').replace(/^\//, '');
+
+            if (currentPath === linkPath) {
+                link.classList.add('selected');
+            }
+        });
+    }
+
+    // Adiciona a classe 'selected' à aba correspondente à página atual
+    markSelectedTab();
+</script>
 
 </body>
 </html>
