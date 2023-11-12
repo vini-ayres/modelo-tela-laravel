@@ -3,56 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Ordem de Serviço</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        #sidebar {
-            width: 235px;
-            height: 100%;
-            background-color: #389737;
-            color: #fff;
-            position: fixed;
-            padding: 20px 10px 20px 20px;
-        }
-
-        #content {
-            margin-left: 300px;
-            padding: 20px;
-        }
-
-        #logout {
-            color: black;
-            cursor: pointer;
-        }
-
-        a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 10px 0;
-            border-bottom: 1px solid #555;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-
-        a:hover {
-            background-color: #555;
-        }
-
-        a.selected {
-            background-color: #4ab249;
-            border-bottom: 1px solid #fff; /* Destaca a aba selecionada */
-        }
-    </style>
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-
+    <title>Painel de Ordem de Serviço</title>
 <div id="sidebar">
     <div id="user-info">
         <strong>Usuário Logado:</strong>

@@ -1,0 +1,39 @@
+.filtros {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 98%; 
+    margin-top: 50px;
+}
+
+.filtros > * {
+    margin-right: 10px;
+}
+
+.ordens {
+    position: absolute;
+    margin-top: 120px;
+    left: 360px;
+}
+
+.ordens table tbody tr td {
+    padding-bottom: 10px; /* Espaçamento adicional nas células */
+}
+
+.export-btn {
+    background-color: #25d822;
+  }
+  
+.export-btn:hover {
+    background-color: #20bb1e;
+  }
+
+.edit-btn {
+    background-color: #da3131;
+    color: white;
+  }
+  
+.edit-btn:hover {
+    background-color: #c21e1e;
+  }
