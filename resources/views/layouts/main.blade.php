@@ -15,7 +15,7 @@
         #sidebar {
             width: 235px;
             height: 100%;
-            background-color: #333;
+            background-color: #389737;
             color: #fff;
             position: fixed;
             padding: 20px 10px 20px 20px;
@@ -27,7 +27,7 @@
         }
 
         #logout {
-            color: red;
+            color: black;
             cursor: pointer;
         }
 
@@ -36,8 +36,9 @@
             text-decoration: none;
             display: block;
             padding: 10px 0;
-            border-bottom: 1px solid #555; /* Adiciona borda inferior */
+            border-bottom: 1px solid #555;
             transition: background-color 0.3s;
+            width: 100%;
         }
 
         a:hover {
@@ -45,7 +46,7 @@
         }
 
         a.selected {
-            background-color: #555;
+            background-color: #4ab249;
             border-bottom: 1px solid #fff; /* Destaca a aba selecionada */
         }
     </style>
@@ -61,6 +62,7 @@
     <a href="/lista" onclick="changeTab(this)">Lista de ordens de serviço</a>
     <a href="/status" onclick="changeTab(this)">Status das ordens de serviço</a>
     <a href="/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
+    <br>
     <div id="logout">Logout</div>
 </div>
 

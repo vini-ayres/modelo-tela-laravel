@@ -17,6 +17,11 @@
             height: 100vh;
         }
 
+        #sidebar {
+            position: fixed;
+            left: 0;
+        }
+
         #logo {
             margin-bottom: 20px;
         }
