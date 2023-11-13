@@ -12,6 +12,7 @@ body {
     color: #fff;
     position: fixed;
     padding: 20px 10px 20px 20px;
+    top: 40px;
 }
 
 #content {
@@ -40,5 +41,23 @@ a:hover {
 
 a.selected {
     background-color: #4ab249;
-    border-bottom: 1px solid #fff; /* Destaca a aba selecionada */
+    border-bottom: 1px solid #fff;
+}
+
+#navbar {
+    background-color: #389737;
+    height: 60px;
+}
+
+#logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }

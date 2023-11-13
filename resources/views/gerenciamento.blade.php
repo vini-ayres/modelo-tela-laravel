@@ -37,8 +37,16 @@
               <button class="delete-button">Excluir</button>
             </td>
           </tr>
-          <!-- Adicione mais linhas conforme necessário para cada usuário -->
-        </tbody>
+          <tr>
+            <td>CB3094563</td>
+            <td>João Carlos</td>
+            <td>Técnico</td>
+            <td>Manutenção</td>
+            <td>
+              <button class="edit-button-bold">Editar</button>
+              <button class="delete-button">Excluir</button>
+            </td>
+          </tr>        </tbody>
       </table>
     </div>
   </div>

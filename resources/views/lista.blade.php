@@ -9,30 +9,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <title>Tabela de Ordem de Serviço</title>
-    <style>
-        .filtros {
-            position: absolute;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            width: 98%; 
-            margin-top: 50px;
-        }
-        
-        .filtros > * {
-            margin-right: 10px;
-        }
-
-        .ordens {
-            position: absolute;
-            margin-top: 120px;
-            left: 360px;
-        }
-
-        .ordens table tbody tr td {
-            padding-bottom: 10px; /* Espaçamento adicional nas células */
-        }
-    </style>
 </head>
 <body>
 
@@ -133,60 +109,45 @@
 
 <!-- TABELA 2 -->
 <div class="ordens">
-<table border="1">
+<body>
+  <div class="ordem-servico-container">
+    </a>
+    <h2>Lista de ordens de serviço</h2>
+    <div class="user-table">
+      <table>
         <thead>
-            <tr>
-                <th>Serviço</th>
-                <th>Data do Pedido</th>
-                <th>Descrição do Pedido</th>
-                <th>Responsável</th>
-                <th>Data de Fechamento</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
+          <tr>
+            <th class="table-header">Serviço</th>
+            <th class="table-header">Data do pedido</th>
+            <th class="table-header">Descrição do pedido</th>
+            <th class="table-header">Responsável</th>
+            <th class="table-header">Data de fechamento</th>
+          </tr>
         </thead>
         <tbody>
-            <!-- Aqui você adicionará as linhas da tabela com os dados reais -->
-            <tr>
-                <td>Serviço 1</td>
-                <td>01/01/2023</td>
-                <td>Descrição do Serviço 1</td>
-                <td>Responsável 1</td>
-                <td>02/01/2023</td>
-                <td>Concluído</td>
-                <td>
-                    <button class="export-btn" onclick="exportData()">Exportar</button>
-                    <button class="edit-btn" onclick="editData()">Editar</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Serviço 2</td>
-                <td>05/01/2023</td>
-                <td>Descrição do Serviço 2</td>
-                <td>Responsável 2</td>
-                <td>10/01/2023</td>
-                <td>Em andamento</td>
-                <td>
-                    <button class="export-btn" onclick="exportData()">Exportar</button>
-                    <button class="edit-btn" onclick="editData()">Editar</button>
-                </td>
-            </tr>
-            <!-- Adicione mais linhas conforme necessário -->
+          <tr>
+            <td>Elétrica</td>
+            <td>12/04/2023</td>
+            <td>Substituição de dispositivos elétricos danificados.</td>
+            <td>Vinicius</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Pintura</td>
+            <td>20/05/2023</td>
+            <td>Pintura das paredes da classe 241.</td>
+            <td>Matheus</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
         </tbody>
-    </table>
-</div>
-
-    <script>
-        function exportData() {
-            // Lógica para exportar os dados
-            alert("Dados exportados!");
-        }
-
-        function editData() {
-            // Lógica para editar os dados
-            alert("Editar dados");
-        }
-    </script>
+      </table>
+    </div>
+  </div>
 
 </body>
 </html>

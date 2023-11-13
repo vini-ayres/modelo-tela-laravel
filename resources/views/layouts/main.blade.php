@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
+<div id="navbar">
+    </div>
     <title>Painel de Ordem de Serviço</title>
 <div id="sidebar">
     <div id="user-info">
