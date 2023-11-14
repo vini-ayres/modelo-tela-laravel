@@ -10,16 +10,36 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #sidebar {
+            position: fixed;
+            left: 0;
+        }
+
+        #logo {
+            margin-bottom: 20px;
         }
 
         #login-container {
             width: 300px;
-            margin: 100px auto;
             background-color: #333;
             color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin: auto; /* Adicionado para centralizar horizontalmente */
+            margin-top: 50px; /* Ajuste para a margem superior */
+        }
+
+        h2 {
+            margin-bottom: 8px;
         }
 
         label {
@@ -41,7 +61,6 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            margin: 0;
         }
 
         button:hover {
@@ -51,16 +70,22 @@
 </head>
 <body>
 
+<div id="logo">
+    <img src="{{ asset('imagens/logoifsp2.png') }}" alt="Logo" width="250">
+</div>
+
 <div id="login-container">
-    <h2>Tela de Login</h2>
+    <h2>FAÇA SEU LOGIN</h2>
+    <br>
     <form action="processar_login.php" method="post">
-        <label for="matricula">Número de Matrícula:</label>
+        <label for="matricula">Número de matrícula</label>
         <input type="text" id="matricula" name="matricula" required>
 
-        <label for="senha">Senha:</label>
+        <label for="senha">Senha</label>
         <input type="password" id="senha" name="senha" required>
 
         <button type="submit">Entrar</button>
+        <a href="/login">Proximo</a>
     </form>
 </div>
 
