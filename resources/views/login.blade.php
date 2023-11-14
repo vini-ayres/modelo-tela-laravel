@@ -77,15 +77,16 @@
 <div id="login-container">
     <h2>FAÇA SEU LOGIN</h2>
     <br>
-    <form action="processar_login.php" method="post">
-        <label for="matricula">Número de matrícula</label>
-        <input type="text" id="matricula" name="matricula" required>
+    <form action="{{ route('login') }}" method="post">
+        @csrf
 
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required>
+        <label for="cd_matricula_funcionario">Número de Matrícula:</label>
+        <input type="text" name="cd_matricula_funcionario" required>
 
-        <button type="submit">Entrar</button>
-        <a href="/login">Proximo</a>
+        <label for="ds_senha_funcionario">Senha:</label>
+        <input type="password" name="ds_senha_funcionario" required>
+
+        <button type="submit">Login</button>
     </form>
 </div>
 

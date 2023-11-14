@@ -13,14 +13,11 @@
 <div id="sidebar">
     <div id="user-info">
         <strong>Usuário Logado:</strong>
-        <p>Nome do Usuário</p>
+        <p>{{ Session::get('nomeDoUsuario') }}</p>
     </div>
-    <a href="/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
-    <a href="/lista" onclick="changeTab(this)">Lista de ordens de serviço</a>
-    <a href="/status" onclick="changeTab(this)">Status das ordens de serviço</a>
-    <a href="/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
+    @yield('links-sidebar')
     <br>
-    <div id="logout">Logout</div>
+    <div id="logout"><a href="/login">Logout</a></div>
 </div>
 
 @yield('content')

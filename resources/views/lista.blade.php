@@ -1,4 +1,7 @@
 @extends('layouts.main')
+
+@yield('links-sidebar')
+
 @section('content')
 
 <!DOCTYPE html>
