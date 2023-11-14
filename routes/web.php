@@ -34,6 +34,7 @@ Route::get('/dashboard-administrador', function () {
     return view('dashboard.administrador');
 });
 
+//****************PÁGINAS DO FUNCIONARIO*****************//
 Route::prefix('dashboard-funcionario')->group(function () {
     Route::get('form', function(){
         return view('form');
@@ -49,6 +50,7 @@ Route::prefix('dashboard-funcionario')->group(function () {
     });
 });
 
+//****************PÁGINAS DO TECNICO*****************//
 Route::prefix('dashboard-tecnico')->group(function () {
     Route::get('form', function(){
         return view('form');
@@ -64,6 +66,7 @@ Route::prefix('dashboard-tecnico')->group(function () {
     });
 });
 
+//****************PÁGINAS DO ADMINISTRADOR*****************//
 Route::prefix('dashboard-administrador')->group(function () {
     Route::get('form', function(){
         return view('form');
