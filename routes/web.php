@@ -30,6 +30,10 @@ Route::get('/dashboard-tecnico', function () {
     return view('dashboard.tecnico');
 });
 
+Route::get('/dashboard-coordenador', function () {
+    return view('dashboard.coordenador');
+});
+
 Route::get('/dashboard-administrador', function () {
     return view('dashboard.administrador');
 });
@@ -37,48 +41,52 @@ Route::get('/dashboard-administrador', function () {
 //****************PÁGINAS DO FUNCIONARIO*****************//
 Route::prefix('dashboard-funcionario')->group(function () {
     Route::get('form', function(){
-        return view('form');
-    });
-    Route::get('lista', function(){
-        return view('lista');
+        return view('funcionario.form');
     });
     Route::get('status', function(){
-        return view('status');
-    });
-    Route::get('gerenciamento', function(){
-        return view('gerenciamento');
+        return view('funcionario.status');
     });
 });
 
-//****************PÁGINAS DO TECNICO*****************//
+//****************PÁGINAS DO TÉCNICO*****************//
 Route::prefix('dashboard-tecnico')->group(function () {
     Route::get('form', function(){
-        return view('form');
+        return view('tecnico.form');
     });
     Route::get('lista', function(){
-        return view('lista');
+        return view('tecnico.lista');
     });
     Route::get('status', function(){
-        return view('status');
+        return view('tecnico.status');
     });
-    Route::get('gerenciamento', function(){
-        return view('gerenciamento');
+});
+
+//****************PÁGINAS DO COORDENADOR*****************//
+Route::prefix('dashboard-coordenador')->group(function () {
+    Route::get('form', function(){
+        return view('coordenador.form');
+    });
+    Route::get('lista', function(){
+        return view('coordenador.lista');
+    });
+    Route::get('status', function(){
+        return view('coordenador.status');
     });
 });
 
 //****************PÁGINAS DO ADMINISTRADOR*****************//
 Route::prefix('dashboard-administrador')->group(function () {
     Route::get('form', function(){
-        return view('form');
+        return view('administrador.form');
     });
     Route::get('lista', function(){
-        return view('lista');
+        return view('administrador.lista');
     });
     Route::get('status', function(){
-        return view('status');
+        return view('administrador.status');
     });
     Route::get('gerenciamento', function(){
-        return view('gerenciamento');
+        return view('administrador.gerenciamento');
     });
 });
 

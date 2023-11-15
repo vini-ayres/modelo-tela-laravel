@@ -1,4 +1,4 @@
-@extends()
+@extends('dashboard.coordenador')
 
 @section('content')
 

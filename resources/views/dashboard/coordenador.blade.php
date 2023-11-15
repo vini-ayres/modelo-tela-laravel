@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
 @section('links-sidebar')
-    <a href="/dashboard-funcionario/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
-    <a href="/dashboard-funcionario/status" onclick="changeTab(this)">Status das ordens de serviço</a>
+    <a href="/dashboard-coordenador/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
+    <a href="/dashboard-coordenador/lista" onclick="changeTab(this)">Lista de ordens de serviço</a>
+    <a href="/dashboard-coordenador/status" onclick="changeTab(this)">Status das ordens de serviço</a>
 @endsection('links-sidebar')
 
 @section('content')

@@ -4,7 +4,6 @@
     <a href="/dashboard-tecnico/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
     <a href="/dashboard-tecnico/lista" onclick="changeTab(this)">Lista de ordens de serviço</a>
     <a href="/dashboard-tecnico/status" onclick="changeTab(this)">Status das ordens de serviço</a>
-    <a href="/dashboard-tecnico/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
 @endsection('links-sidebar')
 
 @section('content')

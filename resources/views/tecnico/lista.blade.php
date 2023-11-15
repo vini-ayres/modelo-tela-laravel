@@ -1,9 +1,4 @@
-@extends(
-    request()->is('dashboard-funcionario') ? 'dashboard.funcionario' :
-    (request()->is('dashboard-tecnico') ? 'dashboard.tecnico' :
-    (request()->is('dashboard-coordenador') ? 'dashboard.coordenador' :
-    (request()->is('dashboard-administrador') ? 'dashboard.administrador' : 'layouts.main')))
-)
+@extends('dashboard.tecnico')
 
 @yield('links-sidebar')
 

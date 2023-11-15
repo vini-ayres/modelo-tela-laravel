@@ -1,4 +1,4 @@
-@extends()
+@extends('dashboard.tecnico')
 
 @section('content')
 

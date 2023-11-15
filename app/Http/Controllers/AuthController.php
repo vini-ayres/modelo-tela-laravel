@@ -19,19 +19,19 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $matricula = $request->input('cd_matricula_funcionario');
-        $senha = $request->input('ds_senha_funcionario');
+        $senha = $request->input('nm_senha_funcionario');
 
         $funcionario = Funcionario::where('cd_matricula_funcionario', $matricula)->first();
 
         if ($funcionario) {
             // Verifica se a senha está no formato antigo (não hasheada usando bcrypt)
             if (Hash::needsRehash($funcionario->ds_senha_funcionario)) {
-                $funcionario->ds_senha_funcionario = bcrypt($senha);
+                $funcionario->nm_senha_funcionario = bcrypt($senha);
                 $funcionario->save();
             }
 
             // Verifica a senha usando Hash::check()
-            if (Hash::check($senha, $funcionario->ds_senha_funcionario)) {
+            if (Hash::check($senha, $funcionario->nm_senha_funcionario)) {
                 // Autenticação bem-sucedida
 
                 Session::put('nomeDoUsuario', $funcionario->nm_funcionario);
@@ -42,6 +42,8 @@ class AuthController extends Controller
                     case 1:
                         return redirect("/dashboard-tecnico");
                     case 2:
+                        return redirect("/dashboard-coordenador");
+                    case 3:
                         return redirect("/dashboard-administrador");
                     default:
                         // Nível de acesso inválido
