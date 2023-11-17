@@ -111,8 +111,9 @@
 </script>
 
 <!-- TABELA 2 -->
-<div class="ordens">
 <body>
+
+<div class="ordens">
   <div class="ordem-servico-container">
     </a>
     <h2>Lista de ordens de serviço</h2>

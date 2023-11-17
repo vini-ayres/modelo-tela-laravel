@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\OSController;
+use App\Http\Controllers\SolicitacaoController;
+use App\Models\Solicitacao;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\OSController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::get('/login', [AuthController::class, 'showLoginForm']);
@@ -40,9 +41,12 @@ Route::get('/dashboard-administrador', function () {
 
 //****************PÁGINAS DO FUNCIONARIO*****************//
 Route::prefix('dashboard-funcionario')->group(function () {
-    Route::get('form', function(){
+    Route::get('form', function () {
         return view('funcionario.form');
     });
+
+    Route::post('form', [SolicitacaoController::class, 'processForm']);
+    
     Route::get('status', function(){
         return view('funcionario.status');
     });
@@ -50,9 +54,12 @@ Route::prefix('dashboard-funcionario')->group(function () {
 
 //****************PÁGINAS DO TÉCNICO*****************//
 Route::prefix('dashboard-tecnico')->group(function () {
-    Route::get('form', function(){
+    Route::get('form', function () {
         return view('tecnico.form');
     });
+
+    Route::post('form', [SolicitacaoController::class, 'processForm']);
+
     Route::get('lista', function(){
         return view('tecnico.lista');
     });
@@ -63,9 +70,12 @@ Route::prefix('dashboard-tecnico')->group(function () {
 
 //****************PÁGINAS DO COORDENADOR*****************//
 Route::prefix('dashboard-coordenador')->group(function () {
-    Route::get('form', function(){
+    Route::get('form', function () {
         return view('coordenador.form');
     });
+
+    Route::post('form', [SolicitacaoController::class, 'processForm']);
+
     Route::get('lista', function(){
         return view('coordenador.lista');
     });
@@ -76,9 +86,12 @@ Route::prefix('dashboard-coordenador')->group(function () {
 
 //****************PÁGINAS DO ADMINISTRADOR*****************//
 Route::prefix('dashboard-administrador')->group(function () {
-    Route::get('form', function(){
+    Route::get('form', function () {
         return view('administrador.form');
     });
+    
+    Route::post('form', [SolicitacaoController::class, 'processForm']);
+
     Route::get('lista', function(){
         return view('administrador.lista');
     });

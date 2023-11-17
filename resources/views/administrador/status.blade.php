@@ -7,30 +7,15 @@
 <head>
 <meta charset="utf-8">
 <title>Status da Ordem</title>
-<link rel="stylesheet" type="text/css" href="{{ asset('css/gerenciamento.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <style>
         table {
-            width: 60%;
+            width: 80%;
             border-collapse: collapse;
             margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid black;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .actions {
-            text-align: center;
-        }
-        .destacar {
-            transition: transform 0.5s;
-        }
-        .destacar:hover {
-            transform: scale(1.1);
-            background-color: #ffcccb;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>

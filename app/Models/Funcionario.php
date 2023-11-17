@@ -11,5 +11,5 @@ class Funcionario extends Model
     protected $primaryKey = 'cd_matricula_funcionario';
     public $timestamps = false;
 
-    protected $fillable = ['cd_matricula_funcionaro', 'cd_nivel_acesso_funcionario'];
+    protected $fillable = ['cd_matricula_funcionario', 'cd_nivel_acesso_funcionario'];
 }
