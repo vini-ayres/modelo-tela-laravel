@@ -59,7 +59,9 @@
                 <td>
                     <label><input type="radio" name="tipo_servico" value="elétrico"> Elétrico</label><br>
                     <label><input type="radio" name="tipo_servico" value="hidráulico"> Hidráulico</label><br>
-                    <label><input type="radio" name="tipo_servico" value="pintura"> Pintura</label>
+                    <label><input type="radio" name="tipo_servico" value="pintura"> Pintura</label><br>
+                    <label><input type="radio" name="tipo_servico" value="outro" id="outroRadio"> Outro</label>
+                    <input type="text" name="novo_tipo_servico" id="novoTipoServico" style="display: none;" placeholder="Digite o novo tipo de serviço">
                 </td>
             </tr>
             <tr>
@@ -78,6 +80,10 @@
                 <td>Descrição do Pedido:</td>
                 <td><textarea name="descricao" rows="4" cols="50" id="descricao" maxlength="300"></textarea></td>
             </tr>
+             <tr>
+                <td>Materiais Necessários:</td>
+                <td><textarea name="materiais_necessarios" rows="4" cols="50" id="materiaisNecessarios" maxlength="300"></textarea></td>
+            </tr>
         </table>
         <br>
         <input type="submit" value="Enviar">
@@ -87,6 +93,17 @@
 </html>
 
 <script>
+ //Lógica para caso o usuario escolha "outro" como tipo de serviço, ele seja obrigado a digitar qual
+        document.getElementById('outroRadio').addEventListener('change', function () {
+            var novoTipoServicoInput = document.getElementById('novoTipoServico');
+            if (this.checked) {
+                novoTipoServicoInput.style.display = 'block';
+                novoTipoServicoInput.setAttribute('required', 'required');
+            } else {
+                novoTipoServicoInput.style.display = 'none';
+                novoTipoServicoInput.removeAttribute('required');
+            }
+  
     // Adicione aqui a lógica para a ação de logout
     document.getElementById('logout').addEventListener('click', function() {
         // Adicione a lógica de deslogar o usuário
