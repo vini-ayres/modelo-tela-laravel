@@ -16,7 +16,7 @@
 <body>
 
 <!-- TABELA 1: FILTROS -->
-<div class="filtros">
+<div class="filtros" style="margin-top: 20px; color: white;">
 <label>Data de Abertura:</label>
 <input type="text" id="dateRangePickerAbertura"/>
 
@@ -111,8 +111,8 @@
 </script>
 
 <!-- TABELA 2 -->
-<div class="ordens">
 <body>
+<div class="ordens" style="max-height: calc(100vh - 80px); overflow-y: auto;">
   <div class="ordem-servico-container">
     </a>
     <h2>Lista de ordens de serviço</h2>
@@ -147,11 +147,12 @@
               <button class="edit-button-bold">Exportar</button>
               <button class="delete-button">Editar</button>
             </td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
-
+</div>
 </body>
 </html>
 <script>

@@ -48,7 +48,8 @@ Route::prefix('dashboard-funcionario')->group(function () {
     Route::post('form', [SolicitacaoController::class, 'processForm']);
     
     Route::get('status', function(){
-        return view('funcionario.status');
+        $dadosSolicitacao = Solicitacao::all();
+        return view('funcionario.status', ['dadosSolicitacao' => $dadosSolicitacao]);
     });
 });
 
@@ -64,7 +65,8 @@ Route::prefix('dashboard-tecnico')->group(function () {
         return view('tecnico.lista');
     });
     Route::get('status', function(){
-        return view('tecnico.status');
+        $dadosSolicitacao = Solicitacao::all();
+        return view('tecnico.status', ['dadosSolicitacao' => $dadosSolicitacao]);
     });
 });
 
@@ -80,7 +82,8 @@ Route::prefix('dashboard-coordenador')->group(function () {
         return view('coordenador.lista');
     });
     Route::get('status', function(){
-        return view('coordenador.status');
+        $dadosSolicitacao = Solicitacao::all();
+        return view('coordenador.status', ['dadosSolicitacao' => $dadosSolicitacao]);
     });
 });
 
@@ -96,7 +99,8 @@ Route::prefix('dashboard-administrador')->group(function () {
         return view('administrador.lista');
     });
     Route::get('status', function(){
-        return view('administrador.status');
+        $dadosSolicitacao = Solicitacao::all();
+        return view('administrador.status', ['dadosSolicitacao' => $dadosSolicitacao]);
     });
     Route::get('gerenciamento', function(){
         return view('administrador.gerenciamento');

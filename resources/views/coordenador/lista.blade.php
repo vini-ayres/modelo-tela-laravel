@@ -16,7 +16,7 @@
 <body>
 
 <!-- TABELA 1: FILTROS -->
-<div class="filtros">
+<div class="filtros" style="margin-top: 20px; color: white;">
 <label>Data de Abertura:</label>
 <input type="text" id="dateRangePickerAbertura"/>
 
@@ -112,8 +112,7 @@
 
 <!-- TABELA 2 -->
 <body>
-
-<div class="ordens">
+<div class="ordens" style="max-height: calc(100vh - 80px); overflow-y: auto;">
   <div class="ordem-servico-container">
     </a>
     <h2>Lista de ordens de serviço</h2>
@@ -148,11 +147,87 @@
               <button class="edit-button-bold">Exportar</button>
               <button class="delete-button">Editar</button>
             </td>
+          </tr>
+          <tr>
+            <td>Pintura</td>
+            <td>20/05/2023</td>
+            <td>Pintura das paredes da classe 241.</td>
+            <td>Matheus</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Pintura</td>
+            <td>20/05/2023</td>
+            <td>Pintura das paredes da classe 241.</td>
+            <td>Matheus</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+          <tr>
+            <td>Pintura</td>
+            <td>20/05/2023</td>
+            <td>Pintura das paredes da classe 241.</td>
+            <td>Matheus</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+          <tr>
+            <td>Pintura</td>
+            <td>20/05/2023</td>
+            <td>Pintura das paredes da classe 241.</td>
+            <td>Matheus</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+          <tr>
+            <td>Pintura</td>
+            <td>20/05/2023</td>
+            <td>Pintura das paredes da classe 241.</td>
+            <td>Matheus</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+          <tr>
+            <td>Pintura</td>
+            <td>20/05/2023</td>
+            <td>Pintura das paredes da classe 241.</td>
+            <td>Matheus</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+          <tr>
+            <td>Pintura</td>
+            <td>20/05/2023</td>
+            <td>Pintura das paredes da classe 241.</td>
+            <td>Matheus</td>
+            <td>
+              <button class="edit-button-bold">Exportar</button>
+              <button class="delete-button">Editar</button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
-
+</div>
 </body>
 </html>
 <script>

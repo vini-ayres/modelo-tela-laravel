@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         if ($funcionario) {
             // Verifica se a senha está no formato antigo (não hasheada usando bcrypt)
-            if (Hash::needsRehash($funcionario->ds_senha_funcionario)) {
+            if (Hash::needsRehash($funcionario->nm_senha_funcionario)) {
                 $funcionario->nm_senha_funcionario = bcrypt($senha);
                 $funcionario->save();
             }
@@ -33,8 +33,13 @@ class AuthController extends Controller
             // Verifica a senha usando Hash::check()
             if (Hash::check($senha, $funcionario->nm_senha_funcionario)) {
                 // Autenticação bem-sucedida
+                
+                // Define o tempo de vida da sessão para 60 minutos (ou o valor desejado em minutos)
+                $tempoDeVidaEmMinutos = 60;
+                config(['session.lifetime' => $tempoDeVidaEmMinutos]);
 
                 Session::put('nomeDoUsuario', $funcionario->nm_funcionario);
+                Session::put('codigoDoUsuario', $matricula);
 
                 switch ($funcionario->cd_nivel_acesso_funcionario) {
                     case 0:
@@ -59,7 +64,6 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {      
-        $request->session()->flush();
         Auth::logout();
         return redirect('/login');
     }

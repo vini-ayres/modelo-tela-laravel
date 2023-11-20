@@ -12,6 +12,8 @@
     <title>Painel de Ordem de Serviço</title>
 <div id="sidebar">
     <div id="user-info">
+        <img id="home-logo" src="{{ asset('imagens/ifsp-logo-branco.png') }}" alt="IFSP Câmpus Cubatão" width="50">
+        <br><br>
         <strong>Usuário Logado:</strong>
         <p>{{ Session::get('nomeDoUsuario') }}</p>
     </div>
