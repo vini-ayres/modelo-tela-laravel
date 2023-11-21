@@ -2,8 +2,6 @@
 
 @section('links-sidebar')
     <a href="/dashboard-administrador/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
-    <a href="/dashboard-administrador/lista" onclick="changeTab(this)">Lista de ordens de serviço</a>
-    <a href="/dashboard-administrador/status" onclick="changeTab(this)">Status das ordens de serviço</a>
     <a href="/dashboard-administrador/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
 @endsection('links-sidebar')
 

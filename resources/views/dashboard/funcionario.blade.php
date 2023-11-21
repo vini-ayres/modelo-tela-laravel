@@ -2,7 +2,6 @@
 
 @section('links-sidebar')
     <a href="/dashboard-funcionario/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
-    <a href="/dashboard-funcionario/status" onclick="changeTab(this)">Status das ordens de serviço</a>
 @endsection('links-sidebar')
 
 @section('content')

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SolicitacaoController;
+use App\Http\Controllers\FormController;
 use App\Models\Solicitacao;
 
 /*
@@ -41,69 +42,35 @@ Route::get('/dashboard-administrador', function () {
 
 //****************PÁGINAS DO FUNCIONARIO*****************//
 Route::prefix('dashboard-funcionario')->group(function () {
-    Route::get('form', function () {
-        return view('funcionario.form');
-    });
-
+    Route::get('form', [FormController::class, 'funcionario']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-    
-    Route::get('status', function(){
-        $dadosSolicitacao = Solicitacao::all();
-        return view('funcionario.status', ['dadosSolicitacao' => $dadosSolicitacao]);
-    });
 });
 
 //****************PÁGINAS DO TÉCNICO*****************//
 Route::prefix('dashboard-tecnico')->group(function () {
-    Route::get('form', function () {
-        return view('tecnico.form');
-    });
-
+    Route::get('form', [FormController::class, 'tecnico']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-
-    Route::get('lista', function(){
-        return view('tecnico.lista');
-    });
     Route::get('status', function(){
         $dadosSolicitacao = Solicitacao::all();
-        return view('tecnico.status', ['dadosSolicitacao' => $dadosSolicitacao]);
+        return view('status', ['dadosSolicitacao' => $dadosSolicitacao]);
     });
 });
 
 //****************PÁGINAS DO COORDENADOR*****************//
 Route::prefix('dashboard-coordenador')->group(function () {
-    Route::get('form', function () {
-        return view('coordenador.form');
-    });
-
+    Route::get('form', [FormController::class, 'coordenador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-
     Route::get('lista', function(){
-        return view('coordenador.lista');
-    });
-    Route::get('status', function(){
-        $dadosSolicitacao = Solicitacao::all();
-        return view('coordenador.status', ['dadosSolicitacao' => $dadosSolicitacao]);
+        return view('lista');
     });
 });
 
 //****************PÁGINAS DO ADMINISTRADOR*****************//
 Route::prefix('dashboard-administrador')->group(function () {
-    Route::get('form', function () {
-        return view('administrador.form');
-    });
-    
+    Route::get('form', [FormController::class, 'administrador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-
-    Route::get('lista', function(){
-        return view('administrador.lista');
-    });
-    Route::get('status', function(){
-        $dadosSolicitacao = Solicitacao::all();
-        return view('administrador.status', ['dadosSolicitacao' => $dadosSolicitacao]);
-    });
     Route::get('gerenciamento', function(){
-        return view('administrador.gerenciamento');
+        return view('gerenciamento');
     });
 });
 

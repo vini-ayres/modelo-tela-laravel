@@ -1,153 +1,217 @@
-@extends(
-    request()->is('dashboard-funcionario') ? 'dashboard.funcionario' :
-    (request()->is('dashboard-tecnico') ? 'dashboard.tecnico' :
-    (request()->is('dashboard-coordenador') ? 'dashboard.coordenador' :
-    (request()->is('dashboard-administrador') ? 'dashboard.administrador' : 'layouts.main')))
-)
+@extends('dashboard.tecnico')
 
 @section('content')
-
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Status da Ordem</title>
-<link rel="stylesheet" type="text/css" href="{{ asset('css/gerenciamento.css') }}">
-  <style>
+    <meta charset="utf-8">
+    <title>Status da Solicitação</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <style>
         table {
-            width: 60%;
+            width: 80%;
             border-collapse: collapse;
             margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        table, th, td {
-            border: 1px solid black;
+
+        th, td {
+            padding: 10px;
             text-align: left;
-            padding: 8px;
         }
-        th {
-            background-color: #f2f2f2;
+
+        th:nth-child(1), td:nth-child(1) {
+            width: 10%;
         }
-        .actions {
-            text-align: center;
+
+        th:nth-child(2), td:nth-child(2) {
+            width: 20%;
         }
-        .destacar {
-            transition: transform 0.5s;
+
+        th:nth-child(3), td:nth-child(3) {
+            width: 15%;
         }
-        .destacar:hover {
-            transform: scale(1.1);
-            background-color: #ffcccb;
+
+        th:nth-child(4), td:nth-child(4) {
+            width: 15%;
+        }
+
+        th:nth-child(5), td:nth-child(5) {
+            width: 20%;
+        }
+
+        th:nth-child(6), td:nth-child(6) {
+            width: 20%;
+        }
+
+        #filtros {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 
 <body>
-<div id="content">
-<!-- Tabela de Dados -->
-    <h2>Dados da Ordem de Serviço</h2>
-    <table id="tabela-dados">
-        <thead>
-            <tr>
-                <th>Matrícula</th>
-                <th>Tipo de Serviço</th>
-                <th>Departamento</th>
-                <th>Cargo</th>
-                <th>Data do Pedido</th>
-                <th>Descrição do Pedido</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody id="tabela-corpo">
-            <!-- Dados da Ordem de Serviço serão exibidos aqui -->
-        </tbody>
-    </table>
+
+<!-- TABELA 1: FILTROS -->
+<div class="filtros" style="margin-top: 20px; color: white;">
+<label>Data de Abertura:</label>
+<input type="text" id="dateRangePickerAbertura"/>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<label>Status:</label>
+<select id="statusFilter">
+    <option value="Não Iniciado">Não Iniciado</option>
+    <option value="Em Processo">Em Processo</option>
+    <option value="Cancelado">Cancelado</option>
+    <option value="Concluído">Concluído</option>
+</select>
+
+<label>Responsável:</label>
+<select id="responsavelFilter">
+    <option value="João">João</option>
+    <option value="Maria">Maria</option>
+    <option value="Carlos">Carlos</option>
+    <option value="Isabel">Isabel</option>
+    <option value="Ricardo">Ricardo</option>
+    <option value="Fernanda">Fernanda</option>
+    <option value="Pedro">Pedro</option>
+    <option value="Mariana">Mariana</option>
+    <option value="Gabriel">Gabriel</option>
+    <option value="Laura">Laura</option>
+    <option value="André">André</option>
+    <option value="Susana">Susana</option>
+</select>
+
+<label>Data de Fechamento:</label>
+<input type="text" id="dateRangePickerFechamento"/>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Inicializa o date range picker para a data de abertura
+        $('#dateRangePickerAbertura').daterangepicker({
+            opens: 'left',
+            locale: {
+                format: 'DD/MM/YYYY',
+                applyLabel: 'Aplicar',
+                cancelLabel: 'Cancelar',
+                fromLabel: 'De',
+                toLabel: 'Para',
+                customRangeLabel: 'Intervalo Personalizado',
+                daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                firstDay: 1
+            }
+        });
+
+        // Adiciona um evento quando o intervalo de datas de abertura é alterado
+        $('#dateRangePickerAbertura').on('apply.daterangepicker', function (ev, picker) {
+            var startDate = picker.startDate.format('DD/MM/YYYY');
+            var endDate = picker.endDate.format('DD/MM/YYYY');
+            
+            console.log('Data de abertura - Início:', startDate);
+            console.log('Data de abertura - Término:', endDate);
+            
+            // Adicione aqui a lógica para filtrar os dados com as datas de abertura selecionadas
+        });
+
+        // Inicializa o date range picker para a data de fechamento
+        $('#dateRangePickerFechamento').daterangepicker({
+            opens: 'left',
+            locale: {
+                format: 'DD/MM/YYYY',
+                applyLabel: 'Aplicar',
+                cancelLabel: 'Cancelar',
+                fromLabel: 'De',
+                toLabel: 'Para',
+                customRangeLabel: 'Intervalo Personalizado',
+                daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                firstDay: 1
+            }
+        });
+
+        // Adiciona um evento quando o intervalo de datas de fechamento é alterado
+        $('#dateRangePickerFechamento').on('apply.daterangepicker', function (ev, picker) {
+            var startDate = picker.startDate.format('DD/MM/YYYY');
+            var endDate = picker.endDate.format('DD/MM/YYYY');
+            
+            console.log('Data de fechamento - Início:', startDate);
+            console.log('Data de fechamento - Término:', endDate);
+            
+            // Adicione aqui a lógica para filtrar os dados com as datas de fechamento selecionadas
+        });
+    });
+</script>
+
+<body>
+        <!-- Filtros
+        <div class="filtros">
+            <label for="descricaoFiltro">Filtrar por Descrição:</label>
+            <input type="text" id="descricaoFiltro" oninput="filtrarTabela()">
+
+            <label for="dataFiltro">Filtrar por Data:</label>
+            <input type="date" id="dataFiltro" onchange="filtrarTabela()">
+
+            <label for="statusFiltro">Filtrar por Status:</label>
+            <select id="statusFiltro" onchange="filtrarTabela()">
+                <option value="">Todos</option>
+                <option value="Aberta">Aberta</option>
+                <option value="Atribuída">Atribuída</option>
+                <option value="Em andamento">Em andamento</option>
+            </select>
+        </div> -->
+    <div id="content" class="ordens">
+        <!-- Tabela de Dados -->
+        <h2>Dados da Solicitação</h2>
+        <table id="tabela-dados">
+            <thead>
+                <tr>
+                    <th>Número da Solicitação</th>
+                    <th>Descrição</th>
+                    <th>Data de Entrega</th>
+                    <th>Matrícula do Funcionário</th>
+                    <th>Serviço Solicitado</th>
+                    <th>Status</th> <!-- Nova Coluna -->
+                </tr>
+            </thead>
+            <tbody id="tabela-corpo">
+                @foreach ($dadosSolicitacao as $solicitacao)
+                    @if ($solicitacao->cd_matricula_funcionario == Session::get('codigoDoUsuario'))
+                        <tr>
+                            <td>{{ $solicitacao->cd_solicitacao }}</td>
+                            <td>{{ $solicitacao->ds_solicitacao }}</td>
+                            <td>{{ $solicitacao->dt_entrega_solicitacao }}</td>
+                            <td>{{ $solicitacao->cd_matricula_funcionario }}</td>
+                            <td>{{ $solicitacao->nm_servico_solicitado }}</td>
+                            <td>
+                                <select class="status-dropdown" data-solicitacao-id="{{ $solicitacao->cd_solicitacao }}">
+                                    <option value="Aberta" {{ $solicitacao->status == 'Aberta' ? 'selected' : '' }}>Aberta</option>
+                                    <option value="Atribuída" {{ $solicitacao->status == 'Atribuída' ? 'selected' : '' }}>Atribuída</option>
+                                    <option value="Em andamento" {{ $solicitacao->status == 'Em andamento' ? 'selected' : '' }}>Em andamento</option>
+                                    <!-- Adicione mais opções conforme necessário -->
+                                </select>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+
+                @if ($dadosSolicitacao->where('cd_matricula_funcionario', Session::get('codigoDoUsuario'))->isEmpty())
+                    <tr>
+                        <td colspan="6">Nenhuma solicitação encontrada para este usuário.</td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
 <script>
-    function submitForm() {
-        // Coletar dados do formulário
-        var matricula = document.getElementById("matricula").value;
-        var tipoServico = document.querySelector('input[name="tipo_servico"]:checked');
-        var departamento = document.getElementById("departamento").value;
-        var cargo = document.getElementById("cargo").value;
-        var dataPedido = document.getElementById("data_pedido").value;
-        var descricao = document.getElementById("descricao").value;
-        // Validar se todos os campos estão preenchidos
-        if (matricula === "" || !tipoServico || departamento === "" || cargo === "" || dataPedido === "" || descricao === "") {
-            alert("Por favor, preencha todos os campos.");
-            return false;
-        }
-        // Criar nova linha na tabela de dados
-        var tabelaCorpo = document.getElementById("tabela-corpo");
-        var novaLinha = tabelaCorpo.insertRow();
-        // Adicionar células com os dados do formulário
-        var celulaMatricula = novaLinha.insertCell(0);
-        celulaMatricula.innerHTML = matricula;
-        var celulaTipoServico = novaLinha.insertCell(1);
-        celulaTipoServico.innerHTML = tipoServico.value;
-        var celulaDepartamento = novaLinha.insertCell(2);
-        celulaDepartamento.innerHTML = departamento;
-        var celulaCargo = novaLinha.insertCell(3);
-        celulaCargo.innerHTML = cargo;
-        var celulaDataPedido = novaLinha.insertCell(4);
-        celulaDataPedido.innerHTML = dataPedido;
-        var celulaDescricao = novaLinha.insertCell(5);
-        celulaDescricao.innerHTML = descricao;
-        var celulaStatus = novaLinha.insertCell(6);
-        celulaStatus.innerHTML = "Pendente"; // Definir status inicial
-        var celulaAcoes = novaLinha.insertCell(7);
-        celulaAcoes.innerHTML = '<button onclick="editarLinha(this)">Editar</button>'+'<button onclick="confirmarMudancaStatus(this)">Confirmar</button>';
-        //var celulaAcoes = novaLinha.insertCell(8);
-       // celulaAcoes.innerHTML = '<button onclick="confirmarMudancaStatus(this)">Confirmar</button>';
-        // Adicionar classe para efeito de destaque
-        novaLinha.classList.add("destacar");
-        // Limpar campos do formulário
-        document.getElementById("matricula").value = "";
-        document.querySelector('input[name="tipo_servico"]:checked').checked = false;
-        document.getElementById("departamento").value = "";
-        document.getElementById("cargo").value = "";
-        document.getElementById("data_pedido").value = "";
-        document.getElementById("descricao").value = "";
-        return false; // Evitar que o formulário seja enviado
-    }
-    function editarLinha(botaoEditar) {
-        var linha = botaoEditar.parentNode.parentNode;
-        // Preencher formulário com os dados da linha selecionada
-        document.getElementById("matricula").value = linha.cells[0].innerHTML;
-        var tipoServico = linha.cells[1].innerHTML;
-        document.querySelector('input[name="tipo_servico"][value="' + tipoServico + '"]').checked = true;
-        document.getElementById("departamento").value = linha.cells[2].innerHTML;
-        document.getElementById("cargo").value = linha.cells[3].innerHTML;
-        document.getElementById("data_pedido").value = linha.cells[4].innerHTML;
-        document.getElementById("descricao").value = linha.cells[5].innerHTML;
-        // Adicionar classe de destaque
-        linha.classList.add("destacar");
-        // Substituir a célula de status por radio buttons
-        var celulaStatus = linha.cells[6];
-        var statusAtual = celulaStatus.innerHTML;
-        celulaStatus.innerHTML = '<label><input type="radio" name="novo_status" value="Em Processamento"> Em Processamento</label><br>' +
-                                 '<label><input type="radio" name="novo_status" value="Concluída"> Concluída</label><br>' +
-                                 '<label><input type="radio" name="novo_status" value="Esperando Atendimento"> Esperando Atendimento</label><br>' +
-'<label><input type="radio" name="novo_status" value="Cancelada"> Cancelada</label>';
-        // Marcar o radio button correspondente ao status atual
-        celulaStatus.querySelector('input[name="novo_status"][value="' + statusAtual + '"]').checked = true;
-        // Adicionar botão de confirmação
-       // celulaStatus.innerHTML += '<button onclick="confirmarMudancaStatus(this)">Confirmar</button>';
-        // Remover classe de destaque após a edição
-        linha.classList.remove("destacar");
-    }
-    function confirmarMudancaStatus(botaoConfirmar) {
-        var linha = botaoConfirmar.parentNode.parentNode;
-        // Atualizar o status com base no radio button selecionado
-        var novoStatus = linha.querySelector('input[name="novo_status"]:checked').value;
-        linha.cells[6].innerHTML = novoStatus;
-        // Remover opções de radio button e botão de confirmação
-        var celulaStatus = linha.cells[6];
-        celulaStatus.innerHTML = novoStatus;
-        // Remover classe de destaque
-        linha.classList.remove("destacar");
-    }
     // Adicione aqui a lógica para a ação de logout
     document.getElementById('logout').addEventListener('click', function() {
         // Adicione a lógica de deslogar o usuário

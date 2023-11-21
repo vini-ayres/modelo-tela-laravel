@@ -20,6 +20,7 @@
     @yield('links-sidebar')
     <br>
     <div id="logout"><a href="/login">Logout</a></div>
+    </div>
 </div>
 
 @yield('content')
