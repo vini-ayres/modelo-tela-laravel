@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SolicitacaoController;
+use App\Http\Controllers\ListaController;
+use App\Http\Controllers\UsuarioController;
+
 use App\Http\Controllers\FormController;
 use App\Models\Solicitacao;
 
@@ -69,8 +72,16 @@ Route::prefix('dashboard-coordenador')->group(function () {
 Route::prefix('dashboard-administrador')->group(function () {
     Route::get('form', [FormController::class, 'administrador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-    Route::get('gerenciamento', function(){
-        return view('gerenciamento');
-    });
+
+    Route::get('lista', [ListaController::class, 'list']);
+    Route::get('administrador/edit/{id}',[ListaController::class,'edit']);
+    Route::put('administrador/ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
+    Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
+    
+
+    Route::get('gerenciamento', [UsuarioController::class, 'usuario']);
+    Route::get('administrador/edit-usuario/{id}',[UsuarioController::class,'edit']);
+    Route::put('administrador/usuario/update/{id}',[UsuarioController::class,'update'])->name('usuario.update');
+    Route::delete('administrador/usuario/delete/{id}',[UsuarioController::class,'destroy']);
 });
 
