@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SolicitacaoController;
+use App\Http\Controllers\TecnicoController;
 use App\Http\Controllers\FormController;
+use App\Models\OrdemServico;
 use App\Models\Solicitacao;
 
 /*
@@ -51,9 +53,10 @@ Route::prefix('dashboard-tecnico')->group(function () {
     Route::get('form', [FormController::class, 'tecnico']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
     Route::get('status', function(){
-        $dadosSolicitacao = Solicitacao::all();
-        return view('status', ['dadosSolicitacao' => $dadosSolicitacao]);
+        $dadosOrdem = OrdemServico::all();
+        return view('status', ['dadosOrdem' => $dadosOrdem]);
     });
+    Route::post('/dashboard-tecnico/status', [TecnicoController::class, 'atualizarStatus'])->name('atualizar-status');
 });
 
 //****************PÁGINAS DO COORDENADOR*****************//
