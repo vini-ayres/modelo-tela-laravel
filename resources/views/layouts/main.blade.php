@@ -9,7 +9,7 @@
 <body>
 <div id="navbar">
     </div>
-    <title>Painel de Ordem de Serviço</title>
+    
 <div id="sidebar">
     <div id="user-info">
         <strong>Usuário Logado:</strong>

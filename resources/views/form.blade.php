@@ -94,7 +94,7 @@
 
 <script>
  //Lógica para caso o usuario escolha "outro" como tipo de serviço, ele seja obrigado a digitar qual
-        document.getElementById('outroRadio').addEventListener('change', function () {
+        document.getElementById('outroRadio').addEventListener('change'), function () {
             var novoTipoServicoInput = document.getElementById('novoTipoServico');
             if (this.checked) {
                 novoTipoServicoInput.style.display = 'block';
@@ -103,6 +103,7 @@
                 novoTipoServicoInput.style.display = 'none';
                 novoTipoServicoInput.removeAttribute('required');
             }
+        }
   
     // Adicione aqui a lógica para a ação de logout
     document.getElementById('logout').addEventListener('click', function() {

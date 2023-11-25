@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Solicitacao extends Model
+class Lista extends Model
 {
+
     protected $table = 'solicitacao';
     protected $primaryKey = 'cd_solicitacao';
 
@@ -20,20 +21,20 @@ class Solicitacao extends Model
         'nm_servico_solicitado'
 
     ];
+    
+    
+    /*public function responsavel()
+    {
+        return $this->belongsTo('App\Models\Funcionario');
+    }*/
 
     # Mostrando o campo de data
-    protected $dates = ['dt_solicitacao',  'dt_entrega_solicitacao'];
-
-    // Tudo poderar ser atualizado sem nenhuma restrição 
-    protected $guarded = [];
+    
     
 
     //  deve ser tratada como uma instância de data 
     public $timestamps = true;
     const CREATED_AT = 'dt_solicitacao';
-
-    // Mostrando onde é a coluna de update, não pode ser excluída pois pode gerar um error
-    public $updated_at = "update_at";
 
     
 
