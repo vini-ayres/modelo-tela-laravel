@@ -44,6 +44,31 @@ Route::get('/dashboard-coordenador', function () {
 Route::get('/dashboard-administrador', function () {
     return view('dashboard.administrador');
 });
+//*************** VISAO GERAL DE TODAS VIEWS *****************/
+        Route::get('/dashboard-visaogeral', function () {
+            return view('dashboard.visaogeral');
+        });
+        Route::prefix('dashboard-visaogeral')->group(function () {
+            Route::get('form', [FormController::class, 'visaogeral']);
+            Route::post('form', [SolicitacaoController::class, 'processForm']);
+
+            Route::get('status', function(){
+                $dadosSolicitacao = Solicitacao::all();
+                return view('status', ['dadosSolicitacao' => $dadosSolicitacao]);
+            });
+
+            Route::get('lista', [ListaController::class, 'list']);
+            Route::get('edit/{id}',[ListaController::class,'edit']);
+            Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
+            Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
+            
+
+            Route::get('gerenciamento', [UsuarioController::class, 'usuario']);
+            Route::get('administrador/edit-usuario/{id}',[UsuarioController::class,'edit']);
+            Route::put('administrador/usuario/update/{id}',[UsuarioController::class,'update'])->name('usuario.update');
+            Route::delete('administrador/usuario/delete/{id}',[UsuarioController::class,'destroy']);
+        });
+
 
 //****************PÁGINAS DO FUNCIONARIO*****************//
 Route::prefix('dashboard-funcionario')->group(function () {
