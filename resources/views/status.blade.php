@@ -184,10 +184,10 @@
                 @foreach ($dadosSolicitacao as $solicitacao)
                     @if ($solicitacao->cd_matricula_funcionario == Session::get('codigoDoUsuario'))
                         <tr>
-                            <td>{{ $solicitacao->cd_solicitacao }}</td>
-                            <td>{{ $solicitacao->ds_solicitacao }}</td>
-                            <td>{{ $solicitacao->dt_entrega_solicitacao }}</td>
-                            <td>{{ $solicitacao->cd_matricula_funcionario }}</td>
+                            <td>{{ $solicitacao->cd_ordem }}</td>
+                            <td>{{ $solicitacao->ds_ordem}}</td>
+                            <td>{{ date_format($solicitacao->dt_entrega_ordem, 'd/m/Y') }}</td>
+                            <td>{{ $solicitacao->cd_responsavel }}</td>
                             <td>{{ $solicitacao->nm_servico_solicitado }}</td>
                             <td>
                                 <select class="status-dropdown" data-solicitacao-id="{{ $solicitacao->cd_solicitacao }}">

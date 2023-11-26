@@ -22,16 +22,6 @@ class Lista extends Model
 
     ];
     
-    
-    /*public function responsavel()
-    {
-        return $this->belongsTo('App\Models\Funcionario');
-    }*/
-
-    # Mostrando o campo de data
-    
-    
-
     //  deve ser tratada como uma instância de data 
     public $timestamps = true;
     const CREATED_AT = 'dt_solicitacao';

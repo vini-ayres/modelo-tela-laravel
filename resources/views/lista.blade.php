@@ -6,116 +6,119 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <title>Tabela de Ordem de Serviço</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <title>Tabela de Ordem de Serviço</title>
 </head>
+
 <body>
 
-<!-- TABELA 1: FILTROS -->
-<div class="filtros">
-<label>Data de Abertura:</label>
-<input type="text" id="dateRangePickerAbertura"/>
+  <!-- TABELA 1: FILTROS -->
+  <div class="filtros">
+    <label>Data de Abertura:</label>
+    <input type="text" id="dateRangePickerAbertura" />
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-<label>Status:</label>
-<select id="statusFilter">
-    <option value="Não Iniciado">Não Iniciado</option>
-    <option value="Em Processo">Em Processo</option>
-    <option value="Cancelado">Cancelado</option>
-    <option value="Concluído">Concluído</option>
-</select>
+    <label>Status:</label>
+    <select id="statusFilter">
+      <option value="Não Iniciado">Não Iniciado</option>
+      <option value="Em Processo">Em Processo</option>
+      <option value="Cancelado">Cancelado</option>
+      <option value="Concluído">Concluído</option>
+    </select>
 
-<label>Responsável:</label>
-<select id="responsavelFilter">
-    <option value="João">João</option>
-    <option value="Maria">Maria</option>
-    <option value="Carlos">Carlos</option>
-    <option value="Isabel">Isabel</option>
-    <option value="Ricardo">Ricardo</option>
-    <option value="Fernanda">Fernanda</option>
-    <option value="Pedro">Pedro</option>
-    <option value="Mariana">Mariana</option>
-    <option value="Gabriel">Gabriel</option>
-    <option value="Laura">Laura</option>
-    <option value="André">André</option>
-    <option value="Susana">Susana</option>
-</select>
+    <label>Responsável:</label>
+    <select id="responsavelFilter">
+      <option value="João">João</option>
+      <option value="Maria">Maria</option>
+      <option value="Carlos">Carlos</option>
+      <option value="Isabel">Isabel</option>
+      <option value="Ricardo">Ricardo</option>
+      <option value="Fernanda">Fernanda</option>
+      <option value="Pedro">Pedro</option>
+      <option value="Mariana">Mariana</option>
+      <option value="Gabriel">Gabriel</option>
+      <option value="Laura">Laura</option>
+      <option value="André">André</option>
+      <option value="Susana">Susana</option>
+    </select>
 
-<label>Data de Fechamento:</label>
-<input type="text" id="dateRangePickerFechamento"/>
-</div>
+    <label>Data de Fechamento:</label>
+    <input type="text" id="dateRangePickerFechamento" />
+  </div>
 
-<script>
-    $(document).ready(function () {
-        // Inicializa o date range picker para a data de abertura
-        $('#dateRangePickerAbertura').daterangepicker({
-            opens: 'left',
-            locale: {
-                format: 'DD/MM/YYYY',
-                applyLabel: 'Aplicar',
-                cancelLabel: 'Cancelar',
-                fromLabel: 'De',
-                toLabel: 'Para',
-                customRangeLabel: 'Intervalo Personalizado',
-                daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                firstDay: 1
-            }
-        });
+  <script>
+    $(document).ready(function() {
+      // Inicializa o date range picker para a data de abertura
+      $('#dateRangePickerAbertura').daterangepicker({
+        opens: 'left',
+        locale: {
+          format: 'DD/MM/YYYY',
+          applyLabel: 'Aplicar',
+          cancelLabel: 'Cancelar',
+          fromLabel: 'De',
+          toLabel: 'Para',
+          customRangeLabel: 'Intervalo Personalizado',
+          daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+          monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+          firstDay: 1
+        }
+      });
 
-        // Adiciona um evento quando o intervalo de datas de abertura é alterado
-        $('#dateRangePickerAbertura').on('apply.daterangepicker', function (ev, picker) {
-            var startDate = picker.startDate.format('DD/MM/YYYY');
-            var endDate = picker.endDate.format('DD/MM/YYYY');
-            
-            console.log('Data de abertura - Início:', startDate);
-            console.log('Data de abertura - Término:', endDate);
-            
-            // Adicione aqui a lógica para filtrar os dados com as datas de abertura selecionadas
-        });
+      // Adiciona um evento quando o intervalo de datas de abertura é alterado
+      $('#dateRangePickerAbertura').on('apply.daterangepicker', function(ev, picker) {
+        var startDate = picker.startDate.format('DD/MM/YYYY');
+        var endDate = picker.endDate.format('DD/MM/YYYY');
 
-        // Inicializa o date range picker para a data de fechamento
-        $('#dateRangePickerFechamento').daterangepicker({
-            opens: 'left',
-            locale: {
-                format: 'DD/MM/YYYY',
-                applyLabel: 'Aplicar',
-                cancelLabel: 'Cancelar',
-                fromLabel: 'De',
-                toLabel: 'Para',
-                customRangeLabel: 'Intervalo Personalizado',
-                daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                firstDay: 1
-            }
-        });
+        console.log('Data de abertura - Início:', startDate);
+        console.log('Data de abertura - Término:', endDate);
 
-        // Adiciona um evento quando o intervalo de datas de fechamento é alterado
-        $('#dateRangePickerFechamento').on('apply.daterangepicker', function (ev, picker) {
-            var startDate = picker.startDate.format('DD/MM/YYYY');
-            var endDate = picker.endDate.format('DD/MM/YYYY');
-            
-            console.log('Data de fechamento - Início:', startDate);
-            console.log('Data de fechamento - Término:', endDate);
-            
-            // Adicione aqui a lógica para filtrar os dados com as datas de fechamento selecionadas
-        });
+        // Adicione aqui a lógica para filtrar os dados com as datas de abertura selecionadas
+      });
+
+      // Inicializa o date range picker para a data de fechamento
+      $('#dateRangePickerFechamento').daterangepicker({
+        opens: 'left',
+        locale: {
+          format: 'DD/MM/YYYY',
+          applyLabel: 'Aplicar',
+          cancelLabel: 'Cancelar',
+          fromLabel: 'De',
+          toLabel: 'Para',
+          customRangeLabel: 'Intervalo Personalizado',
+          daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+          monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+          firstDay: 1
+        }
+      });
+
+      // Adiciona um evento quando o intervalo de datas de fechamento é alterado
+      $('#dateRangePickerFechamento').on('apply.daterangepicker', function(ev, picker) {
+        var startDate = picker.startDate.format('DD/MM/YYYY');
+        var endDate = picker.endDate.format('DD/MM/YYYY');
+
+        console.log('Data de fechamento - Início:', startDate);
+        console.log('Data de fechamento - Término:', endDate);
+
+        // Adicione aqui a lógica para filtrar os dados com as datas de fechamento selecionadas
+      });
     });
-</script>
+  </script>
 
-<!-- TABELA 2 -->
-<div class="ordens">
+  <!-- TABELA 2 -->
+  <div class="ordens">
 
-      @if(session('msg'))
-      <p class="msg">{{ session('msg')}}</p>
-      @endif
+    @if(session('msg'))
+    <p class="msg">{{ session('msg')}}</p>
+    @endif
+
     <body>
       <div class="ordem-servico-container">
         </a>
@@ -142,19 +145,23 @@
                 <td>{{ $ordem->nm_servico_solicitado }}</td>
 
                 <!--strtotime é usada para analisar datas em formato de texto -->
-                <td>{{  date_format($ordem->dt_solicitacao, 'd/m/Y') }}</td>
+                <td>{{ date_format($ordem->dt_solicitacao, 'd/m/Y') }}</td>
                 <td>{{ $ordem->ds_solicitacao }}</td>
                 <td>{{ $ordem->cd_matricula_funcionario }}</td>
                 <td>{{ "" }}
-                  
+
                 </td>
                 <td>{{ date('d/m/Y'), strtotime($ordem->dt_entrega_solicitacao) }}
                 </td>
                 <td>
-                  <button class="edit-button-bold">Exportar</button>
-                      <form action="edit/{{ $ordem -> cd_solicitacao}}" method="GET">
-                        <button class="delete-button">Editar</button>
-                      </form>
+                  <form id="exportarForm" action="{{ url('dashboard-coordenador/status/' . $ordem->cd_solicitacao) }}" method="GET">
+                    @csrf
+                    <button type="submit" class="edit-button-bold">Exportar</button>
+                  </form>
+
+                  <form action="edit/{{ $ordem -> cd_solicitacao}}" method="GET">
+                    <button class="delete-button">Editar</button>
+                  </form>
                 </td>
               </tr>
             </tbody>
@@ -166,6 +173,23 @@
     </body>
 
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var exportarForm = document.getElementById('exportarForm');
+
+        if (exportarForm) {
+            exportarForm.addEventListener('submit', function () {
+                // Esconda a lista de tarefas ao enviar o formulário
+                var listaTarefas = document.getElementById('suaListaDeTarefas'); // substitua 'suaListaDeTarefas' pelo ID real da sua lista
+                if (listaTarefas) {
+                    listaTarefas.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
+
+
 <script>
   // Adicione aqui a lógica para a ação de logout
   document.getElementById('logout').addEventListener('click', function() {

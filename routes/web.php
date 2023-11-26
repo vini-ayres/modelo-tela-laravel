@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SolicitacaoController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\StatusController;
 
 use App\Http\Controllers\FormController;
 use App\Models\Solicitacao;
@@ -50,10 +51,7 @@ Route::get('/dashboard-administrador', function () {
             Route::get('form', [FormController::class, 'visaogeral']);
             Route::post('form', [SolicitacaoController::class, 'processForm']);
 
-            Route::get('status', function(){
-                $dadosSolicitacao = Solicitacao::all();
-                return view('status', ['dadosSolicitacao' => $dadosSolicitacao]);
-            });
+            Route::get('status', [StatusController::class,'status']);
 
             Route::get('lista', [ListaController::class, 'list']);
             Route::get('edit/{id}',[ListaController::class,'edit']);
@@ -78,10 +76,7 @@ Route::prefix('dashboard-funcionario')->group(function () {
 Route::prefix('dashboard-tecnico')->group(function () {
     Route::get('form', [FormController::class, 'tecnico']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-    Route::get('status', function(){
-        $dadosSolicitacao = Solicitacao::all();
-        return view('status', ['dadosSolicitacao' => $dadosSolicitacao]);
-    });
+    Route::get('status', [StatusController::class,'status']);
 });
 
 //****************PÁGINAS DO COORDENADOR*****************//
@@ -91,6 +86,7 @@ Route::prefix('dashboard-coordenador')->group(function () {
     Route::get('lista', [ListaController::class, 'list']);
     Route::get('edit/{id}',[ListaController::class,'edit']);
     Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
+    Route::get('status/{id}',[ListaController::class,'status']);
 });
 
 //****************PÁGINAS DO ADMINISTRADOR*****************//
