@@ -29,22 +29,7 @@ class Funcionario extends Model
             
         ];
 
-        #$niveis_acesso_todos = implode(',', $niveis_acesso);
-        # $nivel_usuario = array_shift($niveis_acesso_todos);
-       #$niveis_acesso_todos = json_encode($niveis_acesso, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-       
-
-        #$nivel_usuario = $niveis_acesso[$this->cd_nivel_acesso_funcionario];
-
-        # $nivel_usuario = $niveis_acesso[$this->cd_nivel_acesso_funcionario];
-        /*$nivel_usuario_json = json_encode($nivel_usuario, JSON_UNESCAPED_UNICODE);*/
-
         return 
-            /*$this->hasOne(Funcionario::class, 'id', 'nivel_acesso')->select('nome'),, */
-            # $niveis_acesso_todos;
             $niveis_acesso[$this->cd_nivel_acesso_funcionario];
-             # $nivel_usuario;
-            # $niveis_acesso
-        
     }
 }

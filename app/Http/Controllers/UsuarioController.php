@@ -12,7 +12,7 @@ class UsuarioController extends Controller
 
         // Pegando todos dados da tabela funcionario
         $usuarios = Funcionario::all();
-        return view('administrador.gerenciamento', ['usuarios' => $usuarios]);
+        return view('gerenciamento', ['usuarios' => $usuarios]);
     }
 
     public function edit($id)
@@ -33,7 +33,7 @@ class UsuarioController extends Controller
         # $niveis_acesso_outros = array_diff($niveis_acesso, [$nivel_usuario]);  ['nivel_usuario' => $nivel_usuario]
      
         if ($usuario) {
-            return view('administrador.edit-usuario', ['usuario' => $usuario], ['niveis_acesso' => $niveis_acesso]
+            return view('edit-usuario', ['usuario' => $usuario], ['niveis_acesso' => $niveis_acesso]
             #,['nivel_usuario' => $nivel_usuario]
         );
         } else {
@@ -74,13 +74,29 @@ class UsuarioController extends Controller
                 $usuario->nivel_acesso = 3;
                 break;
         }
+
+        // Jogando o nível de acesso novo em cd_nivel
+        $usuario->cd_nivel_acesso_funcionario = $nivel_acesso;
+
+        // Atualiza outros campos do modelo com os dados do request
+        $usuario->update($request->all());
     
-        Funcionario::findOrFail($request->id)->update($request->all());
+        // Salva as modificações no banco de dados
+        $usuario->save();
+
+                 /*$dados = [
+            'cd_nivel_acesso_funcionario' => $usuario->cd_nivel_acesso_funcionario,
+            'nivel_acesso' => $usuario->nivel_acesso,
+        ];
+
+        Funcionario::findOrFail($request->id)->update($dados);
+        # Funcionario::findOrFail($request->id)->update($request->all());
+
+        # $funcionario->update($request->all());*/
         # $funcionario->update($request->all());
 
         
-        # $funcionario->save();
-
+        
 
         return redirect('/dashboard-administrador/gerenciamento')
             ->with('msg', 'Nível de acesso do funcionário Nº ' . $request->id . ' editado com sucesso!');
