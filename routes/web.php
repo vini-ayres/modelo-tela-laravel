@@ -63,9 +63,9 @@ Route::prefix('dashboard-tecnico')->group(function () {
 Route::prefix('dashboard-coordenador')->group(function () {
     Route::get('form', [FormController::class, 'coordenador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-    Route::get('lista', function(){
-        return view('lista');
-    });
+    Route::get('lista', [ListaController::class, 'list']);
+    Route::get('edit/{id}',[ListaController::class,'edit']);
+    Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
 });
 
 //****************PÁGINAS DO ADMINISTRADOR*****************//
@@ -73,9 +73,7 @@ Route::prefix('dashboard-administrador')->group(function () {
     Route::get('form', [FormController::class, 'administrador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
 
-    Route::get('lista', [ListaController::class, 'list']);
-    Route::get('edit/{id}',[ListaController::class,'edit']);
-    Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
+
     Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
     
 

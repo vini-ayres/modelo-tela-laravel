@@ -27,7 +27,7 @@ class ListaController extends Controller
 
     Solicitacao::findOrFail($request->id)->update($request->all());
 
-    return redirect('lista')-> with('msg', 'Ordem de Serviço Nº ' .$request->id . ' editada com sucesso!');
+    return redirect()->back()-> with('msg', 'Ordem de Serviço Nº ' .$request->id . ' editada com sucesso!');
 
   }
 

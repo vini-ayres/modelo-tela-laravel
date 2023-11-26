@@ -152,7 +152,7 @@
                 </td>
                 <td>
                   <button class="edit-button-bold">Exportar</button>
-                      <form action="administrador/edit/{{ $ordem -> cd_solicitacao}}" method="GET">
+                      <form action="edit/{{ $ordem -> cd_solicitacao}}" method="GET">
                         <button class="delete-button">Editar</button>
                       </form>
                 </td>
