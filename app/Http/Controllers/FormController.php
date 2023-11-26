@@ -29,4 +29,10 @@ class FormController extends Controller
         $layout = 'dashboard.administrador';
         return view('form', ['layout' => $layout]);
     }
+
+    public function visaogeral()
+    {
+        $layout = 'dashboard.visaogeral';
+        return view('form', ['layout' => $layout]);
+    }
 }
