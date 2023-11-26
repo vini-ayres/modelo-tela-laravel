@@ -112,53 +112,65 @@
 
 <!-- TABELA 2 -->
 <div class="ordens">
-<body>
-  <div class="ordem-servico-container">
-    </a>
-    <h2>Lista de ordens de serviço</h2>
-    <div class="user-table">
-      <table>
-        <thead>
-          <tr>
-            <th class="table-header">Serviço</th>
-            <th class="table-header">Data do pedido</th>
-            <th class="table-header">Descrição do pedido</th>
-            <th class="table-header">Responsável</th>
-            <th class="table-header">Data de fechamento</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Elétrica</td>
-            <td>12/04/2023</td>
-            <td>Substituição de dispositivos elétricos danificados.</td>
-            <td>Vinicius</td>
-            <td>
-              <button class="edit-button-bold">Exportar</button>
-              <button class="delete-button">Editar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Pintura</td>
-            <td>20/05/2023</td>
-            <td>Pintura das paredes da classe 241.</td>
-            <td>Matheus</td>
-            <td>
-              <button class="edit-button-bold">Exportar</button>
-              <button class="delete-button">Editar</button>
-            </td>
-        </tbody>
-      </table>
-    </div>
-  </div>
 
-</body>
+      @if(session('msg'))
+      <p class="msg">{{ session('msg')}}</p>
+      @endif
+    <body>
+      <div class="ordem-servico-container">
+        </a>
+        <h2>Lista de ordens de serviço</h2>
+        <div class="user-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="table-header">Código</th>
+                <th class="table-header">Serviço</th>
+                <th class="table-header">Data do pedido</th>
+                <th class="table-header">Descrição do pedido</th>
+                <th class="table-header">Solicitante</th>
+                <th class="table-header">Responsável</th>
+                <th class="table-header">Data de fechamento</th>
+                <th class="table-header">Ação</th>
+              </tr>
+            </thead>
+
+            @foreach($ordens as $ordem)
+            <tbody>
+              <tr>
+                <td>{{ $ordem->cd_solicitacao }}</td>
+                <td>{{ $ordem->nm_servico_solicitado }}</td>
+
+                <!--strtotime é usada para analisar datas em formato de texto -->
+                <td>{{  date_format($ordem->dt_solicitacao, 'd/m/Y') }}</td>
+                <td>{{ $ordem->ds_solicitacao }}</td>
+                <td>{{ $ordem->cd_matricula_funcionario }}</td>
+                <td>{{ "" }}
+                  
+                </td>
+                <td>{{ date('d/m/Y'), strtotime($ordem->dt_entrega_solicitacao) }}
+                </td>
+                <td>
+                  <button class="edit-button-bold">Exportar</button>
+                      <form action="administrador/edit/{{ $ordem -> cd_solicitacao}}" method="GET">
+                        <button class="delete-button">Editar</button>
+                      </form>
+                </td>
+              </tr>
+            </tbody>
+            @endforeach
+          </table>
+        </div>
+      </div>
+
+    </body>
+
 </html>
 <script>
-    // Adicione aqui a lógica para a ação de logout
-    document.getElementById('logout').addEventListener('click', function() {
-        // Adicione a lógica de deslogar o usuário
-        alert('Usuário deslogado!');
-    });
+  // Adicione aqui a lógica para a ação de logout
+  document.getElementById('logout').addEventListener('click', function() {
+    // Adicione a lógica de deslogar o usuário
+    alert('Usuário deslogado!');
+  });
 </script>
 @endsection('content')

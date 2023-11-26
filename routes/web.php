@@ -74,8 +74,8 @@ Route::prefix('dashboard-administrador')->group(function () {
     Route::post('form', [SolicitacaoController::class, 'processForm']);
 
     Route::get('lista', [ListaController::class, 'list']);
-    Route::get('administrador/edit/{id}',[ListaController::class,'edit']);
-    Route::put('administrador/ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
+    Route::get('edit/{id}',[ListaController::class,'edit']);
+    Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
     Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
     
 

@@ -12,9 +12,7 @@ class ListaController extends Controller
 
         # Utilizando o model das solicitações para mostrar na lista de ordens
         $ordens = Solicitacao::all();
-        
-
-        return view('administrador.lista', ['ordens' => $ordens]);
+        return view('lista', ['ordens' => $ordens]);
 
     }
 
@@ -22,14 +20,14 @@ class ListaController extends Controller
 
       $ordem = Solicitacao::findOrFail($id);
 
-      return view('administrador.edit', ['ordem' => $ordem]);
+      return view('edit', ['ordem' => $ordem]);
   }
 
   public function update(Request $request){
 
     Solicitacao::findOrFail($request->id)->update($request->all());
 
-    return redirect('/dashboard-administrador/lista')-> with('msg', 'Ordem de Serviço Nº ' .$request->id . ' editada com sucesso!');
+    return redirect('lista')-> with('msg', 'Ordem de Serviço Nº ' .$request->id . ' editada com sucesso!');
 
   }
 
