@@ -37,16 +37,16 @@ class UsuarioController extends Controller
 
         switch ($nivel_acesso) {
             case 'Funcionário':
-                $usuario->nivel_acesso = 0;
+                $usuario->cd_nivel_acesso_funcionario = 0;
                 break;
             case 'Técnico':
-                $usuario->nivel_acesso = 1;
+                $usuario->cd_nivel_acesso_funcionario = 1;
                 break;
             case 'Coordenador':
-                $usuario->nivel_acesso = 2;
+                $usuario->cd_nivel_acesso_funcionario = 2;
                 break;
             case 'Administrador':
-                $usuario->nivel_acesso = 3;
+                $usuario->cd_nivel_acesso_funcionario = 3;
                 break;
         }
 

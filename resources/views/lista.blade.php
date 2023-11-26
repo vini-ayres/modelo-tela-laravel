@@ -1,4 +1,4 @@
-@extends('dashboard.administrador')
+@extends('dashboard.coordenador')
 
 @yield('links-sidebar')
 
@@ -26,29 +26,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    <label>Status:</label>
-    <select id="statusFilter">
-      <option value="Não Iniciado">Não Iniciado</option>
-      <option value="Em Processo">Em Processo</option>
-      <option value="Cancelado">Cancelado</option>
-      <option value="Concluído">Concluído</option>
-    </select>
-
-    <label>Responsável:</label>
-    <select id="responsavelFilter">
-      <option value="João">João</option>
-      <option value="Maria">Maria</option>
-      <option value="Carlos">Carlos</option>
-      <option value="Isabel">Isabel</option>
-      <option value="Ricardo">Ricardo</option>
-      <option value="Fernanda">Fernanda</option>
-      <option value="Pedro">Pedro</option>
-      <option value="Mariana">Mariana</option>
-      <option value="Gabriel">Gabriel</option>
-      <option value="Laura">Laura</option>
-      <option value="André">André</option>
-      <option value="Susana">Susana</option>
-    </select>
 
     <label>Data de Fechamento:</label>
     <input type="text" id="dateRangePickerFechamento" />
@@ -112,14 +89,13 @@
     });
   </script>
 
-  <!-- TABELA 2 -->
-  <div class="ordens">
-
-    @if(session('msg'))
-    <p class="msg">{{ session('msg')}}</p>
-    @endif
-
+<!-- TABELA 2 -->
+<div class="ordens">
+      @if(session('msg'))
+      <p class="msg">{{ session('msg')}}</p>
+      @endif
     <body>
+    <div class="ordens" style="max-height: calc(100vh - 60px); overflow-y: auto;">
       <div class="ordem-servico-container">
         </a>
         <h2>Lista de ordens de serviço</h2>
@@ -132,7 +108,6 @@
                 <th class="table-header">Data do pedido</th>
                 <th class="table-header">Descrição do pedido</th>
                 <th class="table-header">Solicitante</th>
-                <th class="table-header">Responsável</th>
                 <th class="table-header">Data de fechamento</th>
                 <th class="table-header">Ação</th>
               </tr>
@@ -145,23 +120,17 @@
                 <td>{{ $ordem->nm_servico_solicitado }}</td>
 
                 <!--strtotime é usada para analisar datas em formato de texto -->
-                <td>{{ date_format($ordem->dt_solicitacao, 'd/m/Y') }}</td>
+                <td>{{  date_format($ordem->dt_entrega_solicitacao, 'd/m/Y') }}</td>
                 <td>{{ $ordem->ds_solicitacao }}</td>
                 <td>{{ $ordem->cd_matricula_funcionario }}</td>
-                <td>{{ "" }}
-
-                </td>
-                <td>{{ date('d/m/Y'), strtotime($ordem->dt_entrega_solicitacao) }}
-                </td>
+                <td>{{ date('d/m/Y'), strtotime($ordem->dt_entrega_solicitacao) }}</td>
                 <td>
-                  <form id="exportarForm" action="{{ url('dashboard-coordenador/status/' . $ordem->cd_solicitacao) }}" method="GET">
-                    @csrf
-                    <button type="submit" class="edit-button-bold">Exportar</button>
+                <form action="export/{{ $ordem -> cd_solicitacao}}" method="GET">
+                  <button class="edit-button-bold">Exportar</button>
                   </form>
-
-                  <form action="edit/{{ $ordem -> cd_solicitacao}}" method="GET">
-                    <button class="delete-button">Editar</button>
-                  </form>
+                      <form action="edit/{{ $ordem -> cd_solicitacao}}" method="GET">
+                        <button class="delete-button">Editar</button>
+                      </form>
                 </td>
               </tr>
             </tbody>
@@ -169,7 +138,7 @@
           </table>
         </div>
       </div>
-
+    </div>
     </body>
 
 </html>

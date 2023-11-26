@@ -57,12 +57,11 @@
       <p class="msg">{{ session('msg')}}</p>
       @endif
 <div id="content">
-<h2>Editando: Ordem {{ $ordem -> cd_solicitacao}}</h2>
+<h2>Exportar Ordem {{ $ordem -> cd_solicitacao}}</h2>
     <!-- Formulário de Ordem de Serviço -->
-    <form method="POST" action="{{ route('ordem.update', ['id' => $ordem->cd_solicitacao]) }}">
+    <form method="POST" action="{{ route('export', ['id' => $ordem->cd_solicitacao]) }}">
     @csrf <!-- Adicione o token CSRF para proteção contra ataques de falsificação de solicitações entre sites -->
-    @method('PUT')
-    
+    @method('POST')
         <table>
             <thead>
                 <tr>
@@ -74,33 +73,23 @@
                 <td>{{ $ordem -> cd_solicitacao }}</td>
             </tr>
             <tr>
-                <td>Solicitante:</td>
-                <td>{{ $ordem -> cd_matricula_funcionario }}</td>
-            </tr>
-            <tr>
-                <td>Tipo de Serviço:</td>
-                <td>
-                    <label>{{ $ordem -> nm_servico_solicitado }}</label>
-                </td>
-            </tr>
-            <tr>
                 <td>Responsável</td>
                 <td>
                 <select name="responsavelOrdem" id="responsavelOrdem">
                     <option value="" disabled selected>Selecione uma opção</option>
                     @foreach($tecnicos as $tecnico)
-                        <option value="{{ $tecnico->cd_matricula_funcionario }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>{{ $tecnico->nm_funcionario }} - {{ $tecnico->cd_matricula_funcionario }}</option>
+                        <option value="{{ $tecnico->cd_tecnico }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>{{ $tecnico->cd_matricula_funcionario }}</option>
                     @endforeach
                 </select>
                 </td>
             </tr>
             <tr>
-                <td>Descrição do pedido:</td>
-                <td><textarea name="ds_solicitacao" rows="4" cols="50" id="dt_solicitacao" maxlength="300" required>{{ $ordem->ds_solicitacao }}</textarea></td>
+                <td>Material utilizado:</td>
+                <td><textarea name="ds_material_utilizado_ordem_servico" rows="4" cols="50" id="ds_material_utilizado_ordem_servico" maxlength="300" required></textarea></td>
             </tr>
         </table>
         <br>
-        <input id="botao_enviar" type="submit" value="Editar">
+        <input id="botao_enviar" type="submit" value="Exportar">
         </form><br>
         @if(session('success'))
             <div class="alert alert-success">
@@ -117,15 +106,5 @@
         // Adicione a lógica de deslogar o usuário
         alert('Usuário deslogado!');
     });
-
-    function mostrarOutro() {
-    var tipoOutroInput = document.getElementById('tipo_outro_input');
-
-    if (document.querySelector('input[name="nm_servico_solicitado"]:checked').value === 'outro') {
-        tipoOutroInput.style.display = 'block';
-    } else {
-        tipoOutroInput.style.display = 'none';
-    }
-}
 </script>
 @endsection('content')

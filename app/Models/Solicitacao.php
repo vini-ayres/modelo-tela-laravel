@@ -27,14 +27,15 @@ class Solicitacao extends Model
     // Tudo poderar ser atualizado sem nenhuma restrição 
     protected $guarded = [];
     
-
     //  deve ser tratada como uma instância de data 
-    public $timestamps = true;
+    public $timestamps = false;
     const CREATED_AT = 'dt_solicitacao';
 
     // Mostrando onde é a coluna de update, não pode ser excluída pois pode gerar um error
     public $updated_at = "update_at";
-
     
-
+    public function tecnico()
+    {
+        return $this->belongsTo(Funcionario::class, 'cd_matricula_funcionario', 'cd_matricula_funcionario');
+    }
 }

@@ -18,8 +18,48 @@
   <script src="public/js/gerenciamento.js"></script>
   <style>
  /* Estilos para o modal */
-/* Estilos para o modal */
+ #confirmation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
 
+.modal-content {
+    background-color: #fff;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Ajuste conforme necessário */
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#confirm-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#cancel-button {
+    background-color: #6C757D;
+    color: white;
+}
   </style>
 </head>
 
@@ -80,8 +120,8 @@
 @endforeach
 
 <!-- Modal de confirmação -->
-<div id="confirmation-modal"id="confirmation-modal">
-    <div id="confirmation-box">
+<div class="modal" id="confirmation-modal">
+    <div class="modal-content">
         <p>Tem certeza de que deseja excluir este usuário?</p>
         <button id="confirm-button">Sim</button>
         <button id="cancel-button">Não</button>

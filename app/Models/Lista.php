@@ -25,7 +25,4 @@ class Lista extends Model
     //  deve ser tratada como uma instância de data 
     public $timestamps = true;
     const CREATED_AT = 'dt_solicitacao';
-
-    
-
 }
