@@ -46,7 +46,7 @@
                     </tr>
                     <tr>
                         <td>Nível de acesso:</td>
-                        <td><select name="nivel_acesso" id="nivel_acesso">
+                        <td><select name="cd_nivel_acesso_funcionario" id="cd_nivel_acesso_funcionario">
                                     <option disabled selected value="{{$usuario->getNivelAcessoNome()}}" style="display: none;">{{$usuario->getNivelAcessoNome()}}</option>
                                         <option value="0">Funcionário</option>
                                         <option value="1">Técnico</option>

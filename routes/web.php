@@ -5,9 +5,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SolicitacaoController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\TecnicoController;
 
 use App\Http\Controllers\FormController;
 use App\Models\Solicitacao;
+use App\Models\OrdemServico;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +56,10 @@ Route::prefix('dashboard-tecnico')->group(function () {
     Route::get('form', [FormController::class, 'tecnico']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
     Route::get('status', function(){
-        $dadosSolicitacao = Solicitacao::all();
-        return view('status', ['dadosSolicitacao' => $dadosSolicitacao]);
+        $dadosOrdem = OrdemServico::all();
+        return view('status', ['dadosOrdem' => $dadosOrdem]);
     });
+    Route::post('/dashboard-tecnico/status', [TecnicoController::class, 'atualizarStatus'])->name('atualizar-status');
 });
 
 //****************PÁGINAS DO COORDENADOR*****************//
@@ -65,18 +68,16 @@ Route::prefix('dashboard-coordenador')->group(function () {
     Route::post('form', [SolicitacaoController::class, 'processForm']);
     Route::get('lista', [ListaController::class, 'list']);
     Route::get('edit/{id}',[ListaController::class,'edit']);
-    Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
+    Route::get('export/{id}',[ListaController::class,'exportView']);
+    Route::post('export/{id}',[ListaController::class,'export'])->name('export');;
+    Route::put('ordem/update/{id}', [ListaController::class, 'update'])->name('ordem.update');
 });
 
 //****************PÁGINAS DO ADMINISTRADOR*****************//
 Route::prefix('dashboard-administrador')->group(function () {
     Route::get('form', [FormController::class, 'administrador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-
-
     Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
-    
-
     Route::get('gerenciamento', [UsuarioController::class, 'usuario']);
     Route::get('administrador/edit-usuario/{id}',[UsuarioController::class,'edit']);
     Route::put('administrador/usuario/update/{id}',[UsuarioController::class,'update'])->name('usuario.update');

@@ -26,7 +26,6 @@ class Funcionario extends Model
             1 => 'Técnico',
             2 => 'Coordenador',
             3 => 'Administrador'
-            
         ];
 
         return 

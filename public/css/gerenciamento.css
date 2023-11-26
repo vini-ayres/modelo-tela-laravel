@@ -120,3 +120,35 @@ body {
     margin-bottom: 16px;
     box-sizing: border-box;
   }
+
+  
+  /* Css do alerta de delete (não trocar) */
+
+  #confirmation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+#confirmation-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Estilo opcional para o botão de confirmação */
+#confirm-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
