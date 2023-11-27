@@ -20,18 +20,6 @@ class UsuarioController extends Controller
         $usuario = Funcionario::findOrFail($id);
         $niveis_acesso = $usuario->getNivelAcessoNome();
 
-
-       
-        #$nivel_usuario = $niveis_acesso[$usuario->cd_nivel_acesso_funcionario];
-
-        # $nivel_usuario = $niveis_acesso[$usuario->getNivelAcessoNome->nivel_usuario];
-        
-        
-
-        #$nivel_usuario = $usuario->getNivelAcessoNome()['nivel_usuario'];
-
-        # $niveis_acesso_outros = array_diff($niveis_acesso, [$nivel_usuario]);  ['nivel_usuario' => $nivel_usuario]
-     
         if ($usuario) {
             return view('edit-usuario', ['usuario' => $usuario], ['niveis_acesso' => $niveis_acesso]
             #,['nivel_usuario' => $nivel_usuario]
@@ -39,26 +27,13 @@ class UsuarioController extends Controller
         } else {
             return redirect()->back();
         }
-
-        # return view('administrador.edit-usuario', ['usuario'=> $usuario]);
     }
 
     public function update(Request $request)
     {
-
-        # Funcionario::findOrFail($request->id)->update($request->all());
-
-        /*$funcionario = Funcionario::findOrFail($request->id);
-        $nivel_acesso = $request->input('nivel_acesso');
-        $funcionario->cd_nivel_acesso_funcionario = $nivel_acesso;
-        $funcionario->save();*/
-
         $usuario = Funcionario::findOrFail($request->id);
-
         $nivel_acesso = $request->input('nivel_acesso');
-
         $usuario->cd_nivel_acesso_funcionario = $nivel_acesso;
-
 
         switch ($nivel_acesso) {
             case 'Funcionário':
@@ -84,24 +59,8 @@ class UsuarioController extends Controller
         // Salva as modificações no banco de dados
         $usuario->save();
 
-                 /*$dados = [
-            'cd_nivel_acesso_funcionario' => $usuario->cd_nivel_acesso_funcionario,
-            'nivel_acesso' => $usuario->nivel_acesso,
-        ];
-
-        Funcionario::findOrFail($request->id)->update($dados);
-        # Funcionario::findOrFail($request->id)->update($request->all());
-
-        # $funcionario->update($request->all());*/
-        # $funcionario->update($request->all());
-
-        
-        
-
         return redirect('/dashboard-administrador/gerenciamento')
             ->with('msg', 'Nível de acesso do funcionário Nº ' . $request->id . ' editado com sucesso!');
-
-        /*return redirect('/dashboard-administrador/gerenciamento', ['nivel_acesso'  => $nivel_acesso])->with('msg', 'Nível de acesso do funcionário Nº ' . $request->id . ' editado com sucesso!');*/
     }
 
     public function destroy($id){

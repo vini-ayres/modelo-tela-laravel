@@ -53,10 +53,7 @@ Route::get('/dashboard-administrador', function () {
             Route::get('form', [FormController::class, 'visaogeral']);
             Route::post('form', [SolicitacaoController::class, 'processForm']);
 
-            Route::get('status', function(){
-                $dadosSolicitacao = Solicitacao::all();
-                return view('status', ['dadosSolicitacao' => $dadosSolicitacao]);
-            });
+            Route::get('status', [StatusController::class,'status']);
 
             Route::get('lista', [ListaController::class, 'list']);
             Route::get('edit/{id}',[ListaController::class,'edit']);

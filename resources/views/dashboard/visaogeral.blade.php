@@ -2,7 +2,7 @@
 
 @section('links-sidebar')
     <a href="/dashboard-visaogeral/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
-    <a href="/dashboard-visaogeral/status" onclick="changeTab(this)">Status das ordens de serviço</a>
+    <a href="/dashboard-visaogeral/lista" onclick="changeTab(this)">Lista de ordens de serviço</a>
     <a href="/dashboard-visaogeral/status" onclick="changeTab(this)">Status das ordens de serviço</a>
     <a href="/dashboard-visaogeral/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
 @endsection('links-sidebar')
