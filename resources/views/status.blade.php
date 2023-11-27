@@ -65,7 +65,7 @@
 
 <!-- Tabela de Dados -->
 <div id="content" class="ordens">
-    <h2>Dados da Solicitação</h2>
+    <h2>Dados da Ordem de Serviço</h2>
     <table id="tabela-dados">
         <thead>
             <tr>

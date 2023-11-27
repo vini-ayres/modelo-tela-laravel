@@ -6,10 +6,10 @@ use App\Http\Controllers\SolicitacaoController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TecnicoController;
-
 use App\Http\Controllers\FormController;
 use App\Models\Solicitacao;
 use App\Models\OrdemServico;
+use App\Models\Tecnico;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +44,7 @@ Route::get('/dashboard-coordenador', function () {
 Route::get('/dashboard-administrador', function () {
     return view('dashboard.administrador');
 });
+
 //*************** VISAO GERAL DE TODAS VIEWS *****************/
         Route::get('/dashboard-visaogeral', function () {
             return view('dashboard.visaogeral');
@@ -85,6 +86,10 @@ Route::prefix('dashboard-tecnico')->group(function () {
         return view('status', ['dadosOrdem' => $dadosOrdem]);
     });
     Route::post('/dashboard-tecnico/status', [TecnicoController::class, 'atualizarStatus'])->name('atualizar-status');
+    Route::get('solicitacoes', function(){
+        $ordens = Solicitacao::all();
+        return view('solicitacoes', ['ordens' => $ordens]);
+    });
 });
 
 //****************PÁGINAS DO COORDENADOR*****************//
@@ -96,6 +101,10 @@ Route::prefix('dashboard-coordenador')->group(function () {
     Route::get('export/{id}',[ListaController::class,'exportView']);
     Route::post('export/{id}',[ListaController::class,'export'])->name('export');;
     Route::put('ordem/update/{id}', [ListaController::class, 'update'])->name('ordem.update');
+    Route::get('tecnicos', function(){
+        $tecnicos = Tecnico::all();
+        return view('tabela-tecnicos', ['tecnicos' => $tecnicos]);
+    });
 });
 
 //****************PÁGINAS DO ADMINISTRADOR*****************//

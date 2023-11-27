@@ -84,17 +84,6 @@
                 </td>
             </tr>
             <tr>
-                <td>Responsável</td>
-                <td>
-                <select name="responsavelOrdem" id="responsavelOrdem">
-                    <option value="" disabled selected>Selecione uma opção</option>
-                    @foreach($tecnicos as $tecnico)
-                        <option value="{{ $tecnico->cd_matricula_funcionario }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>{{ $tecnico->nm_funcionario }} - {{ $tecnico->cd_matricula_funcionario }}</option>
-                    @endforeach
-                </select>
-                </td>
-            </tr>
-            <tr>
                 <td>Descrição do pedido:</td>
                 <td><textarea name="ds_solicitacao" rows="4" cols="50" id="dt_solicitacao" maxlength="300" required>{{ $ordem->ds_solicitacao }}</textarea></td>
             </tr>
