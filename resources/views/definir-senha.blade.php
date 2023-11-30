@@ -75,6 +75,7 @@
 </div>
 
 <div id="login-container">
+    <h2>CRIE SUA SENHA</h2>
     <br>
     <form action="{{ route('definir-senha') }}" method="post">
         @csrf

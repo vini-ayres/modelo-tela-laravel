@@ -36,4 +36,9 @@ class Solicitacao extends Model
     {
         return $this->belongsTo(Funcionario::class, 'cd_matricula_funcionario', 'cd_matricula_funcionario');
     }
+
+    public function ordem()
+    {
+        return $this->hasOne(OrdemServico::class, 'cd_solicitacao', 'cd_solicitacao');
+    }    
 }

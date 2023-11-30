@@ -74,6 +74,7 @@ Route::get('/dashboard-administrador', function () {
 Route::prefix('dashboard-funcionario')->group(function () {
     Route::get('form', [FormController::class, 'funcionario']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
+    Route::get('tabela-solicitacoes', [SolicitacaoController::class, 'index']);
 });
 
 //****************PÁGINAS DO TÉCNICO*****************//

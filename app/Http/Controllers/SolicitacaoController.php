@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Solicitacao;
+use App\Models\OrdemServico;
 
 class SolicitacaoController extends Controller
 {
@@ -29,5 +30,11 @@ class SolicitacaoController extends Controller
 
         // Redirecione para uma página de sucesso ou faça algo mais
         return redirect()->back()->with('success', 'Solicitação Nº ' . $pedido->cd_solicitacao . ' enviada com sucesso!');
+    }
+
+    public function index()
+    {
+        $ordens = Solicitacao::with('ordem')->get();
+        return view('tabela-solicitacoes', ['ordens' => $ordens]);
     }
 }

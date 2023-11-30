@@ -10,7 +10,7 @@ class StatusController extends Controller
     public function status(){
 
         # Utilizando o model das solicitações para mostrar na lista de ordens
-        $dadosSolicitacao = ordemServico::all();
+        $dadosSolicitacao = OrdemServico::all();
         return view('status', ['dadosSolicitacao' => $dadosSolicitacao]);
     }
 }

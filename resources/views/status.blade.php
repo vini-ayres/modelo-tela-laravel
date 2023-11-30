@@ -47,7 +47,7 @@
 <body>
 
 <!-- Filtros -->
-<div class="filtros" style="margin-top: 20px; margin-right: 50px;">
+<div class="filtros" style="margin-top: 20px; margin-right: 50px; color: white; right: 60px;">
     <label for="descricaoFiltro">Filtrar por Descrição:</label>
     <input type="text" id="descricaoFiltro">
 

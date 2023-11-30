@@ -38,10 +38,6 @@ class AuthController extends Controller
             // Verifica a senha usando Hash::check()
             if (Hash::check($senha, $funcionario->nm_senha_funcionario)) {
                 // Autenticação bem-sucedida
-                
-                // Define o tempo de vida da sessão para 60 minutos (ou o valor desejado em minutos)
-                $tempoDeVidaEmMinutos = 60;
-                config(['session.lifetime' => $tempoDeVidaEmMinutos]);
 
                 Session::put('nomeDoUsuario', $funcionario->nm_funcionario);
                 Session::put('codigoDoUsuario', $matricula);

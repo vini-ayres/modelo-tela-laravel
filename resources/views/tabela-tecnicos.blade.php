@@ -30,7 +30,7 @@
             <thead>
               <tr>
                 <th class="table-header">Código do Técnico</th>
-                <th class="table-header">Tipo de serviço</th>
+                <!-- <th class="table-header">Tipo de serviço</th> -->
                 <th class="table-header">Código de Matrícula do Funcionário</th>
               </tr>
             </thead>
@@ -39,7 +39,7 @@
             <tbody>
                 <tr>
                     <td>{{ $tecnico->cd_responsavel }}</td>
-                    <td>{{ $tecnico->nm_tipo_servico_tecnico }}</td>
+                    <!-- <td>{{ $tecnico->nm_tipo_servico_tecnico }}</td> -->
                     <td>{{ $tecnico->cd_matricula_funcionario }}</td>
                 </tr>
             </tbody>
