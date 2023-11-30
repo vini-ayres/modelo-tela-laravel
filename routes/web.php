@@ -26,6 +26,8 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'showLoginForm']);
+Route::get('/definir-senha', [AuthController::class, 'showPasswordForm']);
+Route::post('/definir-senha', [AuthController::class, 'setPassword'])->name('definir-senha');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class,'logout']);
 
@@ -82,7 +84,8 @@ Route::prefix('dashboard-tecnico')->group(function () {
         $dadosOrdem = OrdemServico::all();
         return view('status', ['dadosOrdem' => $dadosOrdem]);
     });
-    Route::post('/dashboard-tecnico/status', [TecnicoController::class, 'atualizarStatus'])->name('atualizar-status');
+    Route::post('/dashboard-tecnico/atualizar-status', [TecnicoController::class, 'atualizarStatus'])->name('atualizar-status');
+    Route::post('/dashboard-tecnico/salvar-data', [TecnicoController::class, 'salvarData'])->name('salvar-data');
     Route::get('solicitacoes', function(){
         $ordens = Solicitacao::all();
         return view('solicitacoes', ['ordens' => $ordens]);

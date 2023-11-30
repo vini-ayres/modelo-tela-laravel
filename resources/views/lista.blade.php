@@ -17,7 +17,7 @@
 
 <body>
 
-  <!-- TABELA 1: FILTROS -->
+  <!-- TABELA 1: FILTROS
   <div class="filtros">
     <label>Data de Abertura:</label>
     <input type="text" id="dateRangePickerAbertura" />
@@ -29,9 +29,9 @@
 
     <label>Data de Fechamento:</label>
     <input type="text" id="dateRangePickerFechamento" />
-  </div>
+  </div> -->
 
-  <script>
+ <!-- <script>
     $(document).ready(function() {
       // Inicializa o date range picker para a data de abertura
       $('#dateRangePickerAbertura').daterangepicker({
@@ -87,9 +87,10 @@
         // Adicione aqui a lógica para filtrar os dados com as datas de fechamento selecionadas
       });
     });
-  </script>
+  </script> -->
 
-<!-- TABELA 2 -->
+
+  <!-- TABELA 2 -->
 <div class="ordens">
       @if(session('msg'))
       <p class="msg">{{ session('msg')}}</p>
@@ -104,11 +105,10 @@
             <thead>
               <tr>
                 <th class="table-header">Código</th>
-                <th class="table-header">Serviço</th>
-                <th class="table-header">Data do pedido</th>
-                <th class="table-header">Descrição do pedido</th>
                 <th class="table-header">Solicitante</th>
-                <th class="table-header">Data de fechamento</th>
+                <th class="table-header">Serviço</th>
+                <th class="table-header">Data de emissão da solicitação</th>
+                <th class="table-header">Descrição do pedido</th>
                 <th class="table-header">Ação</th>
               </tr>
             </thead>
@@ -117,13 +117,12 @@
             <tbody>
               <tr>
                 <td>{{ $ordem->cd_solicitacao }}</td>
+                <td>{{ $ordem->cd_matricula_funcionario }}</td>
                 <td>{{ $ordem->nm_servico_solicitado }}</td>
 
                 <!--strtotime é usada para analisar datas em formato de texto -->
-                <td>{{  date_format($ordem->dt_entrega_solicitacao, 'd/m/Y') }}</td>
+                <td>{{  date_format($ordem->dt_emissao_solicitacao, 'd/m/Y') }}</td>
                 <td>{{ $ordem->ds_solicitacao }}</td>
-                <td>{{ $ordem->cd_matricula_funcionario }}</td>
-                <td>{{ date('d/m/Y'), strtotime($ordem->dt_entrega_solicitacao) }}</td>
                 <td>
                 <form action="export/{{ $ordem -> cd_solicitacao}}" method="GET">
                   <button class="edit-button-bold">Exportar</button>

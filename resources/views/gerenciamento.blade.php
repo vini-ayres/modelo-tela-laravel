@@ -8,58 +8,65 @@
 @section('content')
 
 <head>
-  <style>
-    td a {
-      color: black;
-    }
-  </style>
   <link rel="stylesheet" type="text/css" href="{{ asset('css/gerenciamento.css') }}">
   <title>User List</title>
   <script src="public/js/gerenciamento.js"></script>
   <style>
- /* Estilos para o modal */
- #confirmation-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
+    td a {
+      color: black;
+    }
 
-.modal-content {
-    background-color: #fff;
-    border: 2px solid #007BFF;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px; /* Ajuste conforme necessário */
-}
+    /* Estilos para o modal */
 
-p {
-    margin-bottom: 20px;
-}
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
 
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    #confirmation-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      max-width: 400px; /* Adjust the maximum width as needed */
+      background-color: transparent;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      z-index: 1;
+    }
 
-#confirm-button {
-    background-color: #4CAF50;
-    color: white;
-}
+    .modal-content {
+      background-color: #fff;
+      border: 2px solid #4CAF50;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 4px 4px 0px 200px rgba(0,0,0,0.5);
+      -webkit-box-shadow: 4px 4px 0px 500px rgba(0,0,0,0.5);
+      -moz-box-shadow: 4px 4px 0px 500px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: none;
+    }
 
-#cancel-button {
-    background-color: #6C757D;
-    color: white;
-}
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #confirm-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #cancel-button {
+      background-color: #6C757D;
+      color: white;
+    }
   </style>
 </head>
 
@@ -86,38 +93,34 @@ button {
         <tbody>
 
           @foreach($usuarios as $usuario)
-          <tr>
-            <td>
-              <p>CB{{$usuario -> cd_matricula_funcionario}}</p>
-            </td>
-            <td>
-              <p>{{$usuario -> nm_funcionario}}</p>
-            </td>
-            <td>
-              <p><a href="mailto:{{$usuario -> nm_email_institucional_funcionario}}">{{$usuario -> nm_email_institucional_funcionario}}</a></p>
-            </td>
-            <td>
-              <p>{{$usuario -> nm_cargo_funcionario}}</p>
-            </td>
-            <td>
-              <p>{{$usuario -> getNivelAcessoNome()}}</p>
-            </td>
-            <td>
-
-              <form action="administrador/edit-usuario/{{ $usuario -> cd_matricula_funcionario}}" method="GET">
-                <button class="edit-button-bold">Editar</button>
-              </form>
-            <td>
-
-
-            <form action="administrador/usuario/delete/{{ $usuario->cd_matricula_funcionario}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button class="delete-button" data-user-id="{{ $usuario->cd_matricula_funcionario }}">Deletar</button>
-            </form>
-        </td>
-    </tr>
-@endforeach
+            <tr>
+              <td>
+                <p>{{$usuario -> cd_matricula_funcionario}}</p>
+              </td>
+              <td>
+                <p>{{$usuario -> nm_funcionario}}</p>
+              </td>
+              <td>
+                <p><a href="mailto:{{$usuario -> nm_email_institucional_funcionario}}">{{$usuario -> nm_email_institucional_funcionario}}</a></p>
+              </td>
+              <td>
+                <p>{{$usuario -> nm_cargo_funcionario}}</p>
+              </td>
+              <td>
+                <p>{{$usuario -> getNivelAcessoNome()}}</p>
+              </td>
+              <td>
+                <form action="administrador/edit-usuario/{{ $usuario -> cd_matricula_funcionario}}" method="GET">
+                  <button class="edit-button-bold">Editar</button>
+                </form>
+                <form action="administrador/usuario/delete/{{ $usuario->cd_matricula_funcionario}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="delete-button" data-user-id="{{ $usuario->cd_matricula_funcionario }}">Deletar</button>
+                </form>
+              </td>
+            </tr>
+          @endforeach
 
 <!-- Modal de confirmação -->
 <div class="modal" id="confirmation-modal">

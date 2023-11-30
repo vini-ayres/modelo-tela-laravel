@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Funcionario extends Model
 {
     protected $table = 'funcionario';
+    public $incrementing = false;
     protected $primaryKey = 'cd_matricula_funcionario';
     public $timestamps = false;
 
@@ -16,7 +17,8 @@ class Funcionario extends Model
         'cd_nivel_acesso_funcionario',
         'nm_funcionario',
         'nm_email_institucional_funcionario',
-        'nm_cargo_funcionario'
+        'nm_cargo_funcionario',
+        'nm_senha_funcionario'
     ];
 
     public function getNivelAcessoNome()

@@ -30,4 +30,27 @@ class TecnicoController extends Controller
             return redirect()->back()->with('error', 'Ordem de serviço não encontrada.');
         }
     }
+
+    public function salvarData(Request $request)
+    {
+        $solicitacao = $request->input('cd_solicitacao');
+        $novaData = $request->input('dt_entrega_ordem_servico');
+    
+        // Verifique se a ordem de serviço existe antes de salvar
+        $ordemServico = OrdemServico::where('cd_solicitacao', $solicitacao)->first();
+    
+        if ($ordemServico) {
+            // Verifica se a nova data é diferente da existente antes de atualizar
+            if ($novaData != null && $novaData != $ordemServico->dt_entrega_ordem_servico) {
+                $ordemServico->dt_entrega_ordem_servico = $novaData;
+                $ordemServico->save();
+    
+                return redirect()->back()->with('success', 'Data atualizada com sucesso!')->withInput();
+            } else {
+                return redirect()->back()->with('info', 'Nenhuma alteração detectada na data.')->withInput();
+            }
+        } else {
+            return redirect()->back()->with('error', 'Ordem de serviço não encontrada.')->withInput();
+        }
+    }
 }

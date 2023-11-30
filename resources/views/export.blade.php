@@ -78,7 +78,7 @@
                 <select name="responsavelOrdem" id="responsavelOrdem">
                     <option value="" disabled selected>Selecione uma opção</option>
                     @foreach($tecnicos as $tecnico)
-                    <option value="{{ $tecnico->cd_tecnico }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>
+                    <option value="{{ $tecnico->cd_responsavel }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>
                         {{ $tecnico->cd_matricula_funcionario }}
                     </option>
                     @endforeach

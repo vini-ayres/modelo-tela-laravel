@@ -13,8 +13,12 @@ class OrdemServico extends Model
 
     protected $fillable = [
         'cd_solicitacao',
+        'dt_entrega_ordem_servico',
         'ds_material_utilizado_ordem_servico',
         'nm_status_ordem_servico',
-        'cd_tecnico'
+        'cd_responsavel',
+        'nm_tecnico_agregado'
     ];
+
+    protected $dates = ['dt_entrega_ordem_servico'];
 }

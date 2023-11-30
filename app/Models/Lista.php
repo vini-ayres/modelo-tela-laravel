@@ -14,12 +14,9 @@ class Lista extends Model
     
     protected $fillable = [
         'cd_solicitacao',
-        'dt_solicitacao',
         'ds_solicitacao',
-        'dt_entrega_solicitacao',
         'cd_matricula_funcionario',
         'nm_servico_solicitado'
-
     ];
     
     //  deve ser tratada como uma instância de data 

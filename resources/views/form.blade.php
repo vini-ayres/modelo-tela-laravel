@@ -80,10 +80,6 @@
                 </td>
             </tr>
             <tr>
-                <td>Data de Entrega do Pedido:</td>
-                <td><input type="date" name="dt_entrega_solicitacao" id="dt_entrega_solicitacao" required></td>
-            </tr>
-            <tr>
                 <td>Descrição do Pedido:</td>
                 <td><textarea name="ds_solicitacao" rows="4" cols="50" id="ds_solicitacao" maxlength="300" required></textarea></td>
             </tr>

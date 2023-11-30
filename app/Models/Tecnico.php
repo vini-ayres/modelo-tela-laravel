@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tecnico extends Model
 {
-    protected $table = 'tecnico';
-    protected $primaryKey = 'cd_tecnico';
+    protected $table = 'responsavel';
+    protected $primaryKey = 'cd_responsavel';
     public $timestamps = false;
 
     protected $fillable = [
-        'cd_tecnico',
+        'cd_responsavel',
         'nm_tipo_servico',
         'cd_matricula_funcionario'
     ];

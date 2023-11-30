@@ -11,6 +11,31 @@
     td a{
       color: black;
     }
+
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #botao_enviar {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #botao_enviar:hover {
+        background-color: #45a049;
+    }
   </style>
 </head>
 
@@ -30,19 +55,14 @@
             <h2>Lista de ordens de serviço</h2>
             <div class="user-table">
                 <table>
-                    <thead>
-                        <tr>
-                            <th colspan="2">Formulário de Ordem de Serviço</th>
-                        </tr>
-                    </thead>
 
                     <tr>
                         <td>Matrícula:</td>
-                        <td><input type="text" name="cd_matricula_funcionario" id="cd_matricula_funcionario" value="{{ $usuario->cd_matricula_funcionario}}"></td>
+                        <td>{{ $usuario->cd_matricula_funcionario}}</td>
                     </tr>
                     <tr>
                         <td>Nome:</td>
-                        <td><input type="text" name="nm_funcionario" id="nm_funcionario" value="{{ $usuario->nm_funcionario}}"></td>
+                        <td>{{ $usuario->nm_funcionario}}</td>
                     </tr>
                     <tr>
                         <td>Nível de acesso:</td>
@@ -66,19 +86,23 @@
                         <td>Cargo:</td>
                         <td>{{ $usuario->nm_cargo_funcionario }}</td>
                     </tr>
-
-
                 </table>
                 <br>
-                <input id="botao_enviar" type="submit" value="Editar">
+                <input id="botao_enviar" type="submit" value="Salvar alterações">
         </form><br>
-        <!-- @if(session('success'))
+        @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-        @endif -->
+        @endif
     </div>
 </body>
 
-
+<script>
+    // Adicione aqui a lógica para a ação de logout
+    document.getElementById('logout').addEventListener('click', function() {
+        // Adicione a lógica de deslogar o usuário
+        alert('Usuário deslogado!');
+    });
+</script>
 @endsection

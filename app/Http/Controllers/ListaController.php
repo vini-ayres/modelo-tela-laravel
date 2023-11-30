@@ -44,8 +44,10 @@ class ListaController extends Controller
     $ordem = new OrdemServico;
     $ordem->cd_solicitacao = $pedido->cd_solicitacao;
     $ordem->ds_material_utilizado_ordem_servico = request('ds_material_utilizado_ordem_servico');
-    $ordem->cd_tecnico = request('responsavelOrdem');
-    $ordem->nm_status_ordem_servico = '';  
+    $ordem->cd_responsavel = request('responsavelOrdem');
+    $ordem->dt_entrega_ordem_servico = NULL;  
+    $ordem->nm_status_ordem_servico = ' ';  
+    $ordem->nm_tecnico_agregado = ' ';  
 
     $ordem->save();
 

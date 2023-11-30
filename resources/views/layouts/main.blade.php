@@ -16,6 +16,7 @@
         <br><br>
         <strong>Usuário Logado:</strong>
         <p>{{ Session::get('nomeDoUsuario') }}</p>
+        <p>{{ Session::get('codigoDoUsuario') }}</p>
     </div>
     @yield('links-sidebar')
     <br>

@@ -30,26 +30,24 @@
             <thead>
               <tr>
                 <th class="table-header">Código</th>
-                <th class="table-header">Serviço</th>
-                <th class="table-header">Data do pedido</th>
-                <th class="table-header">Descrição do pedido</th>
                 <th class="table-header">Solicitante</th>
-                <th class="table-header">Data de fechamento</th>
+                <th class="table-header">Serviço</th>
+                <th class="table-header">Data de emissão da solicitação</th>
+                <th class="table-header">Descrição do pedido</th>
               </tr>
             </thead>
 
             @foreach($ordens as $ordem)
             <tbody>
-                <tr>
-                    <td>{{ $ordem->cd_solicitacao }}</td>
-                    <td>{{ $ordem->nm_servico_solicitado }}</td>
+              <tr>
+                <td>{{ $ordem->cd_solicitacao }}</td>
+                <td>{{ $ordem->cd_matricula_funcionario }}</td>
+                <td>{{ $ordem->nm_servico_solicitado }}</td>
 
-                    <!--strtotime é usada para analisar datas em formato de texto -->
-                    <td>{{  date_format($ordem->dt_entrega_solicitacao, 'd/m/Y') }}</td>
-                    <td>{{ $ordem->ds_solicitacao }}</td>
-                    <td>{{ $ordem->cd_matricula_funcionario }}</td>
-                    <td>{{ date('d/m/Y'), strtotime($ordem->dt_entrega_solicitacao) }}</td>
-                </tr>
+                <!--strtotime é usada para analisar datas em formato de texto -->
+                <td>{{  date_format($ordem->dt_emissao_solicitacao, 'd/m/Y') }}</td>
+                <td>{{ $ordem->ds_solicitacao }}</td>
+              </tr>
             </tbody>
             @endforeach
           </table>

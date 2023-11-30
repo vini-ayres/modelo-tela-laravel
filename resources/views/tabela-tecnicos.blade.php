@@ -38,7 +38,7 @@
             @foreach($tecnicos as $tecnico)
             <tbody>
                 <tr>
-                    <td>{{ $tecnico->cd_tecnico }}</td>
+                    <td>{{ $tecnico->cd_responsavel }}</td>
                     <td>{{ $tecnico->nm_tipo_servico_tecnico }}</td>
                     <td>{{ $tecnico->cd_matricula_funcionario }}</td>
                 </tr>

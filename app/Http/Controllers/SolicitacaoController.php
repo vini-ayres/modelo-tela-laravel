@@ -12,8 +12,8 @@ class SolicitacaoController extends Controller
         $pedido = new Solicitacao;
         $pedido->cd_solicitacao = request('cd_solicitacao');
         $pedido->ds_solicitacao = request('ds_solicitacao');
-        $pedido->dt_entrega_solicitacao = request('dt_entrega_solicitacao');
         $pedido->cd_matricula_funcionario = request('cd_matricula_funcionario');
+        $pedido->dt_emissao_solicitacao = now(); // Use a função now() para obter a data e hora atuais
         $pedido->nm_servico_solicitado = request('nm_servico_solicitado');
 
         // Verifica se a opção "Outro" foi selecionada

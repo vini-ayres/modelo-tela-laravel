@@ -9,9 +9,9 @@ class UsuarioController extends Controller
 {
     public function usuario()
     {
-
         // Pegando todos dados da tabela funcionario
         $usuarios = Funcionario::all();
+
         return view('gerenciamento', ['usuarios' => $usuarios]);
     }
 
@@ -32,9 +32,11 @@ class UsuarioController extends Controller
     public function update(Request $request)
     {
         $usuario = Funcionario::findOrFail($request->id);
+    
+        // Extract nivel_acesso from the request
         $nivel_acesso = $request->input('nivel_acesso');
-        $usuario->cd_nivel_acesso_funcionario = $nivel_acesso;
-
+    
+        // Convert nivel_acesso to the corresponding numerical value
         switch ($nivel_acesso) {
             case 'Funcionário':
                 $usuario->cd_nivel_acesso_funcionario = 0;
@@ -48,17 +50,17 @@ class UsuarioController extends Controller
             case 'Administrador':
                 $usuario->cd_nivel_acesso_funcionario = 3;
                 break;
+            default:
+                // Handle any other cases or set a default value if needed
+                break;
         }
-
-        // Jogando o nível de acesso novo em cd_nivel
-        $usuario->cd_nivel_acesso_funcionario = $nivel_acesso;
-
-        // Atualiza outros campos do modelo com os dados do request
-        $usuario->update($request->all());
     
-        // Salva as modificações no banco de dados
+        // Update other fields
+        $usuario->fill($request->except('nivel_acesso'));
+    
+        // Save the changes
         $usuario->save();
-
+    
         return redirect('/dashboard-administrador/gerenciamento')
             ->with('msg', 'Nível de acesso do funcionário Nº ' . $request->id . ' editado com sucesso!');
     }
@@ -70,5 +72,4 @@ class UsuarioController extends Controller
         return redirect('/dashboard-administrador/gerenciamento')
             ->with('msg', 'Usuário excluído com sucesso!');
     }
-    
 }

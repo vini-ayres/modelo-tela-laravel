@@ -13,16 +13,14 @@ class Solicitacao extends Model
     
     protected $fillable = [
         'cd_solicitacao',
-        'dt_solicitacao',
         'ds_solicitacao',
-        'dt_entrega_solicitacao',
         'cd_matricula_funcionario',
+        'dt_emissao_solicitacao',
         'nm_servico_solicitado'
-
     ];
 
     # Mostrando o campo de data
-    protected $dates = ['dt_solicitacao',  'dt_entrega_solicitacao'];
+    protected $dates = ['dt_emissao_solicitacao'];
 
     // Tudo poderar ser atualizado sem nenhuma restrição 
     protected $guarded = [];
