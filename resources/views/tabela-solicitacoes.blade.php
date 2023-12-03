@@ -1,4 +1,4 @@
-@extends('dashboard.funcionario')
+@extends($layout)
 
 @yield('links-sidebar')
 
@@ -52,6 +52,10 @@
                             @endif
                         </td>
                     </tr>
+                @else
+                  <tr>
+                    <td colspan=6>Nenhuma solicitação encontrada por este usuário</td>
+                  </tr>
                 @endif
             @endforeach
             </tbody>

@@ -74,13 +74,14 @@ Route::get('/dashboard-administrador', function () {
 Route::prefix('dashboard-funcionario')->group(function () {
     Route::get('form', [FormController::class, 'funcionario']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-    Route::get('tabela-solicitacoes', [SolicitacaoController::class, 'index']);
+    Route::get('tabela-solicitacoes', [SolicitacaoController::class, 'funcionario']);
 });
 
 //****************PÁGINAS DO TÉCNICO*****************//
 Route::prefix('dashboard-tecnico')->group(function () {
     Route::get('form', [FormController::class, 'tecnico']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
+    Route::get('tabela-solicitacoes', [SolicitacaoController::class, 'tecnico']);
     Route::get('status', function(){
         $dadosOrdem = OrdemServico::all();
         return view('status', ['dadosOrdem' => $dadosOrdem]);
@@ -97,6 +98,7 @@ Route::prefix('dashboard-tecnico')->group(function () {
 Route::prefix('dashboard-coordenador')->group(function () {
     Route::get('form', [FormController::class, 'coordenador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
+    Route::get('tabela-solicitacoes', [SolicitacaoController::class, 'coordenador']);
     Route::get('lista', [ListaController::class, 'list']);
     Route::get('edit/{id}',[ListaController::class,'edit']);
     Route::get('export/{id}',[ListaController::class,'exportView']);
@@ -112,6 +114,7 @@ Route::prefix('dashboard-coordenador')->group(function () {
 Route::prefix('dashboard-administrador')->group(function () {
     Route::get('form', [FormController::class, 'administrador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
+    Route::get('tabela-solicitacoes', [SolicitacaoController::class, 'administrador']);
     Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
     Route::get('gerenciamento', [UsuarioController::class, 'usuario']);
     Route::get('administrador/edit-usuario/{id}',[UsuarioController::class,'edit']);

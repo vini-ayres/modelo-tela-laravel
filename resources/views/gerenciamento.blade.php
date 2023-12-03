@@ -1,9 +1,6 @@
 @extends('dashboard.administrador')
 
-@section('links-sidebar')
-<a href="/dashboard-administrador/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
-<a href="/dashboard-administrador/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
-@endsection('links-sidebar')
+@yield('links-sidebar')
 
 @section('content')
 
@@ -93,6 +90,7 @@
         <tbody>
 
           @foreach($usuarios as $usuario)
+          @if($usuario->cd_matricula_funcionario != Session::get('codigoDoUsuario') && $usuario->cd_nivel_acesso_funcionario != 3)
             <tr>
               <td>
                 <p>{{$usuario -> cd_matricula_funcionario}}</p>
@@ -120,6 +118,7 @@
                 </form>
               </td>
             </tr>
+          @endif
           @endforeach
 
 <!-- Modal de confirmação -->
