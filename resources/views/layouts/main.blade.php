@@ -9,7 +9,7 @@
 <body>
 <div id="navbar">
     </div>
-    
+
 <div id="sidebar">
     <div id="user-info">
         <img id="home-logo" src="{{ asset('imagens/ifsp-logo-branco.png') }}" alt="IFSP Câmpus Cubatão" width="50">

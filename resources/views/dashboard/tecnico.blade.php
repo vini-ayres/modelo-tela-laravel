@@ -8,28 +8,81 @@
 
 @section('content')
 
-<div id="content">
-    <!-- Conteúdo da página vai aqui -->
-    <h1>Bem-vindo ao Painel de Ordem de Serviço</h1><br>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
-    <h3>Tabela Técnicos</h3>
-    <table>
-        <tr>
-            <th>ID </th>
-            <th>Nome</th>
-            <th>Email</th>
-        </tr>
-    </table><br>
+    #content {
+        text-align: center;
+        padding: 20px;
+    }
 
-    <h3>Tabela Solicitantes</h3>
-    <table>
-        <tr>
-            <th>ID </th>
-            <th>Nome</th>
-            <th>Email</th>
-        </tr>
-    </table>
-</div>
+    .welcome-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .welcome-text {
+        text-align: center;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .image-container {
+        margin-top: -75px; /* Ajuste conforme necessário */
+    }
+
+    .image-container img {
+        max-width: 70%; /* Ajuste a largura máxima para ocupar a largura total do contêiner */
+        height: auto;
+    }
+
+    h1 {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-bottom: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+        .image-container img {
+        max-width: 100%;
+        }
+
+        .image-container {
+            margin-top: -15px; /* Ajuste conforme necessário */
+        }
+
+        .welcome-text,
+        p {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <div id="content">
+        <div class="welcome-container">
+            <h1>Bem-vindo ao Sistema de Ordens de Serviço</h1>
+            <div class="welcome-text">
+                <p>Seja bem-vindo ao nosso Sistema de Ordens de Serviço, projetado para tornar o processo de requisição e acompanhamento de serviços mais simples e eficientes. Estamos comprometidos em proporcionar uma experiência fácil e transparente para atender às suas necessidades.</p>
+            </div>
+            <div class="image-container">
+                <img src="imagens/WELCOME.png" alt="Imagem de boas-vindas">
+            </div>
+        </div>
+    </div>
 
 <script>
     // Adicione aqui a lógica para a ação de logout

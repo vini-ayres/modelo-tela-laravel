@@ -6,8 +6,6 @@ body {
     
 }
 
-/* #389737; #2c772a*/
-
 #sidebar {
     width: 235px;
     height: 100%;
@@ -74,4 +72,19 @@ img {
     height: auto;
     position: relative;
     right: 10px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%; /* Ajuste a largura conforme necessário */
+        position: relative; /* Ou relative, dependendo do comportamento desejado */
+    }
+
+    #content {
+        margin-left: 0; /* Garante que o conteúdo ocupe a largura total */
+    }
+
+    #home-logo {
+        width: 70%;
+    }
 }
