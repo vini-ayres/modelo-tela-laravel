@@ -1,4 +1,4 @@
-@extends('dashboard.funcionario')
+@extends($layout)
 
 @yield('links-sidebar')
 

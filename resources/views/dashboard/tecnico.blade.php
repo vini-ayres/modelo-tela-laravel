@@ -2,6 +2,7 @@
 
 @section('links-sidebar')
     <a href="/dashboard-tecnico/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
+    <a href="/dashboard-tecnico/minhas-solicitacoes" onclick="changeTab(this)">Minhas solicitações</a>
     <a href="/dashboard-tecnico/status" onclick="changeTab(this)">Dados da ordem de serviço</a>
     <a href="/dashboard-tecnico/solicitacoes" onclick="changeTab(this)">Lista de solicitações</a>
 @endsection('links-sidebar')
