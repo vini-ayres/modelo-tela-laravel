@@ -15,8 +15,8 @@
         <img id="home-logo" src="{{ asset('imagens/ifsp-logo-branco.png') }}" alt="IFSP Câmpus Cubatão" width="50">
         <br><br>
         <strong>Usuário Logado:</strong>
-        <p>{{ Session::get('nomeDoUsuario') }}</p>
-        <p>{{ Session::get('codigoDoUsuario') }}</p>
+        <p style="margin-left: 0px;">{{ Session::get('nomeDoUsuario') }}</p>
+        <p style="margin-left: 0px;">{{ Session::get('codigoDoUsuario') }}</p>
     </div>
     @yield('links-sidebar')
     <br>
