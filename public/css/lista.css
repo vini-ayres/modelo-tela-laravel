@@ -90,6 +90,18 @@ th {
     justify-content: center;
     width: 100%;
     margin-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: -50px;
+  }
+
+  .filtros label,
+  .filtros input,
+  .filtros select {
+    width: 100%; /* Make sure filter elements take full width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    margin-bottom: 10px; /* Add spacing between filter elements */
+    color: black;
   }
 
   .ordens {

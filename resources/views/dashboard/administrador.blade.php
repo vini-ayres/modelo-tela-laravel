@@ -54,12 +54,11 @@
         margin-right: 10px;
     }
 
-    /* Adiciona regras de mídia para ajustar o estilo em telas menores */
     @media screen and (max-width: 600px) {
         .image-container img {
         max-width: 100%;
         }
-        
+
         .image-container {
             margin-top: -15px; /* Ajuste conforme necessário */
         }
