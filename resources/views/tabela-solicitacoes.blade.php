@@ -35,6 +35,7 @@
                 <th class="table-header">Data de emissão da solicitação</th>
                 <th class="table-header">Descrição do pedido</th>
                 <th class="table-header">Data de entrega prevista</th>
+                <th class="table-header">Status do pedido</th>
               </tr>
             </thead>
             <tbody>
@@ -51,6 +52,7 @@
                                 {{ date_format($ordem->ordem->dt_entrega_ordem_servico, 'd/m/Y') }}
                             @endif
                         </td>
+                        <td>{{ $ordem->ordem->nm_status_ordem_servico }}</td>
                     </tr>
                 @endif
             @endforeach

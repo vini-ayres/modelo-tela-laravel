@@ -1,9 +1,6 @@
 @extends('dashboard.administrador')
 
-@section('links-sidebar')
-<a href="/dashboard-administrador/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
-<a href="/dashboard-administrador/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
-@endsection('links-sidebar')
+@yield('links-sidebar')
 
 @section('content')
 
