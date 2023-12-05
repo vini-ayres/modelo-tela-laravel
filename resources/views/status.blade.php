@@ -57,9 +57,14 @@
     <label for="statusFiltro">Filtrar por Status:</label>
     <select id="statusFiltro">
         <option value="">Todos</option>
-        <option value="Aberta">Aberta</option>
-        <option value="Atribuída">Atribuída</option>
+        <option value="Aberto">Aberto</option>
         <option value="Em andamento">Em andamento</option>
+        <option value="Pausado">Pausado</option>
+        <option value="Concluído">Concluído</option>
+        <option value="Cancelado">Cancelado</option>
+        <option value="Reaberto">Reaberto</option>
+        <option value="Atrasado">Atrasado</option>
+        <option value="Esperando material">Esperando material</option>
     </select>
 </div>
 
@@ -112,9 +117,14 @@
                             @csrf
                             <input type="hidden" name="cd_solicitacao" value="{{ $ordem->cd_solicitacao }}">
                             <select id="select" name="status" class="status-dropdown">
-                                <option id="abertaOption" value="Aberta" {{ $ordem->nm_status_ordem_servico == 'Aberta' ? 'selected' : '' }}>Aberta</option>
-                                <option id="atribuidaOption" value="Atribuída" {{ $ordem->nm_status_ordem_servico == 'Atribuída' ? 'selected' : '' }}>Atribuída</option>
+                                <option id="abertaOption" value="Aberto" {{ $ordem->nm_status_ordem_servico == 'Aberta' ? 'selected' : '' }}>Aberto</option>
                                 <option id="andamentoOption" value="Em andamento" {{ $ordem->nm_status_ordem_servico == 'Em andamento' ? 'selected' : '' }}>Em andamento</option>
+                                <option id="pausadoOption" value="Pausado" {{ $ordem->nm_status_ordem_servico == 'Pausado' ? 'selected' : '' }}>Pausado</option>
+                                <option id="concluidoOption" value="Concluído" {{ $ordem->nm_status_ordem_servico == 'Concluído' ? 'selected' : '' }}>Concluído</option>
+                                <option id="canceladoOption" value="Cancelado" {{ $ordem->nm_status_ordem_servico == 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
+                                <option id="reabertoOption" value="Reaberto" {{ $ordem->nm_status_ordem_servico == 'Reaberto' ? 'selected' : '' }}>Reaberto</option>
+                                <option id="atrasadoOption" value="Atrasado" {{ $ordem->nm_status_ordem_servico == 'Atrasado' ? 'selected' : '' }}>Atrasado</option>
+                                <option id="esperandoOption" value="Esperando material" {{ $ordem->nm_status_ordem_servico == 'Esperando material' ? 'selected' : '' }}>Esperando material</option>
                                 <!-- Adicione mais opções conforme necessário -->
                             </select>
                             <input type="submit" class="edit-button-bold" style="width: 150px;" value="Salvar">

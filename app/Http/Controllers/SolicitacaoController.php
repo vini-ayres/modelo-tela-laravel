@@ -32,6 +32,20 @@ class SolicitacaoController extends Controller
         return redirect()->back()->with('success', 'Solicitação Nº ' . $pedido->cd_solicitacao . ' enviada com sucesso!');
     }
 
+    private function enviarEmailSucesso(Solicitacao $pedido)
+    {
+        $resultadoEnvio = Mail::to($pedido->nm_email_institucional_funcionario)
+            ->send(new \App\Mail\SolicitacaoEnviada($pedido));
+
+        if ($resultadoEnvio) {
+            return redirect()->back()->with('success', 'Solicitação Nº ' . $pedido->cd_solicitacao . ' enviada com sucesso! Email enviado.');
+        } else {
+            $failures = Mail::failures();
+            return redirect()->back()->with('error', 'Erro ao enviar o email. Detalhes: ' . implode(', ', $failures));
+        }
+    }
+
+
     public function funcionario()
     {
         $ordens = Solicitacao::with('ordem')->get();
