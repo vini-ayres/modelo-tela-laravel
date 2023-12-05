@@ -1,13 +1,8 @@
-@extends($layout)
+@extends('dashboard.coordenador')
 
 @section('content')
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordem de Serviço</title>
+    <title>Editando ordem {{ $ordem ->cd_solicitacao }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
@@ -40,7 +35,7 @@
             margin-bottom: 20px;
             border: 1px solid transparent;
             border-radius: 4px;
-            max-width: 300px;
+            max-width: 400px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -50,42 +45,53 @@
             background-color: #dff0d8;
             border-color: #d6e9c6;
         }
+
+        .msg{
+            color: black;
+        }
     </style>
 </head>
 <body>
+
+@if(session('msg'))
+      <p class="msg">{{ session('msg')}}</p>
+      @endif
 <div id="content">
-<h2>Ordem de Serviço</h2>
+<h2>Exportar Ordem {{ $ordem -> cd_solicitacao}}</h2>
     <!-- Formulário de Ordem de Serviço -->
-    <form method="POST" action="{{ url('dashboard-administrador/form') }}" onsubmit="return submitForm();">
+    <form method="POST" action="{{ route('export', ['id' => $ordem->cd_solicitacao]) }}">
     @csrf <!-- Adicione o token CSRF para proteção contra ataques de falsificação de solicitações entre sites -->
+    @method('POST')
         <table>
             <thead>
                 <tr>
-                    <th colspan="2">Formulário de Ordem de Serviço</th>
+                    <th colspan="2">Ordem de Serviço</th>
                 </tr>
             </thead>
             <tr>
-                <td>Matrícula:</td>
-                <td><input type="text" name="cd_matricula_funcionario" id="cd_matricula_funcionario" value="{{ Session::get('codigoDoUsuario') }}"></td>
+                <td>Código:</td>
+                <td>{{ $ordem -> cd_solicitacao }}</td>
             </tr>
             <tr>
-                <td>Tipo de Serviço:</td>
+                <td>Responsável</td>
                 <td>
-                    <label><input type="radio" name="nm_servico_solicitado" value="elétrico"> Elétrico</label><br>
-                    <label><input type="radio" name="nm_servico_solicitado" value="hidráulico"> Hidráulico</label><br>
-                    <label><input type="radio" name="nm_servico_solicitado" value="pintura"> Pintura</label><br>
-                    <label><input type="radio" name="nm_servico_solicitado" value="telefonia"> Telefonia</label><br>
-                    <label><input type="radio" name="nm_servico_solicitado" value="outro" id="tipo_outro_radio" onclick="mostrarOutro()"> Outro</label>
-                    <input type="text" name="tipo_outro" id="tipo_outro_input" placeholder="Especifique outro serviço" style="display:none;">
+                <select name="responsavelOrdem" id="responsavelOrdem">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    @foreach($tecnicos as $tecnico)
+                    <option value="{{ $tecnico->cd_responsavel }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>
+                        {{ $tecnico->cd_matricula_funcionario }}
+                    </option>
+                    @endforeach
+                </select>
                 </td>
             </tr>
             <tr>
-                <td>Descrição do Pedido:</td>
-                <td><textarea name="ds_solicitacao" rows="4" cols="50" id="ds_solicitacao" maxlength="300" required></textarea></td>
+                <td>Material utilizado:</td>
+                <td><textarea name="ds_material_utilizado_ordem_servico" rows="4" cols="50" id="ds_material_utilizado_ordem_servico" maxlength="300" required></textarea></td>
             </tr>
         </table>
         <br>
-        <input id="botao_enviar" type="submit" value="Enviar">
+        <input id="botao_enviar" type="submit" value="Exportar">
         </form><br>
         @if(session('success'))
             <div class="alert alert-success">
@@ -102,15 +108,5 @@
         // Adicione a lógica de deslogar o usuário
         alert('Usuário deslogado!');
     });
-
-    function mostrarOutro() {
-    var tipoOutroInput = document.getElementById('tipo_outro_input');
-
-    if (document.querySelector('input[name="nm_servico_solicitado"]:checked').value === 'outro') {
-        tipoOutroInput.style.display = 'block';
-    } else {
-        tipoOutroInput.style.display = 'none';
-    }
-}
 </script>
 @endsection('content')

@@ -1,13 +1,8 @@
-@extends($layout)
+@extends('dashboard.coordenador')
 
 @section('content')
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordem de Serviço</title>
+    <title>Editando ordem {{ $ordem ->cd_solicitacao }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
@@ -40,7 +35,7 @@
             margin-bottom: 20px;
             border: 1px solid transparent;
             border-radius: 4px;
-            max-width: 300px;
+            max-width: 400px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -50,42 +45,51 @@
             background-color: #dff0d8;
             border-color: #d6e9c6;
         }
+
+        .msg{
+            color: black;
+        }
     </style>
 </head>
 <body>
+
+@if(session('msg'))
+      <p class="msg">{{ session('msg')}}</p>
+      @endif
 <div id="content">
-<h2>Ordem de Serviço</h2>
+<h2>Editando: Ordem {{ $ordem -> cd_solicitacao}}</h2>
     <!-- Formulário de Ordem de Serviço -->
-    <form method="POST" action="{{ url('dashboard-administrador/form') }}" onsubmit="return submitForm();">
+    <form method="POST" action="{{ route('ordem.update', ['id' => $ordem->cd_solicitacao]) }}">
     @csrf <!-- Adicione o token CSRF para proteção contra ataques de falsificação de solicitações entre sites -->
+    @method('PUT')
+    
         <table>
             <thead>
                 <tr>
-                    <th colspan="2">Formulário de Ordem de Serviço</th>
+                    <th colspan="2">Ordem de Serviço</th>
                 </tr>
             </thead>
             <tr>
-                <td>Matrícula:</td>
-                <td><input type="text" name="cd_matricula_funcionario" id="cd_matricula_funcionario" value="{{ Session::get('codigoDoUsuario') }}"></td>
+                <td>Código:</td>
+                <td>{{ $ordem -> cd_solicitacao }}</td>
+            </tr>
+            <tr>
+                <td>Solicitante:</td>
+                <td>{{ $ordem -> cd_matricula_funcionario }}</td>
             </tr>
             <tr>
                 <td>Tipo de Serviço:</td>
                 <td>
-                    <label><input type="radio" name="nm_servico_solicitado" value="elétrico"> Elétrico</label><br>
-                    <label><input type="radio" name="nm_servico_solicitado" value="hidráulico"> Hidráulico</label><br>
-                    <label><input type="radio" name="nm_servico_solicitado" value="pintura"> Pintura</label><br>
-                    <label><input type="radio" name="nm_servico_solicitado" value="telefonia"> Telefonia</label><br>
-                    <label><input type="radio" name="nm_servico_solicitado" value="outro" id="tipo_outro_radio" onclick="mostrarOutro()"> Outro</label>
-                    <input type="text" name="tipo_outro" id="tipo_outro_input" placeholder="Especifique outro serviço" style="display:none;">
+                    <label>{{ $ordem -> nm_servico_solicitado }}</label>
                 </td>
             </tr>
             <tr>
-                <td>Descrição do Pedido:</td>
-                <td><textarea name="ds_solicitacao" rows="4" cols="50" id="ds_solicitacao" maxlength="300" required></textarea></td>
+                <td>Descrição do pedido:</td>
+                <td><textarea name="ds_solicitacao" rows="4" cols="50" id="dt_solicitacao" maxlength="300" required>{{ $ordem->ds_solicitacao }}</textarea></td>
             </tr>
         </table>
         <br>
-        <input id="botao_enviar" type="submit" value="Enviar">
+        <input id="botao_enviar" type="submit" value="Editar">
         </form><br>
         @if(session('success'))
             <div class="alert alert-success">

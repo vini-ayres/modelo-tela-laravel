@@ -75,20 +75,19 @@
 </div>
 
 <div id="login-container">
-    <h2>FAÇA SEU LOGIN</h2>
+    <h2>CRIE SUA SENHA</h2>
     <br>
-    <form action="{{ route('login') }}" method="post">
+    <form action="{{ route('definir-senha') }}" method="post">
         @csrf
 
         <label for="cd_matricula_funcionario">Número de Matrícula:</label>
         <input type="text" name="cd_matricula_funcionario" required>
 
-        <label for="ds_senha_funcionario">Senha:</label>
+        <label for="ds_senha_funcionario"> Crie uma senha:</label>
         <input type="password" name="ds_senha_funcionario" required>
 
-        <button type="submit">Login</button>
-    </form><br>
-    <a href="{{ route('definir-senha') }}" style="color: gray">Primeiro acesso? Clique aqui para definir sua senha</a>
+        <button type="submit">Criar senha</button>
+    </form>
 </div>
 
 </body>

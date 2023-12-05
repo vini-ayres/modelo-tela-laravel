@@ -1,9 +1,10 @@
 @extends('layouts.main')
 
 @section('links-sidebar')
-    <a href="/dashboard-administrador/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
-    <a href="/dashboard-administrador/minhas-solicitacoes" onclick="changeTab(this)">Minhas solicitações</a>
-    <a href="/dashboard-administrador/gerenciamento" onclick="changeTab(this)">Gerenciamento de usuários</a>
+    <a href="/dashboard-coordenador/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
+    <a href="/dashboard-coordenador/minhas-solicitacoes" onclick="changeTab(this)">Minhas solicitações</a>
+    <a href="/dashboard-coordenador/lista" onclick="changeTab(this)">Lista de ordens de serviço</a>
+    <a href="/dashboard-coordenador/tecnicos" onclick="changeTab(this)">Lista de técnicos</a>
 @endsection('links-sidebar')
 
 @section('content')
@@ -85,14 +86,13 @@
         </div>
     </div>
 
-    <script>
-        // Adicione aqui a lógica para a ação de logout
-        document.getElementById('logout').addEventListener('click', function() {
-            // Adicione a lógica de deslogar o usuário
-            alert('Usuário deslogado!');
-        });
-    </script>
+<script>
+    // Adicione aqui a lógica para a ação de logout
+    document.getElementById('logout').addEventListener('click', function() {
+        // Adicione a lógica de deslogar o usuário
+        alert('Usuário deslogado!');
+    });
+</script>
 
-    {{-- Este é o comentário do Blade --}}
-</body>
+{{-- Este é o comentário do Blade --}}
 @endsection('content')

@@ -13,8 +13,8 @@
 
 .ordens {
   position: absolute;
-  margin-top: 120px;
-  left: 395px;
+  margin-top: 30px;
+  margin-left: 180px;
 }
 
 .ordens table tbody tr td {
@@ -22,7 +22,7 @@
 }
 
 .ordem-servico-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -39,6 +39,7 @@ h2 {
 table {
   width: 100%;
   border-collapse: collapse;
+  width: 900px;
 }
 
 th, td {
@@ -83,3 +84,77 @@ th {
   border-radius: 4px;
 }
 
+@media (max-width: 768px) {
+  .filtros {
+    position: static;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: -50px;
+  }
+
+  .filtros label,
+  .filtros input,
+  .filtros select {
+    width: 100%; /* Make sure filter elements take full width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    margin-bottom: 10px; /* Add spacing between filter elements */
+    color: black;
+  }
+
+  .ordens {
+    position: static;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .ordens table {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .ordens table tbody tr td {
+    padding-bottom: 5px;
+  }
+
+  .ordem-servico-container {
+    max-width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .user-table {
+    margin-top: 10px;
+    width: 100%; /* Adjusted to full width */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  th, td {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    margin-bottom: 5px;
+  }
+
+  .edit-button-bold,
+  .delete-button {
+    display: block;
+    margin: 5px auto;
+  }
+  
+  .table-header {
+    text-align: center;
+  }
+}

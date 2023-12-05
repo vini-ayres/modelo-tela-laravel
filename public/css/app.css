@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    
 }
 
 #sidebar {
@@ -11,13 +12,14 @@ body {
     background-color: #389737;
     color: #fff;
     position: fixed;
-    padding: 20px 10px 20px 20px;
-    top: 40px;
+    padding: 15px 20px 20px 20px;
+    top: 0px;
 }
 
 #content {
     margin-left: 300px;
     padding: 20px;
+    margin-top: 50px;
 }
 
 #logout {
@@ -45,8 +47,11 @@ a.selected {
 }
 
 #navbar {
-    background-color: #389737;
+    background-color: #338130;
     height: 60px;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 #logo {
@@ -60,4 +65,26 @@ a.selected {
 img {
     width: 100%;
     height: auto;
+}
+
+#home-logo {
+    width: 100%;
+    height: auto;
+    position: relative;
+    right: 10px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%; /* Ajuste a largura conforme necessário */
+        position: relative; /* Ou relative, dependendo do comportamento desejado */
+    }
+
+    #content {
+        margin-left: 0; /* Garante que o conteúdo ocupe a largura total */
+    }
+
+    #home-logo {
+        width: 70%;
+    }
 }
