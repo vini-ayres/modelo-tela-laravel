@@ -48,39 +48,39 @@ Route::get('/dashboard-administrador', function () {
 });
 
 //*************** VISAO GERAL DE TODAS VIEWS *****************/
-        Route::get('/dashboard-visaogeral', function () {
-            return view('dashboard.visaogeral');
-        });
-        Route::prefix('dashboard-visaogeral')->group(function () {
-            Route::get('form', [FormController::class, 'visaogeral']);
-            Route::post('form', [SolicitacaoController::class, 'processForm']);
+Route::get('/dashboard-visaogeral', function () {
+    return view('dashboard.visaogeral');
+});
+Route::prefix('dashboard-visaogeral')->group(function () {
+    Route::get('form', [FormController::class, 'visaogeral']);
+    Route::post('form', [SolicitacaoController::class, 'processForm']);
 
-            Route::get('status', [StatusController::class,'status']);
+    Route::get('status', [StatusController::class,'status']);
 
-            Route::get('lista', [ListaController::class, 'list']);
-            Route::get('edit/{id}',[ListaController::class,'edit']);
-            Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
-            Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
-            
+    Route::get('lista', [ListaController::class, 'list']);
+    Route::get('edit/{id}',[ListaController::class,'edit']);
+    Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
+    Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
+    
 
-            Route::get('gerenciamento', [UsuarioController::class, 'usuario']);
-            Route::get('administrador/edit-usuario/{id}',[UsuarioController::class,'edit']);
-            Route::put('administrador/usuario/update/{id}',[UsuarioController::class,'update'])->name('usuario.update');
-            Route::delete('administrador/usuario/delete/{id}',[UsuarioController::class,'destroy']);
-        });
-
+    Route::get('gerenciamento', [UsuarioController::class, 'usuario']);
+    Route::get('administrador/edit-usuario/{id}',[UsuarioController::class,'edit']);
+    Route::put('administrador/usuario/update/{id}',[UsuarioController::class,'update'])->name('usuario.update');
+    Route::delete('administrador/usuario/delete/{id}',[UsuarioController::class,'destroy']);
+});
 
 //****************PÁGINAS DO FUNCIONARIO*****************//
 Route::prefix('dashboard-funcionario')->group(function () {
     Route::get('form', [FormController::class, 'funcionario']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
-    Route::get('tabela-solicitacoes', [SolicitacaoController::class, 'index']);
+    Route::get('minhas-solicitacoes', [SolicitacaoController::class, 'funcionario']);
 });
 
 //****************PÁGINAS DO TÉCNICO*****************//
 Route::prefix('dashboard-tecnico')->group(function () {
     Route::get('form', [FormController::class, 'tecnico']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
+    Route::get('minhas-solicitacoes', [SolicitacaoController::class, 'tecnico']);
     Route::get('status', function(){
         $dadosOrdem = OrdemServico::all();
         return view('status', ['dadosOrdem' => $dadosOrdem]);
@@ -97,6 +97,7 @@ Route::prefix('dashboard-tecnico')->group(function () {
 Route::prefix('dashboard-coordenador')->group(function () {
     Route::get('form', [FormController::class, 'coordenador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
+    Route::get('minhas-solicitacoes', [SolicitacaoController::class, 'coordenador']);
     Route::get('lista', [ListaController::class, 'list']);
     Route::get('edit/{id}',[ListaController::class,'edit']);
     Route::get('export/{id}',[ListaController::class,'exportView']);
@@ -112,6 +113,7 @@ Route::prefix('dashboard-coordenador')->group(function () {
 Route::prefix('dashboard-administrador')->group(function () {
     Route::get('form', [FormController::class, 'administrador']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
+    Route::get('minhas-solicitacoes', [SolicitacaoController::class, 'administrador']);
     Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
     Route::get('gerenciamento', [UsuarioController::class, 'usuario']);
     Route::get('administrador/edit-usuario/{id}',[UsuarioController::class,'edit']);

@@ -2,12 +2,14 @@
 
 @section('links-sidebar')
     <a href="/dashboard-tecnico/form" onclick="changeTab(this)">Formulário de ordens de serviço</a>
+    <a href="/dashboard-tecnico/minhas-solicitacoes" onclick="changeTab(this)">Minhas solicitações</a>
     <a href="/dashboard-tecnico/status" onclick="changeTab(this)">Dados da ordem de serviço</a>
     <a href="/dashboard-tecnico/solicitacoes" onclick="changeTab(this)">Lista de solicitações</a>
 @endsection('links-sidebar')
 
 @section('content')
-
+<head>
+<title>Home</title>
 <style>
     body {
         font-family: 'Arial', sans-serif;
@@ -79,7 +81,7 @@
                 <p>Seja bem-vindo ao nosso Sistema de Ordens de Serviço, projetado para tornar o processo de requisição e acompanhamento de serviços mais simples e eficientes. Estamos comprometidos em proporcionar uma experiência fácil e transparente para atender às suas necessidades.</p>
             </div>
             <div class="image-container">
-                <img src="imagens/WELCOME.png" alt="Imagem de boas-vindas">
+                <img src="{{ asset('imagens/WELCOME.png') }}" alt="Imagem de boas-vindas">
             </div>
         </div>
     </div>

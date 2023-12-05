@@ -32,9 +32,28 @@ class SolicitacaoController extends Controller
         return redirect()->back()->with('success', 'Solicitação Nº ' . $pedido->cd_solicitacao . ' enviada com sucesso!');
     }
 
-    public function index()
+    public function funcionario()
     {
         $ordens = Solicitacao::with('ordem')->get();
-        return view('tabela-solicitacoes', ['ordens' => $ordens]);
+        $layout = 'dashboard.funcionario';
+        return view('tabela-solicitacoes', ['ordens' => $ordens, 'layout' => $layout]);
+    }
+    public function tecnico()
+    {
+        $ordens = Solicitacao::with('ordem')->get();
+        $layout = 'dashboard.tecnico';
+        return view('tabela-solicitacoes', ['ordens' => $ordens, 'layout' => $layout]);
+    }
+    public function coordenador()
+    {
+        $ordens = Solicitacao::with('ordem')->get();
+        $layout = 'dashboard.coordenador';
+        return view('tabela-solicitacoes', ['ordens' => $ordens, 'layout' => $layout]);
+    }
+    public function administrador()
+    {
+        $ordens = Solicitacao::with('ordem')->get();
+        $layout = 'dashboard.administrador';
+        return view('tabela-solicitacoes', ['ordens' => $ordens, 'layout' => $layout]);
     }
 }
