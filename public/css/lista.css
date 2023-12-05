@@ -86,54 +86,63 @@ th {
 
 @media (max-width: 768px) {
   .filtros {
-    position: static; /* Remove a posição absoluta para que a filtragem não sobreponha a tabela */
-    justify-content: center; /* Centraliza os filtros */
+    position: static;
+    justify-content: center;
     width: 100%;
     margin-top: 0;
   }
 
   .ordens {
-    position: static; /* Remove a posição absoluta para que a ordem não sobreponha a tabela */
+    position: static;
     margin-top: 10px;
     margin-left: 0;
   }
 
+  .ordens table {
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .ordens table tbody tr td {
-    padding-bottom: 5px; /* Espaçamento adicional nas células para telas menores */
+    padding-bottom: 5px;
   }
 
   .ordem-servico-container {
-    padding: 10px; /* Reduz o espaço de preenchimento para telas menores */
+    max-width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    margin-top: 20px;
+    text-align: center;
   }
 
   .user-table {
     margin-top: 10px;
-    width: 70%;
+    width: 100%; /* Adjusted to full width */
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 10px;
   }
 
   th, td {
-    display: block; /* Faz com que as células ocupem toda a largura disponível */
-    text-align: center; /* Centraliza o conteúdo nas células */
-  }
-
-  th {
-    display: none; /* Esconde os cabeçalhos para telas menores */
-  }
-
-  td {
-    border: 1px solid #ddd;
+    display: block;
+    text-align: center;
     padding: 8px;
-    margin-bottom: 5px; /* Adiciona espaço entre as células */
+    margin-bottom: 5px;
   }
 
   .edit-button-bold,
   .delete-button {
     display: block;
-    margin: 0 auto; /* Centraliza os botões */
+    margin: 5px auto;
+  }
+  
+  .table-header {
+    text-align: center;
   }
 }
