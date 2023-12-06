@@ -14,8 +14,8 @@ O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma a
 
 1. **Clonar o Repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/seu-projeto.git
-   cd seu-projeto
+   git clone https://github.com/vini-ayres/sistema-ordem-servico.git
+   cd sistema-ordem-servico
    ```
 
 2. **Instalar Dependências do Composer:**
