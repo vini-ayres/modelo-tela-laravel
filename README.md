@@ -1,16 +1,16 @@
-## Documentação do Sistema de Ordem de Serviço com Laravel - IFSP Campus Cubatão
+# Documentação do Sistema de Ordem de Serviço com Laravel - IFSP Campus Cubatão
 
-### Visão Geral
+## Visão Geral
 
 O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma abrangente projetada para gerenciar eficientemente as solicitações de serviços dentro da instituição. Esta documentação integra a descrição geral do projeto com os requisitos e instruções específicas para a implementação usando o framework Laravel.
 
-### Requisitos do Sistema (Laravel)
+## Requisitos do Sistema (Laravel)
 
 - PHP >= 7.4
 - Composer
 - XAMPP com Apache e MySQL
 
-### Instalação do Projeto Laravel
+## Instalação do Projeto Laravel
 
 1. **Clonar o Repositório:**
    ```bash
@@ -42,7 +42,7 @@ O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma a
    php artisan serve
    ```
 
-### Estrutura do Projeto Laravel
+## Estrutura do Projeto Laravel
 
 - `app/`: Contém modelos, controladores e outros elementos principais do aplicativo.
 - `config/`: Configurações do aplicativo.
@@ -81,6 +81,6 @@ O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma a
 4. Faça push para a branch: `git push origin feature-nova`.
 5. Abra um pull request.
 
-### Contato
+## Contato
 
 [Forneça informações de contato para suporte ou colaboração.]
