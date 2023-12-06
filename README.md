@@ -74,7 +74,7 @@ O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma a
 - O administrador tem o poder de adicionar, editar ou excluir funcionários cadastrados no campus.
 - Pode ajustar os níveis de acesso dos funcionários conforme necessário, garantindo a segurança e integridade do sistema.
 
-### Contribuição
+## Contribuição
 
 1. Faça um fork do projeto.
 2. Crie uma branch com o nome da sua feature: `git checkout -b feature-nova`.
