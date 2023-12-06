@@ -80,7 +80,3 @@ O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma a
 3. Faça commit das suas alterações: `git commit -m 'Adiciona nova feature'`.
 4. Faça push para a branch: `git push origin feature-nova`.
 5. Abra um pull request.
-
-## Contato
-
-[Forneça informações de contato para suporte ou colaboração.]
