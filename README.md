@@ -1,74 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Documentação do Sistema de Ordem de Serviço com Laravel - IFSP Campus Cubatão
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Visão Geral
 
-## Replit setup
-1. run `php artisan key:generate` to generate an unique key for your project
-1. set environment variables in `.laravel.env`
-1. ▶ Run
+O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma abrangente projetada para gerenciar eficientemente as solicitações de serviços dentro da instituição. Esta documentação integra a descrição geral do projeto com os requisitos e instruções específicas para a implementação usando o framework Laravel.
 
-**Laravel doesn't support replit's database,
-so you have to use an external database :(**
+### Requisitos do Sistema (Laravel)
 
-----
+- PHP >= 7.4
+- Composer
+- XAMPP com Apache e MySQL
 
-## About Laravel
+### Instalação do Projeto Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Clonar o Repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/seu-projeto.git
+   cd seu-projeto
+   ```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. **Instalar Dependências do Composer:**
+   ```bash
+   composer install
+   ```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. **Configurar o arquivo `.env`:**
 
-## Learning Laravel
+   Abra o arquivo `.laravel.env` em um editor de texto e configure as variáveis de ambiente, incluindo as informações do banco de dados, de acordo com a configuração do seu ambiente XAMPP.
+      ```dotenv
+      APP_URL=http://localhost
+      DB_CONNECTION=mysql
+      DB_HOST=127.0.0.1
+      DB_PORT=3306  # Altere para a porta do MySQL no seu ambiente XAMPP
+      DB_DATABASE=sua_base_de_dados
+      DB_USERNAME=seu_usuario
+      DB_PASSWORD=sua_senha
+      ```
+      Certifique-se de ajustar `DB_PORT` para refletir a porta do MySQL no seu ambiente XAMPP.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+4. **Iniciar o Servidor de Desenvolvimento:**
+   ```bash
+   php artisan serve
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Estrutura do Projeto Laravel
 
-## Laravel Sponsors
+- `app/`: Contém modelos, controladores e outros elementos principais do aplicativo.
+- `config/`: Configurações do aplicativo.
+- `database/`: Migrations e seeders do banco de dados.
+- `public/`: Arquivos acessíveis publicamente (assets, imagens, etc.).
+- `resources/`: Vistas, ativos frontend e traduções.
+- `routes/`: Rotas do aplicativo.
+- `tests/`: Testes automatizados.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Funcionalidades Principais
 
-### Premium Partners
+### Multi-Login:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- **Funcionários:** Podem realizar solicitações de serviços, acompanhando o status das ordens de serviço submetidas.
+- **Coordenadores:** Responsáveis por intermediar as solicitações, encaminhando-as aos respectivos responsáveis pelos serviços.
+- **Responsáveis:** Encarregados de gerenciar e atualizar o status das ordens de serviço designadas a eles.
+- **Administrador:** Possui controle total sobre o sistema, podendo gerenciar todos os funcionários cadastrados.
 
-## Contributing
+### Fluxo de Solicitação:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Um funcionário submete uma ordem de serviço.
+2. A ordem de serviço é encaminhada ao coordenador para aprovação e encaminhamento.
+3. O coordenador designa a ordem de serviço ao responsável correspondente ao serviço solicitado.
+4. O responsável gerencia o status da ordem de serviço, mantendo o funcionário informado sobre o andamento.
 
-## Code of Conduct
+### Administração de Usuários:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- O administrador tem o poder de adicionar, editar ou excluir funcionários cadastrados no campus.
+- Pode ajustar os níveis de acesso dos funcionários conforme necessário, garantindo a segurança e integridade do sistema.
 
-## Security Vulnerabilities
+### Contribuição
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Faça um fork do projeto.
+2. Crie uma branch com o nome da sua feature: `git checkout -b feature-nova`.
+3. Faça commit das suas alterações: `git commit -m 'Adiciona nova feature'`.
+4. Faça push para a branch: `git push origin feature-nova`.
+5. Abra um pull request.
 
-## License
+### Contato
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[Forneça informações de contato para suporte ou colaboração.]
