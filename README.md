@@ -9,6 +9,7 @@ O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma a
 - PHP >= 7.4
 - Composer
 - XAMPP com Apache e MySQL
+- Necessário ter o banco de dados já criado no MySQL
 
 ## Instalação do Projeto Laravel
 
