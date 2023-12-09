@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <title>Editando ordem {{ $ordem ->cd_solicitacao }}</title>
+    <title>Atribuir ordem {{ $ordem ->cd_solicitacao }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
@@ -57,7 +57,7 @@
       <p class="msg">{{ session('msg')}}</p>
       @endif
 <div id="content">
-<h2>Exportar Ordem {{ $ordem -> cd_solicitacao}}</h2>
+<h2>Atribuir Ordem {{ $ordem -> cd_solicitacao}}</h2>
     <!-- Formulário de Ordem de Serviço -->
     <form method="POST" action="{{ route('export', ['id' => $ordem->cd_solicitacao]) }}">
     @csrf <!-- Adicione o token CSRF para proteção contra ataques de falsificação de solicitações entre sites -->
@@ -79,7 +79,7 @@
                     <option value="" disabled selected>Selecione uma opção</option>
                     @foreach($tecnicos as $tecnico)
                     <option value="{{ $tecnico->cd_responsavel }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>
-                        {{ $tecnico->cd_matricula_funcionario }}
+                        {{ $tecnico->cd_matricula_funcionario }} - {{ $tecnico->funcionario->nm_funcionario }}
                     </option>
                     @endforeach
                 </select>
@@ -91,7 +91,7 @@
             </tr>
         </table>
         <br>
-        <input id="botao_enviar" type="submit" value="Exportar">
+        <input id="botao_enviar" type="submit" value="Atribuir">
         </form><br>
         @if(session('success'))
             <div class="alert alert-success">

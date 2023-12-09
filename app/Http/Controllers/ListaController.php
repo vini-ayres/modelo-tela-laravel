@@ -13,7 +13,7 @@ class ListaController extends Controller
   public function list()
   {
     // Utilizando o model das solicitações para mostrar na lista de ordens
-    $ordens = Solicitacao::with('tecnico')->get();
+    $ordens = Solicitacao::with('funcionario', 'ordem')->get();
     return view('lista', ['ordens' => $ordens]);
   }
 
@@ -32,7 +32,7 @@ class ListaController extends Controller
     $ordem = Solicitacao::findOrFail($id);
     
     // Obtenha a lista de todos os técnicos
-    $tecnicos = Tecnico::all(); // Assumindo que o nível de acesso 1 corresponde a técnicos
+    $tecnicos = Tecnico::with('funcionario')->get(); // Assumindo que o nível de acesso 1 corresponde a técnicos
 
     return view('export', ['ordem' => $ordem, 'tecnicos' => $tecnicos]);
   }
@@ -46,8 +46,7 @@ class ListaController extends Controller
     $ordem->ds_material_utilizado_ordem_servico = request('ds_material_utilizado_ordem_servico');
     $ordem->cd_responsavel = request('responsavelOrdem');
     $ordem->dt_entrega_ordem_servico = $pedido->dt_emissao_solicitacao; 
-    $ordem->nm_status_ordem_servico = ' ';  
-    $ordem->nm_tecnico_agregado = ' ';  
+    $ordem->nm_status_ordem_servico = 'Aberto';  
 
     $ordem->save();
 

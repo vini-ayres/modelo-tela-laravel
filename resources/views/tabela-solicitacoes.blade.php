@@ -52,7 +52,13 @@
                                 {{ date_format($ordem->ordem->dt_entrega_ordem_servico, 'd/m/Y') }}
                             @endif
                         </td>
-                        <td>{{ $ordem->ordem->nm_status_ordem_servico }}</td>
+                        <td>
+                          @if($ordem->ordem)
+                              {{ $ordem->ordem->nm_status_ordem_servico }}
+                          @else
+                              <p>Sem ordem associada</p>
+                          @endif
+                        </td>
                     </tr>
                 @endif
             @endforeach

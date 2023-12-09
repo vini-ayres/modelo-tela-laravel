@@ -16,4 +16,9 @@ class Tecnico extends Model
         'nm_tipo_servico',
         'cd_matricula_funcionario'
     ];
+
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class, 'cd_matricula_funcionario', 'cd_matricula_funcionario');
+    }
 }

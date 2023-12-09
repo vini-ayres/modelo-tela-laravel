@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SolicitacaoController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TecnicoController;
@@ -47,7 +48,7 @@ Route::get('/dashboard-administrador', function () {
     return view('dashboard.administrador');
 });
 
-//*************** VISAO GERAL DE TODAS VIEWS *****************/
+//*************** VISAO GERAL DE TODAS VIEWS *****************//
 Route::get('/dashboard-visaogeral', function () {
     return view('dashboard.visaogeral');
 });
@@ -61,7 +62,6 @@ Route::prefix('dashboard-visaogeral')->group(function () {
     Route::get('edit/{id}',[ListaController::class,'edit']);
     Route::put('ordem/update/{id}',[ListaController::class,'update'])->name('ordem.update');
     Route::get('administrador/perfil/{id}',[ListaController::class,'perfil']);
-    
 
     Route::get('gerenciamento', [UsuarioController::class, 'usuario']);
     Route::get('administrador/edit-usuario/{id}',[UsuarioController::class,'edit']);
@@ -81,12 +81,8 @@ Route::prefix('dashboard-tecnico')->group(function () {
     Route::get('form', [FormController::class, 'tecnico']);
     Route::post('form', [SolicitacaoController::class, 'processForm']);
     Route::get('minhas-solicitacoes', [SolicitacaoController::class, 'tecnico']);
-    Route::get('status', function(){
-        $dadosOrdem = OrdemServico::all();
-        return view('status', ['dadosOrdem' => $dadosOrdem]);
-    });
-    Route::post('/dashboard-tecnico/atualizar-status', [TecnicoController::class, 'atualizarStatus'])->name('atualizar-status');
-    Route::post('/dashboard-tecnico/salvar-data', [TecnicoController::class, 'salvarData'])->name('salvar-data');
+    Route::get('status', [StatusController::class, 'tecnico']);
+    Route::post('/dashboard-tecnico/atualizar-status', [TecnicoController::class, 'atualizarOrdemServico'])->name('atualizar-ordem');
     Route::get('solicitacoes', function(){
         $ordens = Solicitacao::all();
         return view('solicitacoes', ['ordens' => $ordens]);
@@ -104,9 +100,10 @@ Route::prefix('dashboard-coordenador')->group(function () {
     Route::post('export/{id}',[ListaController::class,'export'])->name('export');;
     Route::put('ordem/update/{id}', [ListaController::class, 'update'])->name('ordem.update');
     Route::get('tecnicos', function(){
-        $tecnicos = Tecnico::all();
+        $tecnicos = Tecnico::with('funcionario')->get();
         return view('tabela-tecnicos', ['tecnicos' => $tecnicos]);
     });
+    Route::get('status', [StatusController::class, 'coordenador']);
 });
 
 //****************PÁGINAS DO ADMINISTRADOR*****************//
@@ -120,4 +117,3 @@ Route::prefix('dashboard-administrador')->group(function () {
     Route::put('administrador/usuario/update/{id}',[UsuarioController::class,'update'])->name('usuario.update');
     Route::delete('administrador/usuario/delete/{id}',[UsuarioController::class,'destroy']);
 });
-

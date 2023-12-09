@@ -106,9 +106,11 @@
               <tr>
                 <th class="table-header">Código</th>
                 <th class="table-header">Solicitante</th>
+                <th class="table-header">Nome do Solcitante</th>
                 <th class="table-header">Serviço</th>
                 <th class="table-header">Data de emissão da solicitação</th>
                 <th class="table-header">Descrição do pedido</th>
+                <th class="table-header">Status de Atribuição</th>
                 <th class="table-header">Ação</th>
               </tr>
             </thead>
@@ -118,14 +120,22 @@
               <tr>
                 <td>{{ $ordem->cd_solicitacao }}</td>
                 <td>{{ $ordem->cd_matricula_funcionario }}</td>
+                <td>{{ $ordem->funcionario->nm_funcionario }}</td>
                 <td>{{ $ordem->nm_servico_solicitado }}</td>
 
                 <!--strtotime é usada para analisar datas em formato de texto -->
                 <td>{{  date_format($ordem->dt_emissao_solicitacao, 'd/m/Y') }}</td>
                 <td>{{ $ordem->ds_solicitacao }}</td>
                 <td>
+                    @if($ordem->ordem)
+                    Atribuído
+                    @else
+                    Não Atribuído
+                    @endif
+                </td>
+                <td>
                 <form action="export/{{ $ordem -> cd_solicitacao}}" method="GET">
-                  <button class="edit-button-bold">Exportar</button>
+                  <button class="edit-button-bold">Atribuir</button>
                   </form>
                       <form action="edit/{{ $ordem -> cd_solicitacao}}" method="GET">
                         <button class="delete-button">Editar</button>

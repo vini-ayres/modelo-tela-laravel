@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Solicitacao;
 use App\Models\OrdemServico;
+use Illuminate\Support\Facades\Session;
 
 class SolicitacaoController extends Controller
 {
     public function processForm()
     {
+        $cd_matricula_funcionario = Session::get('codigoDoUsuario');
         $pedido = new Solicitacao;
         $pedido->cd_solicitacao = request('cd_solicitacao');
         $pedido->ds_solicitacao = request('ds_solicitacao');
-        $pedido->cd_matricula_funcionario = request('cd_matricula_funcionario');
+        $pedido->cd_matricula_funcionario = $cd_matricula_funcionario;
         $pedido->dt_emissao_solicitacao = now(); // Use a função now() para obter a data e hora atuais
         $pedido->nm_servico_solicitado = request('nm_servico_solicitado');
 
@@ -44,7 +46,6 @@ class SolicitacaoController extends Controller
             return redirect()->back()->with('error', 'Erro ao enviar o email. Detalhes: ' . implode(', ', $failures));
         }
     }
-
 
     public function funcionario()
     {

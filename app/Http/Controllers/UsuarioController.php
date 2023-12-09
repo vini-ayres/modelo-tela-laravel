@@ -33,10 +33,10 @@ class UsuarioController extends Controller
     {
         $usuario = Funcionario::findOrFail($request->id);
     
-        // Extract nivel_acesso from the request
+        // Puxa o campo nivel_acesso do request
         $nivel_acesso = $request->input('nivel_acesso');
     
-        // Convert nivel_acesso to the corresponding numerical value
+        // Converte nivel_acesso para o valor numérico correspondente
         switch ($nivel_acesso) {
             case 'Funcionário':
                 $usuario->cd_nivel_acesso_funcionario = 0;

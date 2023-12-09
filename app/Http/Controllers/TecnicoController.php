@@ -8,49 +8,40 @@ use App\Models\Solicitacao;
 
 class TecnicoController extends Controller
 {
-    public function atualizarStatus(Request $request)
+    public function atualizarOrdemServico(Request $request)
     {
         $request->validate([
             'cd_solicitacao' => 'required',
             'status' => 'required',
+            'dt_entrega_ordem_servico' => 'nullable|date',
         ]);
-
+    
         $solicitacao = $request->input('cd_solicitacao');
         $novoStatus = $request->input('status');
-
-        // Atualiza o status no banco de dados
-        $ordemServico = OrdemServico::where('cd_solicitacao', $solicitacao)->first();
-
-        if ($ordemServico) {
-            $ordemServico->nm_status_ordem_servico = $novoStatus;
-            $ordemServico->save();
-
-            return redirect()->back()->with('success', 'Status atualizado com sucesso!');
-        } else {
-            return redirect()->back()->with('error', 'Ordem de serviço não encontrada.');
-        }
-    }
-
-    public function salvarData(Request $request)
-    {
-        $solicitacao = $request->input('cd_solicitacao');
         $novaData = $request->input('dt_entrega_ordem_servico');
     
-        // Verifique se a ordem de serviço existe antes de salvar
+        // Encontrar a ordem de serviço
         $ordemServico = OrdemServico::where('cd_solicitacao', $solicitacao)->first();
     
         if ($ordemServico) {
-            // Verifica se a nova data é diferente da existente antes de atualizar
+            // Atualizar o status se o campo 'status' estiver presente
+            if ($novoStatus) {
+                $ordemServico->nm_status_ordem_servico = $novoStatus;
+            }
+    
+            // Atualizar a data se o campo 'dt_entrega_ordem_servico' estiver presente e for diferente da existente
             if ($novaData != null && $novaData != $ordemServico->dt_entrega_ordem_servico) {
                 $ordemServico->dt_entrega_ordem_servico = $novaData;
-                $ordemServico->save();
-    
-                return redirect()->back()->with('success', 'Data atualizada com sucesso!')->withInput();
-            } else {
-                return redirect()->back()->with('info', 'Nenhuma alteração detectada na data.')->withInput();
             }
+    
+            // Salvar as alterações
+            $ordemServico->save();
+    
+            // Redirecionar de volta com uma mensagem de sucesso
+            return redirect()->back()->with('success', 'Ordem de serviço atualizada com sucesso!');
         } else {
-            return redirect()->back()->with('error', 'Ordem de serviço não encontrada.')->withInput();
+            // Redirecionar de volta com uma mensagem de erro
+            return redirect()->back()->with('error', 'Ordem de serviço não encontrada.');
         }
-    }
+    }    
 }

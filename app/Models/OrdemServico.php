@@ -16,9 +16,13 @@ class OrdemServico extends Model
         'dt_entrega_ordem_servico',
         'ds_material_utilizado_ordem_servico',
         'nm_status_ordem_servico',
-        'cd_responsavel',
-        'nm_tecnico_agregado'
+        'cd_responsavel'
     ];
 
     protected $dates = ['dt_entrega_ordem_servico'];
+
+    public function tecnico()
+    {
+        return $this->belongsTo(Tecnico::class, 'cd_responsavel', 'cd_responsavel');
+    }
 }

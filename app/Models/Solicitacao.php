@@ -31,14 +31,14 @@ class Solicitacao extends Model
 
     // Mostrando onde é a coluna de update, não pode ser excluída pois pode gerar um error
     public $updated_at = "update_at";
-    
-    public function tecnico()
+
+    public function funcionario()
     {
         return $this->belongsTo(Funcionario::class, 'cd_matricula_funcionario', 'cd_matricula_funcionario');
     }
 
     public function ordem()
     {
-        return $this->hasOne(OrdemServico::class, 'cd_solicitacao', 'cd_solicitacao');
+        return $this->belongsTo(OrdemServico::class, 'cd_solicitacao', 'cd_solicitacao');
     }    
 }

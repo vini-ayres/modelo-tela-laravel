@@ -42,6 +42,7 @@ class AuthController extends Controller
                 Session::put('nomeDoUsuario', $funcionario->nm_funcionario);
                 Session::put('codigoDoUsuario', $matricula);
 
+                // Verifica o nível de acesso do funcionario
                 switch ($funcionario->cd_nivel_acesso_funcionario) {
                     case 0:
                         return redirect("/dashboard-funcionario");
@@ -103,12 +104,12 @@ class AuthController extends Controller
         }
     
         // Usuário não encontrado
-        return redirect('/login')->with('error', 'Número de matrícula inválido');
+        return redirect('/sistema-ordem-servico/login')->with('error', 'Número de matrícula inválido');
     }
 
     public function logout(Request $request)
     {      
         Auth::logout();
-        return redirect('/login');
+        return view('login');
     }
 }

@@ -85,10 +85,9 @@
             </tr>
         </thead>
         <tbody id="tabela-corpo">
-            @foreach ($ordens as $ordem)
-            @if($ordem->tecnico->cd_matricula_funcionario == Session::get('codigoDoUsuario'))
-            <form action="{{ route('atualizar-ordem') }}" method="POST" onsubmit="salvarDataLocal()">
-            @csrf
+        @foreach ($ordens as $ordem)
+        <form action="{{ route('atualizar-ordem') }}" method="POST" id="form-atualizar-ordem" onsubmit="salvarDataLocal()">
+        @csrf
                 <tr>
                     <td>{{ $ordem->cd_ordem_servico }}</td>
                     <td>{{ $ordem->cd_solicitacao }}</td>
@@ -119,7 +118,6 @@
                     </td>
                 </tr>
             </form>
-            @endif
             @endforeach
         </tbody>
     </table>
@@ -140,9 +138,9 @@
     for (var i = 0; i < rows.length; i++) {
         var cells = rows[i].getElementsByTagName('td');
         var rowData = {
-            descricao: cells[2].textContent.toLowerCase(),
-            data: cells[4].getElementsByTagName('input')[0].value,
-            status: cells[5].getElementsByTagName('select')[0].value.toLowerCase()
+            descricao: cells[2].innerText.toLowerCase(),
+            data: cells[3].innerText,
+            status: cells[4].getElementsByTagName('select')[0].value.toLowerCase()
         };
         originalData.push(rowData);
     }
@@ -152,43 +150,38 @@
     document.getElementById('dataFiltro').addEventListener('input', filtrarTabela);
     document.getElementById('statusFiltro').addEventListener('change', filtrarTabela);
 
-    // Adiciona ouvintes de eventos aos elementos de filtro
-document.getElementById('descricaoFiltro').addEventListener('input', filtrarTabela);
-document.getElementById('dataFiltro').addEventListener('input', filtrarTabela);
-document.getElementById('statusFiltro').addEventListener('change', filtrarTabela);
+    function filtrarTabela() {
+        var descricaoFiltro = document.getElementById('descricaoFiltro').value.toLowerCase();
+        var dataFiltro = document.getElementById('dataFiltro').value;
+        var statusFiltro = document.getElementById('statusFiltro').value.toLowerCase();
 
-function filtrarTabela() {
-    var descricaoFiltro = document.getElementById('descricaoFiltro').value.toLowerCase();
-    var dataFiltro = document.getElementById('dataFiltro').value;
-    var statusFiltro = document.getElementById('statusFiltro').value.toLowerCase();
+        var linhas = document.getElementById('tabela-corpo').getElementsByTagName('tr');
 
-    var linhas = document.getElementById('tabela-corpo').getElementsByTagName('tr');
+        for (var i = 0; i < linhas.length; i++) {
+            var colunas = linhas[i].getElementsByTagName('td');
+            var mostrarLinha = true;
 
-    for (var i = 0; i < linhas.length; i++) {
-        var colunas = linhas[i].getElementsByTagName('td');
-        var mostrarLinha = true;
+            // Filtro por Descrição
+            var descricao = originalData[i].descricao;
+            if (descricao.indexOf(descricaoFiltro) === -1) {
+                mostrarLinha = false;
+            }
 
-        // Filtro por Descrição
-        var descricao = colunas[5].textContent.toLowerCase(); // Altere o índice conforme a posição correta da descrição na sua tabela
-        if (descricao.indexOf(descricaoFiltro) === -1) {
-            mostrarLinha = false;
+            // Filtro por Data
+            var data = originalData[i].data;
+            if (dataFiltro && data !== dataFiltro) {
+                mostrarLinha = false;
+            }
+
+            // Filtro por Status
+            var status = originalData[i].status;
+            if (statusFiltro && status !== statusFiltro) {
+                mostrarLinha = false;
+            }
+
+            // Ocultar ou mostrar a linha com base nos filtros
+            linhas[i].style.display = mostrarLinha ? '' : 'none';
         }
-
-        // Filtro por Data
-        var data = colunas[4].getElementsByTagName('input')[0].value; // Altere o índice conforme a posição correta da data na sua tabela
-        if (dataFiltro && data !== dataFiltro) {
-            mostrarLinha = false;
-        }
-
-        // Filtro por Status
-        var status = colunas[6].getElementsByTagName('select')[0].value.toLowerCase(); // Altere o índice conforme a posição correta do status na sua tabela
-        if (statusFiltro && status !== statusFiltro) {
-            mostrarLinha = false;
-        }
-
-        // Ocultar ou mostrar a linha com base nos filtros
-        linhas[i].style.display = mostrarLinha ? '' : 'none';
     }
-}
 </script>
 @endsection('content')

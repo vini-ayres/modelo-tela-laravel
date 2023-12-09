@@ -66,7 +66,7 @@
             </thead>
             <tr>
                 <td>Matrícula:</td>
-                <td><input type="text" name="cd_matricula_funcionario" id="cd_matricula_funcionario" value="{{ Session::get('codigoDoUsuario') }}"></td>
+                <td>{{ Session::get('codigoDoUsuario') }}</td>
             </tr>
             <tr>
                 <td>Tipo de Serviço:</td>
