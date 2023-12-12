@@ -8,7 +8,7 @@ O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma a
 
 Para garantir uma implementação bem-sucedida do Sistema de Ordem de Serviço, certifique-se de que seu ambiente atenda aos seguintes requisitos:
 
-- IDE: Obrigatório a instalação de uma IDE, preferencialmente Visual Studio Code, para a execução do projeto.
+- IDE: É recomendado a instalação de uma IDE, preferencialmente Visual Studio Code, para a execução do projeto.
 - PHP: Versão 7.4 ou superior;
 - XAMPP: É obrigatório que os módulos do Apache e do MySQL sejam instalados;
 - Composer: Ferramenta de gerenciamento de dependências para PHP;
