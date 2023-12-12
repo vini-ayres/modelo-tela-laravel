@@ -61,20 +61,41 @@ Ligue somente os módulos de Apache e MySQL através do botão "start" para inic
 Na tela do XAMPP, clique em "Admin" no módulo do MySQL. Em seguida abrirá uma nova aba no seu navegador com a tela do phpMyAdmin. Em usuário escreva "root" e deixe o campo senha em branco, e em seguida, clique em "Entrar"
 <br><br>
 <img src="foto-xampp-3.png" alt="Foto XAMPP 1" width="500" height="320">
-<img src="foto-phpmyadmin.png" alt="Foto XAMPP 1" width="500" height="270">
+![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/3ea9f948-a63a-4926-b471-731d5b8cc522)
 <br><br>
-![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/ea870114-d03d-4104-b1d5-749c0c594b2b)
+Após logar no phpMyAdmin, clique em "Novo" para criar uma nova base de dados
+<br><br>
+![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/a459f505-7ba4-457c-a74d-f5ba0362d37b)
+<br><br>
+No campo de nome, escreva "db_ordem_servico" e depois clique em "Criar"
+<br><br>
+![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/ada086db-c779-4b43-a56b-75f98cc5b47d)
+<br><br>
+Depois de criado sua base de dados, clique em "Importar" para importar seus dados do arquivo "db_ordem_servico.sql".
 
+Lembrando, é necessário tê-lo baixado em seu computador, caso ainda não tenha baixado, faça o download do arquivo neste link: [Link para download dos arquivos](https://drive.google.com/drive/u/0/folders/1VWuVeIlOkSq6Cskq3Jz5pigge4yVc6LZ)
+<br><br>
+![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/ea2f8489-d31d-49ca-be06-e22c4be3b1bc)
+<br><br>
+Em "Escolher arquivo", selecione o arquivo "db_ordem_servico.sql" já baixado em seu computador, em seguida, role a página para baixo e clique em "Importar". Verifique se o formato está em SQL antes de importar o arquivo.
+<br><br>
+![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/457153be-53af-46b6-9809-c371e1d9633f)
+![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/62eeb9be-d619-43fc-98c3-9a45911448ff)
+<br><br>
+Depois de importado, sua base de dados já estará para ser utilizada no Laravel.
+<br><br>
+![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/cdfe78ba-ae2d-4add-8365-2b01ce949b4f)
 
-**5. Iniciar o Servidor de Desenvolvimento:**
+**6. Iniciar o Servidor de Desenvolvimento:**
 
-Execute o seguinte comando para iniciar o servidor Laravel:
+Na sua IDE, abra um terminal e execute o seguinte comando para iniciar o servidor Laravel:
 
 ```bash
+cd sistema-ordem-servico
 php artisan serve
 ```
 
-Acesse o sistema no navegador usando o endereço fornecido pelo comando acima.
+Em seguida, acesse o sistema no navegador usando o endereço fornecido pelo comando acima.
 
 ---
 
