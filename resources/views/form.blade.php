@@ -1,3 +1,4 @@
+<!-- Layout dinâmico pela variável $layout através fo FormController-->
 @extends($layout)
 
 @section('content')

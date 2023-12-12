@@ -8,6 +8,7 @@
 <html lang="en">
 
 <head>
+  <!-- Configuração da página -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
@@ -18,21 +19,30 @@
 <body>
 <!-- TABELA DE ORDENS -->
 <div class="ordens">
-      @if(session('msg'))
-      <p class="msg">{{ session('msg')}}</p>
-      @endif
-    <body>
+    <!-- Exibição de mensagem (se houver) -->
+    @if(session('msg'))
+    <p class="msg">{{ session('msg')}}</p>
+    @endif
+
+    <body> <!-- Duplicação desnecessária de <body> -->
+
+    <!-- Container para listar as ordens de serviço -->
     <div class="ordens" style="max-height: calc(100vh - 60px); overflow-y: auto;">
       <div class="ordem-servico-container">
-        </a>
+        <!-- Título da página -->
+        </a> <!-- Tag de fechamento ausente, pode ser um erro -->
+
         <h2>Lista de ordens de serviço</h2>
+
+        <!-- Tabela para exibir as ordens de serviço -->
         <div class="user-table">
           <table>
             <thead>
+              <!-- Cabeçalhos da tabela -->
               <tr>
                 <th class="table-header">Código</th>
                 <th class="table-header">Solicitante</th>
-                <th class="table-header">Nome do Solcitante</th>
+                <th class="table-header">Nome do Solicitante</th>
                 <th class="table-header">Serviço</th>
                 <th class="table-header">Data de emissão da solicitação</th>
                 <th class="table-header">Descrição do pedido</th>
@@ -41,6 +51,7 @@
               </tr>
             </thead>
 
+            <!-- Loop para exibir as linhas da tabela com os dados das ordens -->
             @foreach($ordens as $ordem)
             <tbody>
               <tr>
@@ -49,10 +60,12 @@
                 <td>{{ $ordem->funcionario->nm_funcionario }}</td>
                 <td>{{ $ordem->nm_servico_solicitado }}</td>
 
-                <!--strtotime é usada para analisar datas em formato de texto -->
+                <!-- Formatação da data utilizando date_format -->
                 <td>{{  date_format($ordem->dt_emissao_solicitacao, 'd/m/Y') }}</td>
+
                 <td>{{ $ordem->ds_solicitacao }}</td>
                 <td>
+                    <!-- Verificação do status de atribuição -->
                     @if($ordem->ordem)
                     Atribuído
                     @else
@@ -60,12 +73,15 @@
                     @endif
                 </td>
                 <td>
-                <form action="export/{{ $ordem -> cd_solicitacao}}" method="GET">
-                  <button class="edit-button-bold">Atribuir</button>
+                  <!-- Formulário para exportar a ordem de serviço -->
+                  <form action="export/{{ $ordem -> cd_solicitacao}}" method="GET">
+                    <button class="edit-button-bold">Atribuir</button>
                   </form>
-                      <form action="edit/{{ $ordem -> cd_solicitacao}}" method="GET">
-                        <button class="delete-button">Editar</button>
-                      </form>
+
+                  <!-- Formulário para editar a ordem de serviço -->
+                  <form action="edit/{{ $ordem -> cd_solicitacao}}" method="GET">
+                    <button class="delete-button">Editar</button>
+                  </form>
                 </td>
               </tr>
             </tbody>
@@ -74,9 +90,11 @@
         </div>
       </div>
     </div>
-    </body>
+    </body> <!-- Duplicação desnecessária de <body> -->
 
 </html>
+
+<!-- Script para esconder a lista de tarefas ao enviar o formulário -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var exportarForm = document.getElementById('exportarForm');
@@ -93,12 +111,12 @@
     });
 </script>
 
-
+<!-- Script para ação de logout -->
 <script>
-  // Adicione aqui a lógica para a ação de logout
   document.getElementById('logout').addEventListener('click', function() {
     // Adicione a lógica de deslogar o usuário
     alert('Usuário deslogado!');
   });
 </script>
+
 @endsection('content')

@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Definindo a codificação de caracteres e a escala inicial para dispositivos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Adicionando um ícone à guia do navegador -->
     <link rel="shortcut icon" href="{{ asset('imagens/favicon.ico') }}" type="image/x-icon"/>
+
+    <!-- Definindo o título da página -->
     <title>Tela de Login</title>
+
+    <!-- Estilos CSS embutidos -->
     <style>
+        /* Estilos para o corpo da página */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -18,15 +26,18 @@
             height: 100vh;
         }
 
+        /* Estilos para a barra lateral (que não está presente no código) */
         #sidebar {
             position: fixed;
             left: 0;
         }
 
+        /* Estilos para o logotipo (imagem de logo) */
         #logo {
             margin-bottom: 20px;
         }
 
+        /* Estilos para o contêiner de login */
         #login-container {
             width: 300px;
             background-color: #333;
@@ -43,6 +54,7 @@
             margin-bottom: 8px;
         }
 
+        /* Estilos para rótulos e campos de entrada no formulário */
         label {
             display: block;
             margin-bottom: 8px;
@@ -55,6 +67,7 @@
             box-sizing: border-box;
         }
 
+        /* Estilos para o botão de envio do formulário */
         button {
             background-color: #4caf50;
             color: #fff;
@@ -71,22 +84,29 @@
 </head>
 <body>
 
+<!-- Div para o logotipo -->
 <div id="logo">
     <img src="{{ asset('imagens/logoifsp2.png') }}" alt="Logo" width="250">
 </div>
 
+<!-- Div para o contêiner de login -->
 <div id="login-container">
     <h2>CRIE SUA SENHA</h2>
     <br>
+    
+    <!-- Formulário para definir a senha -->
     <form action="{{ route('definir-senha') }}" method="post">
-        @csrf
+        @csrf <!-- Token CSRF para proteção contra ataques CSRF -->
 
+        <!-- Campo para inserir o número de matrícula -->
         <label for="cd_matricula_funcionario">Número de Matrícula:</label>
         <input type="text" name="cd_matricula_funcionario" required>
 
-        <label for="ds_senha_funcionario"> Crie uma senha:</label>
+        <!-- Campo para criar uma senha -->
+        <label for="ds_senha_funcionario">Crie uma senha:</label>
         <input type="password" name="ds_senha_funcionario" required>
 
+        <!-- Botão de envio do formulário -->
         <button type="submit">Criar senha</button>
     </form>
 </div>

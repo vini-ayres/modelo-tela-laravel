@@ -1,3 +1,4 @@
+<!-- Layout dinâmico pela variável $layout através fo StatusController-->
 @extends($layout)
 
 @section('content')
@@ -47,30 +48,9 @@
 </head>
 <body>
 
-<!-- Filtros
-<div class="filtros" style="margin-top: 20px; margin-right: 50px; color: white; right: 60px;">
-    <label for="descricaoFiltro">Filtrar por Descrição:</label>
-    <input type="text" id="descricaoFiltro">
-
-    <label for="dataFiltro">Filtrar por Data:</label>
-    <input type="date" id="dataFiltro">
-
-    <label for="statusFiltro">Filtrar por Status:</label>
-    <select id="statusFiltro">
-        <option value="">Todos</option>
-        <option value="Aberto">Aberto</option>
-        <option value="Em andamento">Em andamento</option>
-        <option value="Pausado">Pausado</option>
-        <option value="Concluído">Concluído</option>
-        <option value="Cancelado">Cancelado</option>
-        <option value="Reaberto">Reaberto</option>
-        <option value="Atrasado">Atrasado</option>
-        <option value="Esperando material">Esperando material</option>
-    </select>
-</div> -->
-
 <!-- Tabela de Dados -->
 <div id="content" class="ordens">
+    <!-- Título da tabela de dados -->
     <h2>Dados da Ordem de Serviço</h2>
     <table id="tabela-dados">
         <thead>
@@ -85,10 +65,12 @@
             </tr>
         </thead>
         <tbody id="tabela-corpo">
+            <!-- Loop para exibir dados de ordens -->
             @foreach ($ordens as $ordem)
             @if($ordem->tecnico->cd_matricula_funcionario == Session::get('codigoDoUsuario'))
             <form action="{{ route('atualizar-ordem') }}" method="POST" onsubmit="salvarDataLocal()">
             @csrf
+            <!-- Linha da tabela com dados da ordem -->
                 <tr>
                     <td>{{ $ordem->cd_ordem_servico }}</td>
                     <td>{{ $ordem->cd_solicitacao }}</td>
@@ -96,11 +78,13 @@
                     <td>{{ $ordem->cd_responsavel }}</td>
                     <td style="display: none;">{{ $ordem->tecnico->cd_matricula_funcionario }}</td>
                     <td>
+                        <!-- Input para a data de entrega da ordem -->
                         <input type="hidden" name="cd_solicitacao" value="{{ $ordem->cd_solicitacao }}">
                         <label for="dt_entrega_ordem_servico">Data atual: {{ $ordem->dt_entrega_ordem_servico->format('d/m/Y') }}</label>
                         <input type="date" class="date" name="dt_entrega_ordem_servico" id="dt_entrega_ordem_servico" value="{{ old('dt_entrega_ordem_servico', $ordem->dt_entrega_ordem_servico) }}">
                     </td>
                     <td>
+                        <!-- Dropdown para selecionar o status da ordem -->
                         <input type="hidden" name="cd_solicitacao" value="{{ $ordem->cd_solicitacao }}">
                         <select id="select" name="status" class="status-dropdown">
                             <option id="abertaOption" value="Aberto" {{ $ordem->nm_status_ordem_servico == 'Aberta' ? 'selected' : '' }}>Aberto</option>
@@ -115,6 +99,7 @@
                         </select>
                     </td>
                     <td>
+                        <!-- Botão para enviar o formulário e salvar a ordem -->
                         <input type="submit" class="edit-button-bold" style="width: 80px;" value="Salvar">
                     </td>
                 </tr>
@@ -132,63 +117,5 @@
     document.getElementById('logout').addEventListener('click', function() {
         alert('Usuário deslogado!');
     });
-
-    var originalData = []; // Armazena os dados originais da tabela
-
-    // Preenche o array originalData com os dados da tabela
-    var rows = document.getElementById('tabela-corpo').getElementsByTagName('tr');
-    for (var i = 0; i < rows.length; i++) {
-        var cells = rows[i].getElementsByTagName('td');
-        var rowData = {
-            descricao: cells[2].textContent.toLowerCase(),
-            data: cells[4].getElementsByTagName('input')[0].value,
-            status: cells[5].getElementsByTagName('select')[0].value.toLowerCase()
-        };
-        originalData.push(rowData);
-    }
-
-    // Adiciona ouvintes de eventos aos elementos de filtro
-    document.getElementById('descricaoFiltro').addEventListener('input', filtrarTabela);
-    document.getElementById('dataFiltro').addEventListener('input', filtrarTabela);
-    document.getElementById('statusFiltro').addEventListener('change', filtrarTabela);
-
-    // Adiciona ouvintes de eventos aos elementos de filtro
-document.getElementById('descricaoFiltro').addEventListener('input', filtrarTabela);
-document.getElementById('dataFiltro').addEventListener('input', filtrarTabela);
-document.getElementById('statusFiltro').addEventListener('change', filtrarTabela);
-
-function filtrarTabela() {
-    var descricaoFiltro = document.getElementById('descricaoFiltro').value.toLowerCase();
-    var dataFiltro = document.getElementById('dataFiltro').value;
-    var statusFiltro = document.getElementById('statusFiltro').value.toLowerCase();
-
-    var linhas = document.getElementById('tabela-corpo').getElementsByTagName('tr');
-
-    for (var i = 0; i < linhas.length; i++) {
-        var colunas = linhas[i].getElementsByTagName('td');
-        var mostrarLinha = true;
-
-        // Filtro por Descrição
-        var descricao = colunas[5].textContent.toLowerCase(); // Altere o índice conforme a posição correta da descrição na sua tabela
-        if (descricao.indexOf(descricaoFiltro) === -1) {
-            mostrarLinha = false;
-        }
-
-        // Filtro por Data
-        var data = colunas[4].getElementsByTagName('input')[0].value; // Altere o índice conforme a posição correta da data na sua tabela
-        if (dataFiltro && data !== dataFiltro) {
-            mostrarLinha = false;
-        }
-
-        // Filtro por Status
-        var status = colunas[6].getElementsByTagName('select')[0].value.toLowerCase(); // Altere o índice conforme a posição correta do status na sua tabela
-        if (statusFiltro && status !== statusFiltro) {
-            mostrarLinha = false;
-        }
-
-        // Ocultar ou mostrar a linha com base nos filtros
-        linhas[i].style.display = mostrarLinha ? '' : 'none';
-    }
-}
 </script>
 @endsection('content')

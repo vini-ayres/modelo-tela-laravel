@@ -1,4 +1,4 @@
-@extends('layouts.main') // Estende o layout principal definido em 'layouts.main.blade.php'
+@extends('layouts.main')
 
 @section('links-sidebar')
     <!-- Links da barra lateral específicos para a página do técnico -->

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('imagens/favicon.ico') }}" type="image/x-icon"/>
     <title>Tela de Login</title>
+
+    <!-- Estilos CSS embutidos -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -69,17 +72,22 @@
         }
     </style>
 </head>
+
 <body>
 
+<!-- Logotipo -->
 <div id="logo">
     <img src="{{ asset('imagens/logoifsp2.png') }}" alt="Logo" width="250">
 </div>
 
+<!-- Contêiner de login -->
 <div id="login-container">
     <h2>FAÇA SEU LOGIN</h2>
     <br>
+
+    <!-- Formulário de login -->
     <form action="{{ route('login') }}" method="post">
-        @csrf
+        @csrf <!-- Token de segurança do Laravel -->
 
         <label for="cd_matricula_funcionario">Número de Matrícula:</label>
         <input type="text" name="cd_matricula_funcionario" required>
@@ -89,6 +97,8 @@
 
         <button type="submit">Login</button>
     </form><br>
+
+    <!-- Link para definir a senha (rota 'definir-senha') -->
     <a href="{{ route('definir-senha') }}" style="color: gray">Primeiro acesso? Clique aqui para definir sua senha</a>
 </div>
 

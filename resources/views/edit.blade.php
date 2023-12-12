@@ -1,68 +1,75 @@
 @extends('dashboard.coordenador')
 
 @section('content')
-
+<head>
     <title>Editando ordem {{ $ordem ->cd_solicitacao }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #botao_enviar {
-            display: block;
-            margin: 0 auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    /* Estilos para a tabela */
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-        #botao_enviar:hover {
-            background-color: #45a049;
-        }
+    /* Estilos para o botão de envio do formulário */
+    #botao_enviar {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    #botao_enviar:hover {
+        background-color: #45a049;
+    }
 
-        .alert-success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
+    /* Estilos para mensagens de alerta */
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-        .msg{
-            color: black;
-        }
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
+    /* Estilo para a mensagem de texto */
+    .msg {
+        color: black;
+    }
     </style>
 </head>
 <body>
-
+<!-- Exibição de uma mensagem flash, se houver -->
 @if(session('msg'))
-      <p class="msg">{{ session('msg')}}</p>
-      @endif
+    <p class="msg">{{ session('msg')}}</p>
+@endif
 <div id="content">
-<h2>Editando: Ordem {{ $ordem -> cd_solicitacao}}</h2>
-    <!-- Formulário de Ordem de Serviço -->
+    <h2>Editando: Ordem {{ $ordem -> cd_solicitacao}}</h2>
+
+    <!-- Formulário de edição da Ordem de Serviço -->
     <form method="POST" action="{{ route('ordem.update', ['id' => $ordem->cd_solicitacao]) }}">
-    @csrf <!-- Adicione o token CSRF para proteção contra ataques de falsificação de solicitações entre sites -->
-    @method('PUT')
-    
+        @csrf <!-- Token CSRF para proteção contra ataques CSRF -->
+        @method('PUT') <!-- Método HTTP para simular um pedido PUT -->
+
+        <!-- Tabela para exibir detalhes da Ordem de Serviço -->
         <table>
             <thead>
                 <tr>
@@ -89,14 +96,18 @@
             </tr>
         </table>
         <br>
+
+        <!-- Botão para enviar o formulário de edição -->
         <input id="botao_enviar" type="submit" value="Editar">
-        </form><br>
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-    </div>
+    </form><br>
+
+    <!-- Exibição de mensagem de sucesso, se houver -->
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+</div>
 </body>
 </html>
 

@@ -1,61 +1,65 @@
 @extends('dashboard.coordenador')
 
 @section('content')
+<title>Atribuir ordem {{ $ordem ->cd_solicitacao }}</title>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<style>
+    /* Estilos para a tabela */
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-    <title>Atribuir ordem {{ $ordem ->cd_solicitacao }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <style>
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #botao_enviar {
-            display: block;
-            margin: 0 auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    /* Estilos para o botão de envio do formulário */
+    #botao_enviar {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-        #botao_enviar:hover {
-            background-color: #45a049;
-        }
+    #botao_enviar:hover {
+        background-color: #45a049;
+    }
 
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    /* Estilos para mensagens de alerta */
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-        .alert-success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
 
-        .msg{
-            color: black;
-        }
-    </style>
+    /* Estilo para a mensagem de texto */
+    .msg {
+        color: black;
+    }
+</style>
 </head>
 <body>
-
+<!-- Exibição de uma mensagem flash, se houver -->
 @if(session('msg'))
-      <p class="msg">{{ session('msg')}}</p>
-      @endif
+    <p class="msg">{{ session('msg')}}</p>
+@endif
 <div id="content">
 <h2>Atribuir Ordem {{ $ordem -> cd_solicitacao}}</h2>
     <!-- Formulário de Ordem de Serviço -->
@@ -77,12 +81,38 @@
                 <td>
                 <select name="responsavelOrdem" id="responsavelOrdem">
                     <option value="" disabled selected>Selecione uma opção</option>
-                    @foreach($tecnicos as $tecnico)
-                    <option value="{{ $tecnico->cd_responsavel }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>
-                        {{ $tecnico->cd_matricula_funcionario }} - {{ $tecnico->funcionario->nm_funcionario }}
-                    </option>
-                    @endforeach
-                </select>
+                    <div id="content">
+    <h2>Atribuir Ordem {{ $ordem -> cd_solicitacao}}</h2>
+
+    <!-- Formulário de Atribuição de Ordem de Serviço -->
+    <form method="POST" action="{{ route('export', ['id' => $ordem->cd_solicitacao]) }}">
+        @csrf <!-- Token CSRF para proteção contra ataques CSRF -->
+        @method('POST') <!-- Método HTTP para simular um pedido POST -->
+
+        <!-- Tabela para exibir detalhes da Ordem de Serviço -->
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Ordem de Serviço</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>Código:</td>
+                <td>{{ $ordem -> cd_solicitacao }}</td>
+            </tr>
+            <tr>
+                <td>Responsável</td>
+                <td>
+                    <!-- Dropdown para selecionar o responsável pela ordem de serviço -->
+                    <select name="responsavelOrdem" id="responsavelOrdem">
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <!-- Loop através dos técnicos disponíveis -->
+                        @foreach($tecnicos as $tecnico)
+                            <option value="{{ $tecnico->cd_responsavel }}" {{ $ordem->tecnico && $ordem->tecnico->cd_matricula_funcionario == $tecnico->cd_matricula_funcionario ? 'selected' : '' }}>
+                                {{ $tecnico->cd_matricula_funcionario }} - {{ $tecnico->funcionario->nm_funcionario }}
+                            </option>
+                        @endforeach
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -91,14 +121,18 @@
             </tr>
         </table>
         <br>
+
+        <!-- Botão para enviar o formulário de atribuição -->
         <input id="botao_enviar" type="submit" value="Atribuir">
-        </form><br>
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-    </div>
+    </form><br>
+
+    <!-- Exibição de mensagem de sucesso, se houver -->
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+</div>
 </body>
 </html>
 

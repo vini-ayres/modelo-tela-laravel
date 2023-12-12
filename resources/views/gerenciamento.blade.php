@@ -88,7 +88,7 @@
           </tr>
         </thead>
         <tbody>
-
+          <!-- Loop para iterar sobre os usuários e exibir suas informações na tabela -->
           @foreach($usuarios as $usuario)
             <tr>
               <td>

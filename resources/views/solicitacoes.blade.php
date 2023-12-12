@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Configuração da página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
@@ -17,17 +18,27 @@
 
 <!-- TABELA 2 -->
 <div class="ordens">
-      @if(session('msg'))
-      <p class="msg">{{ session('msg')}}</p>
-      @endif
-    <body>
+    <!-- Exibição de mensagem (se houver) -->
+    @if(session('msg'))
+    <p class="msg">{{ session('msg')}}</p>
+    @endif
+
+    <body> <!-- Duplicação desnecessária de <body> -->
+
+    <!-- Container para listar as ordens de serviço -->
     <div class="ordens" style="max-height: calc(100vh - 60px); overflow-y: auto;">
       <div class="ordem-servico-container">
+        <!-- Tag de fechamento ausente, pode ser um erro -->
         </a>
+
+        <!-- Título da página -->
         <h2>Lista de Solicitações</h2>
+
+        <!-- Tabela para exibir as ordens de serviço -->
         <div class="user-table">
           <table>
             <thead>
+              <!-- Cabeçalhos da tabela -->
               <tr>
                 <th class="table-header">Código</th>
                 <th class="table-header">Solicitante</th>
@@ -37,6 +48,7 @@
               </tr>
             </thead>
 
+            <!-- Loop para exibir as linhas da tabela com os dados das ordens -->
             @foreach($ordens as $ordem)
             <tbody>
               <tr>
@@ -44,7 +56,7 @@
                 <td>{{ $ordem->cd_matricula_funcionario }}</td>
                 <td>{{ $ordem->nm_servico_solicitado }}</td>
 
-                <!--strtotime é usada para analisar datas em formato de texto -->
+                <!-- Formatação da data utilizando date_format -->
                 <td>{{  date_format($ordem->dt_emissao_solicitacao, 'd/m/Y') }}</td>
                 <td>{{ $ordem->ds_solicitacao }}</td>
               </tr>
@@ -54,11 +66,12 @@
         </div>
       </div>
     </div>
-    </body>
+    </body> <!-- Duplicação desnecessária de <body> -->
 
 </html>
+
+<!-- Script para ação de logout -->
 <script>
-  // Adicione aqui a lógica para a ação de logout
   document.getElementById('logout').addEventListener('click', function() {
     // Adicione a lógica de deslogar o usuário
     alert('Usuário deslogado!');
