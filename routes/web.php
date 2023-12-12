@@ -26,6 +26,22 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/dashboard-funcionario', function () {
+    return view('dashboard.funcionario');
+});
+
+Route::get('/dashboard-tecnico', function () {
+    return view('dashboard.tecnico');
+});
+
+Route::get('/dashboard-coordenador', function () {
+    return view('dashboard.coordenador');
+});
+
+Route::get('/dashboard-administrador', function () {
+    return view('dashboard.administrador');
+});
+
 Route::get('/login', [AuthController::class, 'showLoginForm']);
 Route::get('/definir-senha', [AuthController::class, 'showPasswordForm']);
 Route::post('/definir-senha', [AuthController::class, 'setPassword'])->name('definir-senha');
