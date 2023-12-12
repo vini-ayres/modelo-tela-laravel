@@ -82,7 +82,7 @@ Em "Escolher arquivo", selecione o arquivo "db_ordem_servico.sql" já baixado em
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/457153be-53af-46b6-9809-c371e1d9633f)
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/62eeb9be-d619-43fc-98c3-9a45911448ff)
 <br><br>
-Depois de importado, sua base de dados já estará para ser utilizada no Laravel.
+Depois de importado, sua base de dados já estará pronta para ser utilizada no Laravel.
 <br><br>
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/cdfe78ba-ae2d-4add-8365-2b01ce949b4f)
 
