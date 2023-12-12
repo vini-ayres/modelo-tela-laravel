@@ -10,24 +10,36 @@ Para garantir uma implementação bem-sucedida do Sistema de Ordem de Serviço, 
 
 - IDE: Obrigatório a instalação de uma IDE, preferencialmente Visual Studio Code, para a execução do projeto.
 - PHP: Versão 7.4 ou superior;
-- Composer: Ferramenta de gerenciamento de dependências para PHP;
 - XAMPP: É obrigatório que os módulos do Apache e do MySQL sejam instalados;
+- Composer: Ferramenta de gerenciamento de dependências para PHP;
 - Banco de Dados: Deverá ser utilizado o arquivo "db_ordem_servico.sql" para a implementação do banco.
 
+### Download dos Arquivos Necessários para o Projeto
 [Link para download dos arquivos](https://drive.google.com/drive/u/0/folders/1VWuVeIlOkSq6Cskq3Jz5pigge4yVc6LZ)
 
 ### Instalação do Projeto Laravel
 
-**1. Clonar o Repositório:**
+**1. Instalar o Composer:**
 
-Abra um terminal e execute os seguintes comandos:
+Antes de instalar o Composer, é obrigatório que você já tenha instalado o XAMPP em seu computador. Após ter instalado o XAMPP, execute os seguintes comandos em seu terminal:
+
+```bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+
+**2. Clonar o Repositório:**
+
+Abra um terminal na sua IDE e execute os seguintes comandos:
 
 ```bash
 git clone https://github.com/vini-ayres/sistema-ordem-servico.git
 cd sistema-ordem-servico
 ```
 
-**2. Instalar Dependências do Composer:**
+**3. Instalar Dependências do Composer:**
 
 Execute o seguinte comando para instalar as dependências do projeto:
 
@@ -35,7 +47,7 @@ Execute o seguinte comando para instalar as dependências do projeto:
 composer install
 ```
 
-**3. Configurar Variáveis de Ambiente:**
+**4. Configurar Variáveis de Ambiente:**
 
 Abra o arquivo `.laravel.env` em um editor de texto e configure as variáveis de ambiente, incluindo informações do banco de dados, de acordo com a configuração do ambiente XAMPP.
 
@@ -49,14 +61,14 @@ DB_USERNAME=root # Nome de usuário para acesso ao banco
 DB_PASSWORD=(deixe em branco) # Senha do usuário
 ```
 
-**4. Ligar os módulos do XAMPP:**
+**5. Ligar os módulos do XAMPP:**
 
 Ligue somente os módulos de Apache e MySQL através do botão "Start" para iniciar o servidor do sistema Laravel.
 <br><br>
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/0dceb050-5c65-4b47-a5a2-56a709ebda85)
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/6fa039d1-37e7-4792-b5b0-64e0282b5de4)
 
-**5. Implementação do banco de dados no MySQL:**
+**6. Implementação do banco de dados no MySQL:**
 
 Na tela do XAMPP, clique em "Admin" no módulo do MySQL. Em seguida, abrirá uma nova aba no seu navegador com a tela do phpMyAdmin. No campo de usuário, escreva "root" e deixe o campo de senha em branco, e em seguida, clique em "Entrar"
 <br><br>
