@@ -8,6 +8,7 @@ O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma a
 
 Para garantir uma implementação bem-sucedida do Sistema de Ordem de Serviço, certifique-se de que seu ambiente atenda aos seguintes requisitos:
 
+- IDE: Obrigatório a instalação de uma IDE, preferencialmente Visual Studio Code, para a execução do projeto.
 - PHP: Versão 7.4 ou superior;
 - Composer: Ferramenta de gerenciamento de dependências para PHP;
 - XAMPP: É obrigatório que os módulos do Apache e do MySQL sejam instalados;
@@ -51,6 +52,9 @@ DB_PASSWORD=(deixe em branco) # Senha do usuário
 **4. Ligar os módulos do XAMPP:**
 
 Ligue somente os módulos de Apache e MySQL através do botão "start" para iniciar o servidor do sistema Laravel.
+<br><br>
+<img src="foto-xampp-1.png" alt="Foto XAMPP 1" width="500" height="320">
+<img src="foto-xampp-2.png" alt="Foto XAMPP 2" width="500" height="320">
 
 **5. Iniciar o Servidor de Desenvolvimento:**
 
