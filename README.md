@@ -56,6 +56,14 @@ Ligue somente os módulos de Apache e MySQL através do botão "start" para inic
 <img src="foto-xampp-1.png" alt="Foto XAMPP 1" width="500" height="320">
 <img src="foto-xampp-2.png" alt="Foto XAMPP 2" width="500" height="320">
 
+**5. Implementação do banco de dados no MySQL:**
+
+Na tela do XAMPP, clique em "Admin" no módulo do MySQL. Em seguida abrirá uma nova aba no seu navegador com a tela do phpMyAdmin. Em usuário escreva "root" e deixe a senha em branco, e em seguida, clique em "Entrar"
+<br><br>
+<img src="foto-xampp-3.png" alt="Foto XAMPP 1" width="500" height="320">
+<img src="foto-phpmyadmin.png" alt="Foto XAMPP 1" width="500" height="270">
+
+
 **5. Iniciar o Servidor de Desenvolvimento:**
 
 Execute o seguinte comando para iniciar o servidor Laravel:
