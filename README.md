@@ -58,7 +58,7 @@ Ligue somente os módulos de Apache e MySQL através do botão "start" para inic
 
 **5. Implementação do banco de dados no MySQL:**
 
-Na tela do XAMPP, clique em "Admin" no módulo do MySQL. Em seguida abrirá uma nova aba no seu navegador com a tela do phpMyAdmin. Em usuário escreva "root" e deixe o campo senha em branco, e em seguida, clique em "Entrar"
+Na tela do XAMPP, clique em "Admin" no módulo do MySQL. Em seguida, abrirá uma nova aba no seu navegador com a tela do phpMyAdmin. No campo de usuário, escreva "root" e deixe o campo de senha em branco, e em seguida, clique em "Entrar"
 <br><br>
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/3a8c2b9a-eb24-4748-96ba-e770c34c1604)
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/3ea9f948-a63a-4926-b471-731d5b8cc522)
