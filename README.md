@@ -10,7 +10,7 @@ Para garantir uma implementação bem-sucedida do Sistema de Ordem de Serviço, 
 
 - PHP: Versão 7.4 ou superior;
 - Composer: Ferramenta de gerenciamento de dependências para PHP;
-- XAMPP: Instalado com Apache e MySQL;
+- XAMPP: É obrigatório que os módulos do Apache e do MySQL sejam instalados;
 - Banco de Dados: Deverá ser utilizado o arquivo "db_ordem_servico.sql" para a implementação do banco.
 
 [Link para download dos arquivos](https://drive.google.com/drive/u/0/folders/1VWuVeIlOkSq6Cskq3Jz5pigge4yVc6LZ)
