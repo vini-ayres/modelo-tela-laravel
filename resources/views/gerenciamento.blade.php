@@ -6,7 +6,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="{{ asset('css/gerenciamento.css') }}">
-  <title>User List</title>
+  <title>Lista de usuários</title>
   <script src="public/js/gerenciamento.js"></script>
   <style>
     td a {

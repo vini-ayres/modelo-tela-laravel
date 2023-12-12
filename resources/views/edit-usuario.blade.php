@@ -3,7 +3,7 @@
 @section('content')
 
 <head>
-    <title>Editando ordem </title>
+    <title>Editando usuário</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lista.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
