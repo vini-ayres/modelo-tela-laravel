@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Session;
 
 class SolicitacaoController extends Controller
 {
+    // Método para processar o formulário de solicitação
     public function processForm()
     {
+        // Obtém a matrícula do funcionário da sessão
         $cd_matricula_funcionario = Session::get('codigoDoUsuario');
+
+        // Cria uma nova instância de Solicitacao e preenche com os dados do formulário
         $pedido = new Solicitacao;
         $pedido->cd_solicitacao = request('cd_solicitacao');
         $pedido->ds_solicitacao = request('ds_solicitacao');
@@ -28,43 +32,36 @@ class SolicitacaoController extends Controller
             $pedido->nm_servico_solicitado = request('nm_servico_solicitado');
         }
 
+        // Salva a solicitação no banco de dados
         $pedido->save();
 
-        // Redirecione para uma página de sucesso ou faça algo mais
+        // Redireciona para uma página de sucesso ou executa outra ação
         return redirect()->back()->with('success', 'Solicitação Nº ' . $pedido->cd_solicitacao . ' enviada com sucesso!');
     }
 
-    private function enviarEmailSucesso(Solicitacao $pedido)
-    {
-        $resultadoEnvio = Mail::to($pedido->nm_email_institucional_funcionario)
-            ->send(new \App\Mail\SolicitacaoEnviada($pedido));
-
-        if ($resultadoEnvio) {
-            return redirect()->back()->with('success', 'Solicitação Nº ' . $pedido->cd_solicitacao . ' enviada com sucesso! Email enviado.');
-        } else {
-            $failures = Mail::failures();
-            return redirect()->back()->with('error', 'Erro ao enviar o email. Detalhes: ' . implode(', ', $failures));
-        }
-    }
-
+    // Métodos para exibir a tabela de solicitações para diferentes perfis de usuários
+    
     public function funcionario()
     {
         $ordens = Solicitacao::with('ordem')->get();
         $layout = 'dashboard.funcionario';
         return view('tabela-solicitacoes', ['ordens' => $ordens, 'layout' => $layout]);
     }
+
     public function tecnico()
     {
         $ordens = Solicitacao::with('ordem')->get();
         $layout = 'dashboard.tecnico';
         return view('tabela-solicitacoes', ['ordens' => $ordens, 'layout' => $layout]);
     }
+
     public function coordenador()
     {
         $ordens = Solicitacao::with('ordem')->get();
         $layout = 'dashboard.coordenador';
         return view('tabela-solicitacoes', ['ordens' => $ordens, 'layout' => $layout]);
     }
+
     public function administrador()
     {
         $ordens = Solicitacao::with('ordem')->get();

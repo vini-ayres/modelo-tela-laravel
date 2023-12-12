@@ -11,21 +11,26 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // Método para exibir o formulário de login
     public function showLoginForm()
     {
         return view('login');
     }
 
+    // Método para exibir o formulário de definição de senha
     public function showPasswordForm()
     {
         return view('definir-senha');
     }
 
+    // Método para processar o login do usuário
     public function login(Request $request)
     {
+        // Obtenha as credenciais do formulário
         $matricula = $request->input('cd_matricula_funcionario');
         $senha = $request->input('nm_senha_funcionario');
 
+        // Busque o funcionário pelo número de matrícula
         $funcionario = Funcionario::where('cd_matricula_funcionario', $matricula)->first();
 
         if ($funcionario) {
@@ -39,10 +44,11 @@ class AuthController extends Controller
             if (Hash::check($senha, $funcionario->nm_senha_funcionario)) {
                 // Autenticação bem-sucedida
 
+                // Configura algumas informações na sessão
                 Session::put('nomeDoUsuario', $funcionario->nm_funcionario);
                 Session::put('codigoDoUsuario', $matricula);
 
-                // Verifica o nível de acesso do funcionario
+                // Redireciona com base no nível de acesso do funcionário
                 switch ($funcionario->cd_nivel_acesso_funcionario) {
                     case 0:
                         return redirect("/dashboard-funcionario");
@@ -63,7 +69,7 @@ class AuthController extends Controller
         return redirect('/login')->with('error', 'Número de matrícula ou senha inválidos');
     }
 
-
+    // Método para definir a senha do usuário
     public function setPassword(Request $request)
     {
         // Obtenha a matrícula e senha do formulário
@@ -107,6 +113,7 @@ class AuthController extends Controller
         return redirect('/sistema-ordem-servico/login')->with('error', 'Número de matrícula inválido');
     }
 
+    // Método para fazer logout do usuário
     public function logout(Request $request)
     {      
         Auth::logout();

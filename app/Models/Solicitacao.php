@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Solicitacao extends Model
 {
+    // Define o uso da Factory para criar instâncias do modelo
+    use HasFactory;
+
+    // Nome da tabela associada ao modelo no banco de dados
     protected $table = 'solicitacao';
+
+    // Nome da coluna que serve como chave primária
     protected $primaryKey = 'cd_solicitacao';
 
-    
+    // Atributos que podem ser preenchidos em massa
     protected $fillable = [
         'cd_solicitacao',
         'ds_solicitacao',
@@ -19,26 +25,21 @@ class Solicitacao extends Model
         'nm_servico_solicitado'
     ];
 
-    # Mostrando o campo de data
+    // Mostra que 'dt_emissao_solicitacao' deve ser tratada como uma instância de data
     protected $dates = ['dt_emissao_solicitacao'];
 
-    // Tudo poderar ser atualizado sem nenhuma restrição 
-    protected $guarded = [];
-    
-    //  deve ser tratada como uma instância de data 
+    // Indica se deve manter os timestamps (created_at e updated_at) no modelo
     public $timestamps = false;
+
+    // Define o nome da coluna para o timestamp de criação
     const CREATED_AT = 'dt_solicitacao';
 
-    // Mostrando onde é a coluna de update, não pode ser excluída pois pode gerar um error
-    public $updated_at = "update_at";
+    // Define explicitamente o nome da coluna para o timestamp de atualização
+    public $updated_at = 'update_at';
 
+    // Define um relacionamento de pertencimento (belongsTo) com o modelo Funcionario
     public function funcionario()
     {
         return $this->belongsTo(Funcionario::class, 'cd_matricula_funcionario', 'cd_matricula_funcionario');
     }
-
-    public function ordem()
-    {
-        return $this->belongsTo(OrdemServico::class, 'cd_solicitacao', 'cd_solicitacao');
-    }    
 }
