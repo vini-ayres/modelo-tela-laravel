@@ -1,83 +1,67 @@
-# Documentação do Sistema de Ordem de Serviço com Laravel - IFSP Campus Cubatão
+# Sistema de Ordem de Serviço (SOS) - IFSP Campus Cubatão
 
 ## Visão Geral
 
 O Sistema de Ordem de Serviço (SOS) do IFSP Campus Cubatão é uma plataforma abrangente projetada para gerenciar eficientemente as solicitações de serviços dentro da instituição. Esta documentação integra a descrição geral do projeto com os requisitos e instruções específicas para a implementação usando o framework Laravel.
 
-## Requisitos do Sistema (Laravel)
+### Requisitos do Sistema (Laravel)
 
-- PHP >= 7.4
-- Composer
-- XAMPP com Apache e MySQL
-- Necessário ter o banco de dados já criado no MySQL
+Para garantir uma implementação bem-sucedida do Sistema de Ordem de Serviço, certifique-se de que seu ambiente atenda aos seguintes requisitos:
 
-## Instalação do Projeto Laravel
+- PHP: Versão 7.4 ou superior;
+- Composer: Ferramenta de gerenciamento de dependências para PHP;
+- XAMPP: Instalado com Apache e MySQL;
+- Banco de Dados: Deverá ser utilizado o arquivo "db_ordem_servico.sql" para a implementação do banco.
 
-1. **Clonar o Repositório:**
-   ```bash
-   git clone https://github.com/vini-ayres/sistema-ordem-servico.git
-   cd sistema-ordem-servico
-   ```
+[Link para download dos arquivos](https://drive.google.com/drive/u/0/folders/1VWuVeIlOkSq6Cskq3Jz5pigge4yVc6LZ)
 
-2. **Instalar Dependências do Composer:**
-   ```bash
-   composer install
-   ```
+### Instalação do Projeto Laravel
 
-3. **Configurar o arquivo `.env`:**
+**1. Clonar o Repositório:**
 
-   Abra o arquivo `.laravel.env` em um editor de texto e configure as variáveis de ambiente, incluindo as informações do banco de dados, de acordo com a configuração do seu ambiente XAMPP.
-      ```dotenv
-      APP_URL=http://localhost
-      DB_CONNECTION=mysql
-      DB_HOST=127.0.0.1
-      DB_PORT=3306  # Altere para a porta do MySQL no seu ambiente XAMPP
-      DB_DATABASE=sua_base_de_dados
-      DB_USERNAME=seu_usuario
-      DB_PASSWORD=sua_senha
-      ```
-      Certifique-se de ajustar `DB_PORT` para refletir a porta do MySQL no seu ambiente XAMPP.
+Abra um terminal e execute os seguintes comandos:
 
-4. **Iniciar o Servidor de Desenvolvimento:**
-   ```bash
-   php artisan serve
-   ```
+```bash
+git clone https://github.com/vini-ayres/sistema-ordem-servico.git
+cd sistema-ordem-servico
+```
 
-## Estrutura do Projeto Laravel
+**2. Instalar Dependências do Composer:**
 
-- `app/`: Contém modelos, controladores e outros elementos principais do aplicativo.
-- `config/`: Configurações do aplicativo.
-- `database/`: Migrations e seeders do banco de dados.
-- `public/`: Arquivos acessíveis publicamente (assets, imagens, etc.).
-- `resources/`: Vistas, ativos frontend e traduções.
-- `routes/`: Rotas do aplicativo.
-- `tests/`: Testes automatizados.
+Execute o seguinte comando para instalar as dependências do projeto:
 
-## Funcionalidades Principais
+```bash
+composer install
+```
 
-### Multi-Login:
+**3. Configurar Variáveis de Ambiente:**
 
-- **Funcionários:** Podem realizar solicitações de serviços, acompanhando o status das ordens de serviço submetidas.
-- **Coordenadores:** Responsáveis por intermediar as solicitações, encaminhando-as aos respectivos responsáveis pelos serviços.
-- **Responsáveis:** Encarregados de gerenciar e atualizar o status das ordens de serviço designadas a eles.
-- **Administrador:** Possui controle total sobre o sistema, podendo gerenciar todos os funcionários cadastrados.
+Abra o arquivo `.laravel.env` em um editor de texto e configure as variáveis de ambiente, incluindo informações do banco de dados, de acordo com a configuração do ambiente XAMPP.
 
-### Fluxo de Solicitação:
+```env
+APP_URL=http://localhost # Endereço principal do sistema
+DB_CONNECTION=mysql # Nome do SGBD utilizado no sistema
+DB_HOST=127.0.0.1 # Endereço IP do servidor do banco de dados
+DB_PORT=3306 # Altere para a porta do MySQL no seu ambiente XAMPP
+DB_DATABASE=db_ordem_servico # Nome do banco do sistema
+DB_USERNAME=root # Nome de usuário para acesso ao banco
+DB_PASSWORD=(deixe em branco) # Senha do usuário
+```
 
-1. Um funcionário submete uma ordem de serviço.
-2. A ordem de serviço é encaminhada ao coordenador para aprovação e encaminhamento.
-3. O coordenador designa a ordem de serviço ao responsável correspondente ao serviço solicitado.
-4. O responsável gerencia o status da ordem de serviço, mantendo o funcionário informado sobre o andamento.
+**4. Ligar os módulos do XAMPP:**
 
-### Administração de Usuários:
+Ligue somente os módulos de Apache e MySQL através do botão "start" para iniciar o servidor do sistema Laravel.
 
-- O administrador tem o poder de adicionar, editar ou excluir funcionários cadastrados no campus.
-- Pode ajustar os níveis de acesso dos funcionários conforme necessário, garantindo a segurança e integridade do sistema.
+**5. Iniciar o Servidor de Desenvolvimento:**
 
-## Contribuição
+Execute o seguinte comando para iniciar o servidor Laravel:
 
-1. Faça um fork do projeto.
-2. Crie uma branch com o nome da sua feature: `git checkout -b feature-nova`.
-3. Faça commit das suas alterações: `git commit -m 'Adiciona nova feature'`.
-4. Faça push para a branch: `git push origin feature-nova`.
-5. Abra um pull request.
+```bash
+php artisan serve
+```
+
+Acesse o sistema no navegador usando o endereço fornecido pelo comando acima.
+
+---
+
+**Nota:** Certifique-se de ter seguido todos os passos corretamente para garantir uma instalação bem-sucedida do Sistema de Ordem de Serviço.
