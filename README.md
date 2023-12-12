@@ -88,7 +88,12 @@ Depois de importado, sua base de dados já estará pronta para ser utilizada no 
 
 **6. Iniciar o Servidor de Desenvolvimento:**
 
-Para isso, é necessário que primeiramente você esteja no diretório correto da pasta, portanto digite "cd sistema-ordem-servico" no terminal para garantir que esteja no caminho correto da pasta do seu projeto. Por fim, execute o seguinte comando no seu terminal para iniciar o servidor Laravel:
+Para isso, é necessário que primeiramente você esteja no diretório correto da pasta, portanto digite o seguinte comando no terminal para garantir que esteja no caminho correto da pasta do seu projeto:
+
+```bash
+cd sistema-ordem-servico
+```
+Por fim, execute o seguinte comando no seu terminal para iniciar o servidor Laravel:
 
 ```bash
 php artisan serve
