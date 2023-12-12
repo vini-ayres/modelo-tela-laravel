@@ -119,91 +119,44 @@
             </tr>
           @endforeach
 
-<!-- Modal de confirmação -->
-<div class="modal" id="confirmation-modal">
-    <div class="modal-content">
-        <p>Tem certeza de que deseja excluir este usuário?</p>
-        <button id="confirm-button">Sim</button>
-        <button id="cancel-button">Não</button>
-    </div>
-</div>
-<script>
-   const deleteButtons = document.querySelectorAll(".delete-button");
-    const modal = document.getElementById("confirmation-modal");
-    const confirmButton = document.getElementById("confirm-button");
-    const cancelButton = document.getElementById("cancel-button");
+        <!-- Modal de confirmação -->
+        <div class="modal" id="confirmation-modal">
+            <div class="modal-content">
+                <p>Tem certeza de que deseja excluir este usuário?</p>
+                <button id="confirm-button">Sim</button>
+                <button id="cancel-button">Não</button>
+            </div>
+        </div>
+        <script>
+          const deleteButtons = document.querySelectorAll(".delete-button");
+            const modal = document.getElementById("confirmation-modal");
+            const confirmButton = document.getElementById("confirm-button");
+            const cancelButton = document.getElementById("cancel-button");
 
-    deleteButtons.forEach(function (button) {
-        button.addEventListener("click", function (event) {
-            // Mostra o modal quando um botão de exclusão é clicado
-            modal.style.display = "flex";
+            deleteButtons.forEach(function (button) {
+                button.addEventListener("click", function (event) {
+                    // Mostra o modal quando um botão de exclusão é clicado
+                    modal.style.display = "flex";
 
-            confirmButton.onclick = function () {
-                // Confirmando - enviar formulário
-                button.closest("form").submit();
-                modal.style.display = "none";
-            };
+                    confirmButton.onclick = function () {
+                        // Confirmando - enviar formulário
+                        button.closest("form").submit();
+                        modal.style.display = "none";
+                    };
 
-            cancelButton.onclick = function () {
-                // Cancelando - fechar o modal
-                modal.style.display = "none";
-            };
+                    cancelButton.onclick = function () {
+                        // Cancelando - fechar o modal
+                        modal.style.display = "none";
+                    };
 
-            event.preventDefault();
-        });
-    });
-</script>
-              <!--<form action="administrador/usuario/delete/{{ $usuario -> cd_matricula_funcionario}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <form action="administrador/usuario/delete/{{ $usuario -> cd_matricula_funcionario}}" method="POST">
-                <button class="delete-button" id="delete-button">Deletar</button>
-        
-              </form>
-          </td>
-          </tr>
-          
-          <script>
-
-// Atribui um evento click a todos os botões com a classe "delete-button"
-const deleteButtons = document.querySelectorAll(".delete-button");
-
-deleteButtons.forEach(function (button) {
-    button.addEventListener("click", function (event) {
-        // Exibe um alerta para cada botão clicado
-        var confirmation = confirm("Tem certeza de que deseja excluir este usuário?");
-
-        // Se confirmado, a ação padrão continua (enviar formulário)
-        // Se cancelado, a ação padrão é cancelada
-        if (!confirmation) {
-            event.preventDefault();
-        }
-    });
-});
-</script>-->
+                    event.preventDefault();
+                });
+            });
+        </script>
         </tbody>
       </table>
     </div>
   </div>
-
-  <!-- Modal de Edição 
-  <div class="modal-container">
-    <div class="modal">
-      <span class="close">&times;</span>
-      <h2>Editar Usuário</h2>
-      <div class="user-details">
-        <label for="editName">Nome:</label>
-        <input type="text" id="editName">
-        <label for="editEmail">Email:</label>
-        <input type="email" id="editEmail">
-      </div>
-      <button class="edit-button-bold">Salvar</button>
-    </div>
-  </div>
-
-  <script>
-    // Adicione seu código JavaScript aqui, se necessário
-  </script>-->
 </body>
 
 </html>
