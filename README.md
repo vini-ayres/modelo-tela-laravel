@@ -51,7 +51,7 @@ DB_PASSWORD=(deixe em branco) # Senha do usuário
 
 **4. Ligar os módulos do XAMPP:**
 
-Ligue somente os módulos de Apache e MySQL através do botão "start" para iniciar o servidor do sistema Laravel.
+Ligue somente os módulos de Apache e MySQL através do botão "Start" para iniciar o servidor do sistema Laravel.
 <br><br>
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/0dceb050-5c65-4b47-a5a2-56a709ebda85)
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/6fa039d1-37e7-4792-b5b0-64e0282b5de4)
