@@ -98,7 +98,7 @@ Depois de importado, sua base de dados já estará pronta para ser utilizada no 
 <br><br>
 ![image](https://github.com/vini-ayres/sistema-ordem-servico/assets/131456406/cdfe78ba-ae2d-4add-8365-2b01ce949b4f)
 
-**6. Iniciar o Servidor de Desenvolvimento:**
+**7. Iniciar o Servidor de Desenvolvimento:**
 
 Para isso, é necessário que primeiramente você esteja no diretório correto da pasta, portanto digite o seguinte comando no terminal para garantir que esteja no caminho correto da pasta do seu projeto:
 
