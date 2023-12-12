@@ -88,14 +88,13 @@ Depois de importado, sua base de dados já estará pronta para ser utilizada no 
 
 **6. Iniciar o Servidor de Desenvolvimento:**
 
-Na sua IDE, abra um terminal e execute o seguinte comando para iniciar o servidor Laravel:
+Para isso, é necessário que primeiramente você esteja no diretório correto da pasta, portanto digite "cd sistema-ordem-servico" no terminal para garantir que esteja no caminho correto da pasta do seu projeto. Por fim, execute o seguinte comando no seu terminal para iniciar o servidor Laravel:
 
 ```bash
-cd sistema-ordem-servico
 php artisan serve
 ```
 
-Em seguida, acesse o sistema no navegador usando o endereço fornecido pelo comando acima.
+Em seguida, acesse o sistema no navegador usando o endereço fornecido pelo comando acima. E assim seu sistema de Ordem de Serviço está pronto para o uso.
 
 ---
 
